@@ -4,16 +4,24 @@
 <%@ page session="false"%>
 
 <div ng-init="getNxHospitalList()" class="container" style="width: 1000px;">
-&nbsp;&nbsp;&nbsp;&nbsp;<h4>Hospitals in Noida Extension</h4>
+		<table width="100%">
+			<tr>
+				<td align="left">&nbsp;&nbsp;&nbsp;&nbsp;<h4>Hospitals in Noida Extension</h4></td>
+			</tr>
+			<tr>
+				<td align="right"><h4>Search:&nbsp;<input type="test" size="50" placeholder="search for anything.." ng-model="searchFilter"></h4></td>
+			</tr>
+		</table>
 		
 		<ul class="list-group" >
-			<li class="list-group-item"  ng-repeat="nxHospital in nxHospitalsList" >
+			<li class="list-group-item"  ng-repeat="nxHospital in nxHospitalsList | filter:searchFilter" >
 				<table style=" border-spacing: 105px;" cellpadding="100">
 					<tr>
 						<td width="30%">
 								<img src="<c:url value="{{nxHospital.imageUrl}}"/>"class="img-rounded" width={{listingImageWidth}} height={{listingImageHeight}}>
 						</td>
-						<td valign="top" width="65%" style="text-align:left;">
+						<td width="1%"></td>
+						<td valign="top" width="60%" style="text-align:left;">
 									<h4>{{ nxHospital.name}}</h4>
 									<h5>
 									<a href="{{nxHospital.map}}" onClick="return popup(this, 'location')">		
@@ -24,6 +32,10 @@
 									<h5><img src="<c:url value="/img/common/openTime.png"/>"class="img-rounded" width="20" height="20"> {{ nxHospital.openTime}} </h5>
 									<h5><img src="<c:url value="/img/common/website.png"/>"class="img-rounded" width="20" height="20">   {{ nxHospital.website}} </h5> 
 						</td>
+						<td valign="top">
+							<small style="color: red">{{nxHospital.market}}</small>
+						</td>
+						<td width="1%"></td>
 					</tr>
 				</table>
 			</li>
