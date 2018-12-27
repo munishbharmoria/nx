@@ -41,14 +41,16 @@ public class CacheNxData {
 	public HashMap loadData() throws InvalidFormatException, IOException {
 		HashMap cacheMap = new HashMap<>();
 		Workbook workbook = WorkbookFactory.create(new File(
-				"C:\\MunishData\\mp\\project\\workspace\\shop\\shop\\src\\main\\resources\\nxData.xlsx"));
+				"C:\\MunishData\\mp\\project\\workspace\\shop\\shop\\src\\main\\resources\\nxData_local.xlsx"));
+				//"/munish/nx/nxData_prod.xlsx"));
+		//"/home/nxdial00/nxdial/resources/nxdialData/nxData_prod.xlsx"));
 		Sheet categorySheet = workbook.getSheet("Category");
 		Iterator<Row> cRowIterator = categorySheet.rowIterator();
 		while (cRowIterator.hasNext()) {
 			Row row = cRowIterator.next();
 			if(row.getRowNum() > 0) {
-				String name = row.getCell(0).toString();
-				String caption = row.getCell(1).toString();
+				String name = (row.getCell(0) == null) ? "": row.getCell(0).toString();
+				String caption = (row.getCell(1) == null) ? "": row.getCell(1).toString();
 				nxDirCategoryList.add(new Category(name, caption)); 
 			}
 		}
@@ -60,8 +62,8 @@ public class CacheNxData {
 		while (ctRowIterator.hasNext()) {
 			Row row = ctRowIterator.next();
 			if(row.getRowNum() > 0) {
-				String caption = row.getCell(0).toString();
-				String imagePath = row.getCell(1).toString();
+				String caption = (row.getCell(0) == null) ? "": row.getCell(0).toString();
+				String imagePath = (row.getCell(1) == null) ? "": row.getCell(1).toString();
 				nxCategoryThumbnailList.add(new CategoryThumbnail(caption, imagePath)); 
 			}
 		}
@@ -74,14 +76,15 @@ public class CacheNxData {
 		while (resRowIterator.hasNext()) {
 			Row row = resRowIterator.next();
 			if(row.getRowNum() > 0) {
-				String name = row.getCell(0).toString();
-				String address = row.getCell(1).toString();
-				String contactNumber = row.getCell(2).toString();
-				String website = row.getCell(3).toString();
-				String openTime = row.getCell(4).toString();
-				String imageUrl = row.getCell(5).toString();
-				String map = row.getCell(6).toString();
-				nxRestaurantsListingList.add(new Business(name, address, contactNumber, website, openTime, imageUrl, map, ""));
+				String name = (row.getCell(0) == null) ? "": row.getCell(0).toString();
+				String address = (row.getCell(1) == null) ? "": row.getCell(1).toString();
+				String contactNumber = (row.getCell(2) == null) ? "": row.getCell(2).toString();
+				String website = (row.getCell(3) == null) ? "": row.getCell(3).toString();
+				String openTime = (row.getCell(4) == null) ? "": row.getCell(4).toString();
+				String imageUrl = (row.getCell(5) == null) ? "": row.getCell(5).toString();
+				String map = (row.getCell(6) == null) ? "#": row.getCell(6).toString();
+				String market = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				nxRestaurantsListingList.add(new Business(name, address, contactNumber, website, openTime, imageUrl, map, "", market));
 			}
 			
 		}
@@ -93,14 +96,15 @@ public class CacheNxData {
 		while (hospRowIterator.hasNext()) {
 			Row row = hospRowIterator.next();
 			if(row.getRowNum() > 0) {
-				String name = row.getCell(0).toString();
-				String address = row.getCell(1).toString();
-				String contactNumber = row.getCell(2).toString();
-				String website = row.getCell(3).toString();
-				String openTime = row.getCell(4).toString();
-				String imageUrl = row.getCell(5).toString();
-				String map = row.getCell(6).toString();
-				nxHospitalsListingList.add(new Business(name, address, contactNumber, website, openTime, imageUrl, map, ""));
+				String name = (row.getCell(0) == null) ? "": row.getCell(0).toString();
+				String address = (row.getCell(1) == null) ? "": row.getCell(1).toString();
+				String contactNumber = (row.getCell(2) == null) ? "": row.getCell(2).toString();
+				String website = (row.getCell(3) == null) ? "": row.getCell(3).toString();
+				String openTime = (row.getCell(4) == null) ? "": row.getCell(4).toString();
+				String imageUrl = (row.getCell(5) == null) ? "": row.getCell(5).toString();
+				String map = (row.getCell(6) == null) ? "#": row.getCell(6).toString();
+				String market = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				nxHospitalsListingList.add(new Business(name, address, contactNumber, website, openTime, imageUrl, map, "", market));
 			}
 		}
 		System.out.println("nxHospitalsListingList = "+nxHospitalsListingList);
@@ -111,14 +115,15 @@ public class CacheNxData {
 		while (schRowIterator.hasNext()) {
 			Row row = schRowIterator.next();
 			if(row.getRowNum() > 0) {
-				String name = row.getCell(0).toString();
-				String address = row.getCell(1).toString();
-				String contactNumber = row.getCell(2).toString();
-				String website = row.getCell(3).toString();
-				String openTime = row.getCell(4).toString();
-				String imageUrl = row.getCell(5).toString();
-				String map = row.getCell(6).toString();
-				nxSchoolsListingList.add(new Business(name, address, contactNumber, website, openTime, imageUrl, map, "")); 
+				String name = (row.getCell(0) == null) ? "": row.getCell(0).toString();
+				String address = (row.getCell(1) == null) ? "": row.getCell(1).toString();
+				String contactNumber = (row.getCell(2) == null) ? "": row.getCell(2).toString();
+				String website = (row.getCell(3) == null) ? "": row.getCell(3).toString();
+				String openTime = (row.getCell(4) == null) ? "": row.getCell(4).toString();
+				String imageUrl = (row.getCell(5) == null) ? "": row.getCell(5).toString();
+				String map = (row.getCell(6) == null) ? "#": row.getCell(6).toString();
+				String market = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				nxSchoolsListingList.add(new Business(name, address, contactNumber, website, openTime, imageUrl, map, "", market));
 			}
 		}
 		System.out.println("nxSchoolsListingList = "+nxSchoolsListingList);
@@ -129,15 +134,16 @@ public class CacheNxData {
 		while (docRowIterator.hasNext()) {
 			Row row = docRowIterator.next();
 			if(row.getRowNum() > 0) {
-				String name = row.getCell(0).toString();
-				String address = row.getCell(1).toString();
-				String contactNumber = row.getCell(2).toString();
-				String website = row.getCell(3).toString();
-				String openTime = row.getCell(4).toString();
-				String imageUrl = row.getCell(5).toString();
-				String map = row.getCell(6).toString();
-				String specialization = row.getCell(7).toString();
-				nxDoctorsListingList.add(new Business(name, address, contactNumber, website, openTime, imageUrl, map, specialization)); 
+				String name = (row.getCell(0) == null) ? "": row.getCell(0).toString();
+				String address = (row.getCell(1) == null) ? "": row.getCell(1).toString();
+				String contactNumber = (row.getCell(2) == null) ? "": row.getCell(2).toString();
+				String website = (row.getCell(3) == null) ? "": row.getCell(3).toString();
+				String openTime = (row.getCell(4) == null) ? "": row.getCell(4).toString();
+				String imageUrl = (row.getCell(5) == null) ? "": row.getCell(5).toString();
+				String map = (row.getCell(6) == null) ? "#": row.getCell(6).toString();
+				String specialization = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				String market = (row.getCell(8) == null) ? "": row.getCell(8).toString();
+				nxDoctorsListingList.add(new Business(name, address, contactNumber, website, openTime, imageUrl, map, specialization, market));
 			}
 		}
 		System.out.println("nxDoctorsListingList = "+nxDoctorsListingList);
@@ -149,14 +155,15 @@ public class CacheNxData {
 		while (playSchRowIterator.hasNext()) {
 			Row row = playSchRowIterator.next();
 			if(row.getRowNum() > 0) {
-				String name = row.getCell(0).toString();
-				String address = row.getCell(1).toString();
-				String contactNumber = row.getCell(2).toString();
-				String website = row.getCell(3).toString();
-				String openTime = row.getCell(4).toString();
-				String imageUrl = row.getCell(5).toString();
-				String map = row.getCell(6).toString();
-				nxPlaySchoolList.add(new Business(name, address, contactNumber, website, openTime, imageUrl, map, "")); 
+				String name = (row.getCell(0) == null) ? "": row.getCell(0).toString();
+				String address = (row.getCell(1) == null) ? "": row.getCell(1).toString();
+				String contactNumber = (row.getCell(2) == null) ? "": row.getCell(2).toString();
+				String website = (row.getCell(3) == null) ? "": row.getCell(3).toString();
+				String openTime = (row.getCell(4) == null) ? "": row.getCell(4).toString();
+				String imageUrl = (row.getCell(5) == null) ? "": row.getCell(5).toString();
+				String map = (row.getCell(6) == null) ? "#": row.getCell(6).toString();
+				String market = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				nxPlaySchoolList.add(new Business(name, address, contactNumber, website, openTime, imageUrl, map, "", market));
 			}
 		}
 		System.out.println("nxPlaySchoolList = "+nxPlaySchoolList);

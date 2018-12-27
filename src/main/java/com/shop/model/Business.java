@@ -18,25 +18,15 @@ public class Business {
 	
 	public String specialization;
 	
+	public String market;
+	
 
 	public Business() {
 		super();
 	}
 
-	/*public Business(String name, String address, String contactNumber, String website, String openTime, 
-			String imageUrl, String map) {
-		super();
-		this.name = name;
-		this.address = address;
-		this.contactNumber = contactNumber;
-		this.website = website;
-		this.openTime = openTime;
-		this.imageUrl =  imageUrl;
-		this.map = map;
-	}*/
-	
 	public Business(String name, String address, String contactNumber, String website, String openTime, String imageUrl,
-			String map, String specialization) {
+			String map, String specialization, String market) {
 		super();
 		this.name = name;
 		this.address = address;
@@ -46,6 +36,7 @@ public class Business {
 		this.imageUrl = imageUrl;
 		this.map = map;
 		this.specialization = specialization;
+		this.market = market;
 	}
 	
 	
@@ -104,6 +95,22 @@ public class Business {
 
 	public void setMap(String map) {
 		this.map = map;
+	}
+
+	public String getSpecialization() {
+		return specialization;
+	}
+
+	public void setSpecialization(String specialization) {
+		this.specialization = specialization;
+	}
+
+	public String getMarket() {
+		return market;
+	}
+
+	public void setMarket(String market) {
+		this.market = market;
 	}
 	
 	
