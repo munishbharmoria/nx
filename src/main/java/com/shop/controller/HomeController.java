@@ -19,9 +19,9 @@ public class HomeController {
 	@Autowired
     CacheNxData cacheNxData;
 
-	@RequestMapping(value = "shop", method=RequestMethod.GET)
+	@RequestMapping(value = "/", method=RequestMethod.GET)
 	public ModelAndView home() throws InvalidFormatException, IOException {
-		cacheNxData.loadData();
+		//cacheNxData.loadData();
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("key", "home");
 		modelAndView.setViewName("home");

@@ -8,7 +8,8 @@
 	<nav class="navbar navbar-inverse">
 			<ul class="nav navbar-nav">
 				<li ng-repeat="nxCategory in nxDirCategories">
-					<h5 ng-model="data" ng-init="data=nxCategory.caption" ng-click="getMyAction(data)" style='color:white;cursor: pointer;font-family: "Comic Sans MS", cursive, sans-serif;' class="hvr-grow"> 
+					<h5 ng-model="data" ng-init="data=nxCategory.caption" ng-click="getMyAction(data)"
+					 style='color:white;cursor: pointer;font-family: "Comic Sans MS", cursive, sans-serif;' class="hvr-grow"> 
 						&nbsp;&nbsp;
 						{{nxCategory.name}}
 						&nbsp;&nbsp;

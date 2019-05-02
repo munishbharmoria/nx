@@ -3,6 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
 <html>
+<head>
+	<title>
+		NxDial.com - Noida Extension's Free Directory
+	</title>
+</head>
 <body ng-app='shopModule' class="mh-100"
 	style="width: 1000px; height: 1000px; background-color: #eed; margin: auto;">
 	<jsp:include page="common.jsp"></jsp:include>
@@ -28,6 +33,14 @@
 
 		<div ng-if="enableSection=='Restaurants'">
 			<jsp:include page="restaurantsListing.jsp"></jsp:include>
+		</div>
+		
+		<div ng-if="enableSection=='Automobiles'">
+			<jsp:include page="automobilesListing.jsp"></jsp:include>
+		</div>
+		
+		<div ng-if="enableSection=='Shopping'">
+			<jsp:include page="shoppingListing.jsp"></jsp:include>
 		</div>
 		
 		<div ng-if="enableSection == 'Doctors'">

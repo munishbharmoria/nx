@@ -8,11 +8,12 @@
 	<table width="100%">
 		<tr>
 			<td width="1%"> </td>
-			<td>
-			<a href="<c:url value="/shop"/>" style="text-decoration: none;">
+			<td disabled="true">
+			<a href="<c:url value="/"/>" style="text-decoration: none;">
 			<large style='font-family: "Comic Sans MS", cursive, sans-serif; font-size: 35px;color:blue;font-weight: bold;'>Nx</large>
 			<large style='font-family: "Comic Sans MS", cursive, sans-serif; font-size: 35px;color:red;font-weight: bold;'>Dial.com</large>
-				<%-- <img src="<c:url value="/img/nxDirectory.jpg"/>" class="img-rounded"> --%>
+			<br>
+			<large style='font-family: "Comic Sans MS", cursive, sans-serif; font-size: 11px;color:gray;font-weight: bold;'>Noida Extension's Free Directory</large>
 			</a>
 			</td>
 			<td>
@@ -22,7 +23,8 @@
 			
 			</td>
 			<td align="right">
-				<img src="<c:url value="/img/common/freeListing.png"/>" class="img-rounded" ng-click ="registerBusiness()" style="cursor: pointer;"/>
+			<!-- 	<img src="<c:url value="/img/common/freeListing.png"/>" class="img-rounded" ng-click ="registerBusiness()" style="cursor: pointer;"/>  -->
+				<img src="<c:url value="/img/common/freeListing.png"/>" class="img-rounded"/>
 			
 			&nbsp;&nbsp; 
 				<u style='color:black;font-family: "Comic Sans MS", cursive, sans-serif;'>Call </u><u style='color:blue;font-family: "Comic Sans MS", cursive, sans-serif;'>8800587117</u><u style='olor:black;font-family: "Comic Sans MS", cursive, sans-serif;'> for Advertise</u>

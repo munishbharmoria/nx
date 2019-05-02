@@ -1,26 +1,21 @@
 package com.shop.util;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
-import org.springframework.util.SystemPropertyUtils;
 
 import com.shop.model.Business;
 import com.shop.model.Category;
@@ -28,24 +23,31 @@ import com.shop.model.CategoryThumbnail;
 
 @Component
 public class CacheNxData {
+	
+	private static final Logger LOGGER = LogManager.getLogger(CacheNxData.class);
 
 	public List<Category> nxDirCategoryList = new ArrayList<Category>();
-	public List<CategoryThumbnail> nxCategoryThumbnailList = new ArrayList<CategoryThumbnail>();;
+	public List<CategoryThumbnail> nxCategoryThumbnailList = new ArrayList<CategoryThumbnail>();
 	public List<Business> nxRestaurantsListingList = new ArrayList<Business>();
+	public List<Business> nxAutomobilesListingList = new ArrayList<Business>();
 	public List<Business> nxHospitalsListingList = new ArrayList<Business>();
 	public List<Business> nxSchoolsListingList = new ArrayList<Business>();
 	public List<Business> nxDoctorsListingList = new ArrayList<Business>();
 	public List<Business> nxPlaySchoolList = new ArrayList<Business>();
-
-	@Cacheable("nxData")
-	public HashMap loadData() throws InvalidFormatException, IOException {
-		HashMap cacheMap = new HashMap<>();
+	public List<Business> nxShoppingList = new ArrayList<Business>();
+	
+	public Workbook getWorkbook() throws InvalidFormatException, IOException {
 		Workbook workbook = WorkbookFactory.create(new File(
 				"C:\\MunishData\\mp\\project\\workspace\\shop\\shop\\src\\main\\resources\\nxData_local.xlsx"));
-				//"/munish/nx/nxData_prod.xlsx"));
-		//"/home/nxdial00/nxdial/resources/nxdialData/nxData_prod.xlsx"));
+				//"/root/nxdial/data/nxData_prod.xlsx"));
+		return workbook;
+	}
+	
+	public List<Category> getCategoriesList() throws InvalidFormatException, IOException {
+		Workbook workbook = getWorkbook();
 		Sheet categorySheet = workbook.getSheet("Category");
 		Iterator<Row> cRowIterator = categorySheet.rowIterator();
+		nxDirCategoryList.clear();
 		while (cRowIterator.hasNext()) {
 			Row row = cRowIterator.next();
 			if(row.getRowNum() > 0) {
@@ -55,8 +57,14 @@ public class CacheNxData {
 			}
 		}
 		System.out.println("nxDirCategoryList = "+nxDirCategoryList);
-		cacheMap.put("Category", nxDirCategoryList);
+		LOGGER.info("nxDirCategoryList = "+nxDirCategoryList);
 		
+		return nxDirCategoryList;
+	}
+	
+	public List<CategoryThumbnail> getCategoryThumbnailList() throws InvalidFormatException, IOException {
+		Workbook workbook = getWorkbook();
+		nxCategoryThumbnailList.clear();
 		Sheet categoryThumbnailSheet = workbook.getSheet("CategoryThumbnail");
 		Iterator<Row> ctRowIterator = categoryThumbnailSheet.rowIterator();
 		while (ctRowIterator.hasNext()) {
@@ -68,11 +76,17 @@ public class CacheNxData {
 			}
 		}
 		System.out.println("nxCategoryThumbnailList = "+nxCategoryThumbnailList);
-		cacheMap.put("CategoryThumbnail", nxCategoryThumbnailList);
+		LOGGER.info("nxCategoryThumbnailList = "+nxCategoryThumbnailList);
 		
-		
+		return nxCategoryThumbnailList;
+	}
+	
+	public List<Business> getRestaurantsListingList() throws InvalidFormatException, IOException {
+		Workbook workbook = getWorkbook();
+		nxCategoryThumbnailList.clear();
 		Sheet restaurantsListingSheet = workbook.getSheet("RestaurantsListing");
 		Iterator<Row> resRowIterator = restaurantsListingSheet.rowIterator();
+		nxRestaurantsListingList.clear();
 		while (resRowIterator.hasNext()) {
 			Row row = resRowIterator.next();
 			if(row.getRowNum() > 0) {
@@ -89,10 +103,17 @@ public class CacheNxData {
 			
 		}
 		System.out.println("nxRestaurantsListingList = "+nxRestaurantsListingList);
-		cacheMap.put("nxRestList", nxRestaurantsListingList);
+		LOGGER.info("nxRestaurantsListingList = "+nxRestaurantsListingList);
 		
+		return nxRestaurantsListingList;
+	}
+	
+	public List<Business> getHospitalsListingList() throws InvalidFormatException, IOException {
+		Workbook workbook = getWorkbook();
+		nxCategoryThumbnailList.clear();
 		Sheet hospitalsListingSheet = workbook.getSheet("HospitalsListing");
 		Iterator<Row> hospRowIterator = hospitalsListingSheet.rowIterator();
+		nxHospitalsListingList.clear();
 		while (hospRowIterator.hasNext()) {
 			Row row = hospRowIterator.next();
 			if(row.getRowNum() > 0) {
@@ -108,10 +129,43 @@ public class CacheNxData {
 			}
 		}
 		System.out.println("nxHospitalsListingList = "+nxHospitalsListingList);
-		cacheMap.put("nxHosptList", nxHospitalsListingList);
+		LOGGER.info("nxRestaurantsListingList = "+nxHospitalsListingList);
 		
+		return nxHospitalsListingList;
+	}
+	
+	public List<Business> getShoppingListingList() throws InvalidFormatException, IOException {
+		Workbook workbook = getWorkbook();
+		nxCategoryThumbnailList.clear();
+		Sheet shopingListingSheet = workbook.getSheet("ShoppingListing");
+		Iterator<Row> shoppingRowIterator = shopingListingSheet.rowIterator();
+		nxShoppingList.clear();
+		while (shoppingRowIterator.hasNext()) {
+			Row row = shoppingRowIterator.next();
+			if(row.getRowNum() > 0) {
+				String name = (row.getCell(0) == null) ? "": row.getCell(0).toString();
+				String address = (row.getCell(1) == null) ? "": row.getCell(1).toString();
+				String contactNumber = (row.getCell(2) == null) ? "": row.getCell(2).toString();
+				String website = (row.getCell(3) == null) ? "": row.getCell(3).toString();
+				String openTime = (row.getCell(4) == null) ? "": row.getCell(4).toString();
+				String imageUrl = (row.getCell(5) == null) ? "": row.getCell(5).toString();
+				String map = (row.getCell(6) == null) ? "#": row.getCell(6).toString();
+				String market = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				nxShoppingList.add(new Business(name, address, contactNumber, website, openTime, imageUrl, map, "", market));
+			}
+		}
+		System.out.println("nxShoppingList = "+nxShoppingList);
+		LOGGER.info("nxShoppingList = "+nxShoppingList);
+		
+		return nxShoppingList;
+	}
+	
+	public List<Business> getSchoolsListingList() throws InvalidFormatException, IOException {
+		Workbook workbook = getWorkbook();
+		nxCategoryThumbnailList.clear();
 		Sheet schoolsListingSheet = workbook.getSheet("SchoolsListing");
 		Iterator<Row> schRowIterator = schoolsListingSheet.rowIterator();
+		nxSchoolsListingList.clear();
 		while (schRowIterator.hasNext()) {
 			Row row = schRowIterator.next();
 			if(row.getRowNum() > 0) {
@@ -127,10 +181,17 @@ public class CacheNxData {
 			}
 		}
 		System.out.println("nxSchoolsListingList = "+nxSchoolsListingList);
-		cacheMap.put("nxSchList", nxSchoolsListingList);
+		LOGGER.info("nxSchoolsListingList = "+nxSchoolsListingList);
 		
+		return nxSchoolsListingList;
+	}
+	
+	public List<Business> getDoctorsListingList() throws InvalidFormatException, IOException {
+		Workbook workbook = getWorkbook();
+		nxCategoryThumbnailList.clear();
 		Sheet doctorsListingSheet = workbook.getSheet("DoctorsListing");
 		Iterator<Row> docRowIterator = doctorsListingSheet.rowIterator();
+		nxDoctorsListingList.clear();
 		while (docRowIterator.hasNext()) {
 			Row row = docRowIterator.next();
 			if(row.getRowNum() > 0) {
@@ -147,11 +208,17 @@ public class CacheNxData {
 			}
 		}
 		System.out.println("nxDoctorsListingList = "+nxDoctorsListingList);
-		cacheMap.put("nxDocList", nxDoctorsListingList);
+		LOGGER.info("nxDoctorsListingList = "+nxDoctorsListingList);
 		
-		
+		return nxDoctorsListingList;
+	}
+	
+	public List<Business> getPlaySchoolsListingList() throws InvalidFormatException, IOException {
+		Workbook workbook = getWorkbook();
+		nxCategoryThumbnailList.clear();
 		Sheet playSchoolsListingSheet = workbook.getSheet("PlaySchoolsListing");
 		Iterator<Row> playSchRowIterator = playSchoolsListingSheet.rowIterator();
+		nxPlaySchoolList.clear();
 		while (playSchRowIterator.hasNext()) {
 			Row row = playSchRowIterator.next();
 			if(row.getRowNum() > 0) {
@@ -167,11 +234,35 @@ public class CacheNxData {
 			}
 		}
 		System.out.println("nxPlaySchoolList = "+nxPlaySchoolList);
-		cacheMap.put("nxPlaySchoolList", nxPlaySchoolList);
+		LOGGER.info("nxPlaySchoolList = "+nxPlaySchoolList);
 		
-		
-		System.out.println("All cached data====================" + cacheMap);
-		return cacheMap;
+		return nxPlaySchoolList;
+	}
+
+	//@Cacheable("nxData")
+	public List<Business> getAutomobilesListingList() throws InvalidFormatException, IOException {
+		Workbook workbook = getWorkbook();
+		Sheet automobilesListingSheet = workbook.getSheet("AutomobilesListing");
+		Iterator<Row> autoMRowIterator = automobilesListingSheet.rowIterator();
+		nxAutomobilesListingList.clear();
+		while (autoMRowIterator.hasNext()) {
+			Row row = autoMRowIterator.next();
+			if(row.getRowNum() > 0) {
+				String name = (row.getCell(0) == null) ? "": row.getCell(0).toString();
+				String address = (row.getCell(1) == null) ? "": row.getCell(1).toString();
+				String contactNumber = (row.getCell(2) == null) ? "": row.getCell(2).toString();
+				String website = (row.getCell(3) == null) ? "": row.getCell(3).toString();
+				String openTime = (row.getCell(4) == null) ? "": row.getCell(4).toString();
+				String imageUrl = (row.getCell(5) == null) ? "": row.getCell(5).toString();
+				String map = (row.getCell(6) == null) ? "#": row.getCell(6).toString();
+				String market = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				nxAutomobilesListingList.add(new Business(name, address, contactNumber, website, openTime, imageUrl, map, "", market));
+			}
+			
+		}
+		System.out.println("nxAutomobilesListingList = "+nxAutomobilesListingList);
+		LOGGER.info("nxAutomobilesListingList = "+nxAutomobilesListingList);
+		return nxAutomobilesListingList;
 
 	}
 

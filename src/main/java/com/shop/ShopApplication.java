@@ -9,7 +9,6 @@ import org.springframework.cache.annotation.EnableCaching;
 @SpringBootApplication
 @EnableCaching
 public class ShopApplication extends SpringBootServletInitializer {
-//public class ShopApplication{
 
 	@Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {

@@ -7,34 +7,34 @@
 	<!-- Wrapper for slides -->
 	<div class="carousel-inner" align="center" ng-if="'${key}' == 'home'">
 			<div class="item active">
-				<a href=""> <img src="<c:url value="/img/advertisement/adv_home1.JPG"/>" width="970" ></a>
+				<a href="http://www.sarvottamnoida.com/" target="_blank"> <img style='height: 150px; width: 1000px' src="<c:url value="/img/advertisement/adv_sarvottamInternationalSchool.JPG"/>"  ></a>
 			</div>
 			<div class="item">
-				<a href=""> <img src="<c:url value="/img/advertisement/adv_home2.JPG"/>" width="970" ></a>
+				<a href="https://www.milkbasket.com/" target="_blank"> <img style='height: 150px; width: 1100px' src="<c:url value="/img/advertisement/adv_milkBasket.JPG"/>" ></a>
 			</div>
 	</div>
 	<div class="carousel-inner" align="center" ng-if="'${key}' == 'restaurants'">
 			<div class="item active">
-				<a href=""> <img src="<c:url value="/img/advertisement/adv_home1.JPG"/>" width="970" ></a>
+				<a href="http://www.sarvottamnoida.com/" target="_blank"> <img style='height: 150px; width: 1000px' src="<c:url value="/img/advertisement/adv_sarvottamInternationalSchool.JPG"/>"  ></a>
 			</div>
 			<div class="item">
-				<a href=""> <img src="<c:url value="/img/advertisement/adv_home2.JPG"/>" width="970" ></a>
+				<a href="https://www.milkbasket.com/" target="_blank"> <img style='height: 150px; width: 1100px' src="<c:url value="/img/advertisement/adv_milkBasket.JPG"/>" ></a>
 			</div>
 	</div>
 	<div class="carousel-inner" align="center" ng-if="'${key}' == 'hospitals'">
 			<div class="item active">
-				<a href=""> <img src="<c:url value="/img/advertisement/adv_home1.JPG"/>" width="970" ></a>
+				<a href="http://www.sarvottamnoida.com/" target="_blank"> <img style='height: 150px; width: 1000px' src="<c:url value="/img/advertisement/adv_sarvottamInternationalSchool.JPG"/>"  ></a>
 			</div>
 			<div class="item">
-				<a href=""> <img src="<c:url value="/img/advertisement/adv_home2.JPG"/>" width="970" ></a>
+				<a href="https://www.milkbasket.com/" target="_blank"> <img style='height: 150px; width: 1100px' src="<c:url value="/img/advertisement/adv_milkBasket.JPG"/>" ></a>
 			</div>
 	</div>
 	<div class="carousel-inner" align="center" ng-if="'${key}' == 'schools'">
 			<div class="item active">
-				<a href=""> <img src="<c:url value="/img/advertisement/adv_home1.JPG"/>" width="970" ></a>
+				<a href="http://www.sarvottamnoida.com/" target="_blank"> <img style='height: 150px; width: 1000px' src="<c:url value="/img/advertisement/adv_sarvottamInternationalSchool.JPG"/>"  ></a>
 			</div>
 			<div class="item">
-				<a href=""> <img src="<c:url value="/img/advertisement/adv_home2.JPG"/>" width="970" ></a>
+				<a href="https://www.milkbasket.com/" target="_blank"> <img style='height: 150px; width: 1100px' src="<c:url value="/img/advertisement/adv_milkBasket.JPG"/>" ></a>
 			</div>
 	</div>
 </div>

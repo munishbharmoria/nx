@@ -3,7 +3,10 @@ package com.shop.controller;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,63 +27,73 @@ import com.shop.util.CacheNxData;
 //@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 public class ProductController {
-	/*@Autowired
-	private CategoryService categoryService;*/
 	
 	@Autowired
     CacheNxData cacheNxData;
 	
+	private static final Logger LOGGER = LogManager.getLogger(CacheNxData.class);
+	
 	@RequestMapping(path = "/getNxDirCategories")
 	public List<Category> getNxDirCategories() throws InvalidFormatException, IOException {
-		HashMap catMap = cacheNxData.loadData();
-		List<Category> catListing = (List<Category>) catMap.get("Category");
+		List<Category> catListing = cacheNxData.getCategoriesList();
+		LOGGER.info("catListing = "+catListing);
 		return catListing;
-		//return categoryService.getNxDirCategories();
 	}
-	
 	
 	@RequestMapping(path = "/getNxCategoriesThumbnails")
 	public List<CategoryThumbnail> getNxCategoriesThumbnails() throws InvalidFormatException, IOException {
-		HashMap catThumbMap = cacheNxData.loadData();
-		List<CategoryThumbnail> catThumbListing = (List<CategoryThumbnail>) catThumbMap.get("CategoryThumbnail");
+		List<CategoryThumbnail> catThumbListing = cacheNxData.getCategoryThumbnailList();
+		LOGGER.info("catThumbListing = "+catThumbListing);
 		return catThumbListing;
-		//return categoryService.getNxCategoriesThumbnails();
 	}
 	
 	@RequestMapping(path = "/getNxRestaurentList")
 	public List<Business> getNxRestaurantsListingList() throws InvalidFormatException, IOException {
-		HashMap restMap = cacheNxData.loadData();
-		List<Business> restListing = (List<Business>) restMap.get("nxRestList");
+		List<Business> restListing = cacheNxData.getRestaurantsListingList();
+		LOGGER.info("restListing = "+restListing);
 		return restListing;
-		//return categoryService.getNxRestaurantsListingList();
+	}
+	
+	@RequestMapping(path = "/getNxDoctorList")
+	public List<Business> getNxDoctorsListingList() throws InvalidFormatException, IOException {
+		List<Business> docListing = cacheNxData.getDoctorsListingList();
+		LOGGER.info("docListing = "+docListing);
+		return docListing;
 	}
 	
 	@RequestMapping(path = "/getNxHospitalList")
 	public List<Business> getNxHospitalsListingList() throws InvalidFormatException, IOException {
-		HashMap hosptMap = cacheNxData.loadData();
-		List<Business> hosptListing = (List<Business>) hosptMap.get("nxHosptList");
+		List<Business> hosptListing =  cacheNxData.getHospitalsListingList();
+		LOGGER.info("hosptListing = "+hosptListing);
 		return hosptListing;
 	}
 	
 	@RequestMapping(path = "/getNxSchoolList")
 	public List<Business> getNxSchoolsListingList() throws InvalidFormatException, IOException {
-		HashMap schMap = cacheNxData.loadData();
-		List<Business> schListing = (List<Business>) schMap.get("nxSchList");
+		List<Business> schListing = cacheNxData.getSchoolsListingList();
+		LOGGER.info("schListing = "+schListing);
 		return schListing;
-	}
-	
-	@RequestMapping(path = "/getNxDoctorList")
-	public List<Business> getNxDoctorsListingList() throws InvalidFormatException, IOException {
-		HashMap docMap = cacheNxData.loadData();
-		List<Business> docListing = (List<Business>) docMap.get("nxDocList");
-		return docListing;
 	}
 	
 	@RequestMapping(path = "/getNxPlaySchoolList")
 	public List<Business> getNxPlaySchoolsListingList() throws InvalidFormatException, IOException {
-		HashMap playSchMap = cacheNxData.loadData();
-		List<Business> playSchListing = (List<Business>) playSchMap.get("nxPlaySchoolList");
+		List<Business> playSchListing = cacheNxData.getPlaySchoolsListingList();
+		LOGGER.info("playSchListing = "+playSchListing);
 		return playSchListing;
+	}
+	
+	@RequestMapping(path = "/getNxAutomobileList")
+	public List<Business> getNxAutomobilesListingList() throws InvalidFormatException, IOException {
+		List<Business> autoMListing = cacheNxData.getAutomobilesListingList();
+		LOGGER.info("autoMListing = "+autoMListing);
+		return autoMListing;
+	}
+	
+	@RequestMapping(path = "/getNxShoppingList")
+	public List<Business> getNxShoppingListingList() throws InvalidFormatException, IOException {
+		List<Business> shoppingListing = cacheNxData.getShoppingListingList();
+		LOGGER.info("shoppingListing = "+shoppingListing);
+		return shoppingListing;
 	}
 	
 	@RequestMapping(value = "/admin", method=RequestMethod.GET)
@@ -90,5 +103,4 @@ public class ProductController {
 			modelAndView.setViewName("home");
 			return modelAndView;
 	    }
-	
 }
