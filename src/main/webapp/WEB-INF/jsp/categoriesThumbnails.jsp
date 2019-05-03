@@ -4,7 +4,7 @@
 <%@ page session="false"%>
 
 <div ng-init="getNxDirThumnailCategories()" class="container" data-scale="1.6">
-&nbsp;&nbsp;&nbsp;&nbsp;</br><h5  class="figure-caption text-left">Popular Services</h5></br>
+&nbsp;&nbsp;&nbsp;&nbsp;</br><h5  class="figure-caption text-left">Popular Services</h5>
 	<ul class="nav navbar-nav" >
 		<li ng-repeat="nxDirThumnail in nxCategoriesThumbnails">
 		<h4  class="figure-caption text-left" ng-model="data" ng-init="data=nxDirThumnail.caption"> {{nxDirThumnail.caption}}</h4>

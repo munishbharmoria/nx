@@ -7,7 +7,7 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 		$scope.listingImageWidth = "300";
 		$scope.listingImageHeight = "150";
 		$scope.enableSection = "Home";
-		$scope.prodUrlPrifix = "";  // for production value should be "/nxdial-1" & for local it should be ""
+		$scope.prodUrlPrifix = "/nxdial-1";  // for production value should be "/nxdial-1" & for local it should be ""
 		$scope.openCloseTime =["12:00 AM","12:30 AM","01:00 AM","01:30 AM","02:00 AM","02:30 AM","03:00 AM","03:30 AM","04:00 AM","04:30 AM","05:00 AM","05:30 AM",
 								"06:00 AM","06:30 AM","07:00 AM","07:30 AM","08:00 AM","08:30 AM","09:00 AM","09:30 AM","10:00 AM","10:30 AM","11:00 AM","11:30 AM",
 								"12:00 PM","12:30 PM","01:00 PM","01:30 PM","02:00 PM","02:30 PM","03:00 PM","03:30 PM","04:00 PM","04:30 PM","05:00 PM","05:30 PM",
@@ -53,7 +53,6 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 	 * getNxRestaurantList is provide the restaurant listing categories on home page
 	 */
 	$scope.getNxRestaurantList = function() { 
-		alert("hello1");
 		$http({
 			method : "GET",
 			url:$scope.prodUrlPrifix + "/getNxRestaurentList",
@@ -71,7 +70,6 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 	 * getNxAutomobileList is provide the automobiles listing on home page
 	 */
 	$scope.getNxAutomobileList = function() { 
-		alert("hello");
 		$http({
 			method : "GET",
 			url:$scope.prodUrlPrifix + "/getNxAutomobileList",
@@ -172,6 +170,23 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 		});
 	}
 	
+	
+	/**
+	 * getNxDirNews is to get news on home page
+	 */
+	$scope.getNxDirNews = function() { 
+		$http({
+			method : "GET",
+			url:$scope.prodUrlPrifix + "/getNxNews",
+			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
+			//data : angular.toJson(),
+			headers :{
+				'Content-Type' : 'application/json'}
+		}).success(function(response) {
+			  console.log('response: ' + response);
+			  $scope.nxNewsList = response;
+		});
+	}
 	
 	$scope.getMyAction= function(url) { 
 		$scope.enableSection = url;

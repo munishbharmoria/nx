@@ -20,10 +20,12 @@
 		</div>
 		
 		</br>
-
+		
+		
 		<div style="width: 980px; background-color: #eed; margin: auto;">
 			<jsp:include page="categories.jsp"></jsp:include>
 			<jsp:include page="advertisement.jsp"></jsp:include>
+			<jsp:include page="news.jsp"></jsp:include>
 		</div>
 
 

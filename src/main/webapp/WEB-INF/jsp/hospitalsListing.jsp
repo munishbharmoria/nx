@@ -4,15 +4,14 @@
 <%@ page session="false"%>
 
 <div ng-init="getNxHospitalList()" class="container" style="width: 1000px;">
+		</br>
 		<table width="100%">
 			<tr>
-				<td align="left">&nbsp;&nbsp;&nbsp;&nbsp;<h4>Hospitals in Noida Extension</h4></td>
-			</tr>
-			<tr>
-				<td align="right"><h4>Search:&nbsp;<input type="test" size="50" placeholder="search for anything.." ng-model="searchFilter"></h4></td>
+				<td align="left">&nbsp;&nbsp;&nbsp;&nbsp;Hospitals in Noida Extension</td>
+				<td align="right">Search:&nbsp;<input type="test" size="50" placeholder="search for anything.." ng-model="searchFilter"></td>
 			</tr>
 		</table>
-		
+		</br>
 		<ul class="list-group" >
 			<li class="list-group-item"  ng-repeat="nxHospital in nxHospitalsList | filter:searchFilter" >
 				<table style=" border-spacing: 105px;" cellpadding="100">

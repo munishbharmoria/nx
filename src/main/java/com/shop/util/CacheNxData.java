@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 import com.shop.model.Business;
 import com.shop.model.Category;
 import com.shop.model.CategoryThumbnail;
+import com.shop.model.News;
 
 @Component
 public class CacheNxData {
@@ -35,11 +36,12 @@ public class CacheNxData {
 	public List<Business> nxDoctorsListingList = new ArrayList<Business>();
 	public List<Business> nxPlaySchoolList = new ArrayList<Business>();
 	public List<Business> nxShoppingList = new ArrayList<Business>();
+	public List<News> nxNewsList = new ArrayList<News>();
 	
 	public Workbook getWorkbook() throws InvalidFormatException, IOException {
 		Workbook workbook = WorkbookFactory.create(new File(
-				"C:\\MunishData\\mp\\project\\workspace\\shop\\shop\\src\\main\\resources\\nxData_local.xlsx"));
-				//"/root/nxdial/data/nxData_prod.xlsx"));
+				//"C:\\MunishData\\mp\\project\\workspace\\shop\\shop\\src\\main\\resources\\nxData_local.xlsx"));
+				"/root/nxdial/data/nxData_prod.xlsx"));
 		return workbook;
 	}
 	
@@ -239,7 +241,6 @@ public class CacheNxData {
 		return nxPlaySchoolList;
 	}
 
-	//@Cacheable("nxData")
 	public List<Business> getAutomobilesListingList() throws InvalidFormatException, IOException {
 		Workbook workbook = getWorkbook();
 		Sheet automobilesListingSheet = workbook.getSheet("AutomobilesListing");
@@ -263,7 +264,26 @@ public class CacheNxData {
 		System.out.println("nxAutomobilesListingList = "+nxAutomobilesListingList);
 		LOGGER.info("nxAutomobilesListingList = "+nxAutomobilesListingList);
 		return nxAutomobilesListingList;
-
+	}
+	
+	public List<News> getNewsList() throws InvalidFormatException, IOException {
+		Workbook workbook = getWorkbook();
+		nxCategoryThumbnailList.clear();
+		Sheet shopingListingSheet = workbook.getSheet("NewsList");
+		Iterator<Row> shoppingRowIterator = shopingListingSheet.rowIterator();
+		nxNewsList.clear();
+		while (shoppingRowIterator.hasNext()) {
+			Row row = shoppingRowIterator.next();
+			if(row.getRowNum() > 0) {
+				String news = (row.getCell(0) == null) ? "": row.getCell(0).toString();
+				String newsURL = (row.getCell(1) == null) ? "": row.getCell(1).toString();
+				nxNewsList.add(new News(news, newsURL));
+			}
+		}
+		System.out.println("nxNewsList = "+nxNewsList);
+		LOGGER.info("nxNewsList = "+nxNewsList);
+		
+		return nxNewsList;
 	}
 
 }

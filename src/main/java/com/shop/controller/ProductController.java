@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.shop.model.Business;
 import com.shop.model.Category;
 import com.shop.model.CategoryThumbnail;
+import com.shop.model.News;
 //import com.shop.service.CategoryService;
 import com.shop.util.CacheNxData;
 
@@ -96,6 +97,12 @@ public class ProductController {
 		return shoppingListing;
 	}
 	
+	@RequestMapping(path = "/getNxNews")
+	public List<News> getNxNews() throws InvalidFormatException, IOException {
+		List<News> newsList = cacheNxData.getNewsList();
+		LOGGER.info("newsList = "+newsList);
+		return newsList;
+	}
 	@RequestMapping(value = "/admin", method=RequestMethod.GET)
 	    public ModelAndView registerBusiness() {
 	        ModelAndView modelAndView = new ModelAndView();
