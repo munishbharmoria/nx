@@ -220,9 +220,21 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 	}
 
 	$scope.contactUs = function() { 
-		$scope.enableSection = "aboutUs";
+		$scope.enableSection = "contactUs";
 	}
-
+	
+	$scope.freeListing = function() { 
+		$scope.enableSection = "freeListing";
+	}
+	
+	$scope.advertise = function() { 
+		$scope.enableSection = "advertise";
+	}
+	
+	$scope.customerCare = function() { 
+		$scope.enableSection = "customerCare";
+	}
+	
 	$scope.submitListing = function (businessName, category, businessAdd, businessContactNo, openHours, closeHours, ownOpenCloseHours, imageSrc) {
 		if(businessName == undefined || category == undefined || businessAdd == undefined || businessContactNo == undefined ||
 			businessName.trim().length == 0 || category.trim().length == 0 || businessAdd.trim().length == 0 || businessContactNo.trim().length == 0)

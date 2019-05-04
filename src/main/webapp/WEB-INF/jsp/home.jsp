@@ -70,7 +70,19 @@
 		</div>
 		
 		<div ng-if="enableSection == 'contactUs'">
-			<jsp:include page="aboutUs.jsp"></jsp:include>
+			<jsp:include page="contactUs.jsp"></jsp:include>
+		</div>
+		
+		<div ng-if="enableSection == 'freeListing'">
+			<jsp:include page="freeListing.jsp"></jsp:include>
+		</div>
+		
+		<div ng-if="enableSection == 'advertise'">
+			<jsp:include page="advertise.jsp"></jsp:include>
+		</div>
+		
+		<div ng-if="enableSection == 'customerCare'">
+			<jsp:include page="customerCare.jsp"></jsp:include>
 		</div>
 		
 		<hr noshade="noshade" />
