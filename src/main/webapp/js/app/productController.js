@@ -8,7 +8,7 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 		$scope.listingImageHeight = "150";
 		$scope.enableSection = "Home";
 		$scope.prodUrlPrifix = "/nxdial-1";  // for production value should be "/nxdial-1" & for local it should be ""
-		$scope.openCloseTime =["12:00 AM","12:30 AM","01:00 AM","01:30 AM","02:00 AM","02:30 AM","03:00 AM","03:30 AM","04:00 AM","04:30 AM","05:00 AM","05:30 AM",
+		$scope.openCloseTime =["","12:00 AM","12:30 AM","01:00 AM","01:30 AM","02:00 AM","02:30 AM","03:00 AM","03:30 AM","04:00 AM","04:30 AM","05:00 AM","05:30 AM",
 								"06:00 AM","06:30 AM","07:00 AM","07:30 AM","08:00 AM","08:30 AM","09:00 AM","09:30 AM","10:00 AM","10:30 AM","11:00 AM","11:30 AM",
 								"12:00 PM","12:30 PM","01:00 PM","01:30 PM","02:00 PM","02:30 PM","03:00 PM","03:30 PM","04:00 PM","04:30 PM","05:00 PM","05:30 PM",
 								"06:00 PM","06:30 PM","07:00 PM","07:30 PM","08:00 PM","08:30 PM","09:00 PM","09:30 PM","10:00 PM","10:30 PM","11:00 PM","11:30 PM"];
@@ -154,7 +154,7 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 	}
 	
 	/**
-	 * getNxPlaySchoolList is provide the play schools listing categories on home page
+	 * getNxPlaySchoolList is provide the play schools listing on home page
 	 */
 	$scope.getNxPlaySchoolList = function() { 
 		$http({
@@ -170,6 +170,39 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 		});
 	}
 	
+	/**
+	 * getNxPharmacyList is provide the pharmacy shops on home page
+	 */
+	$scope.getNxPharmacyList = function() { 
+		$http({
+			method : "GET",
+			url:$scope.prodUrlPrifix + "/getNxPharmacyList",
+			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
+			//data : angular.toJson(),
+			headers :{
+				'Content-Type' : 'application/json'}
+		}).success(function(response) {
+			  console.log('response: ' + response);
+			  $scope.nxPharmacyList = response;
+		});
+	}
+	
+	/**
+	 * getNxPathLabsList is provide the PathLabs on home page
+	 */
+	$scope.getNxPathLabsList = function() { 
+		$http({
+			method : "GET",
+			url:$scope.prodUrlPrifix + "/getNxPathLabsList",
+			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
+			//data : angular.toJson(),
+			headers :{
+				'Content-Type' : 'application/json'}
+		}).success(function(response) {
+			  console.log('response: ' + response);
+			  $scope.nxPathLabsList = response;
+		});
+	}
 	
 	/**
 	 * getNxDirNews is to get news on home page
@@ -266,7 +299,7 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 
 } ]);
 
-function popup(mylink, windowname) {
+function popup(mylink, windowname, website) {
 	var mapUrl = String(mylink);
 	if (mapUrl.charAt(mapUrl.length - 1) != '#') {
 		if (!window.focus) return true;

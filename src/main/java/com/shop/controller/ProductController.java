@@ -97,12 +97,27 @@ public class ProductController {
 		return shoppingListing;
 	}
 	
+	@RequestMapping(path = "/getNxPharmacyList")
+	public List<Business> getNxPharmacyListingList() throws InvalidFormatException, IOException {
+		List<Business> pharmacyListing = cacheNxData.getPharmacyListingList();
+		LOGGER.info("pharmacyListing = "+pharmacyListing);
+		return pharmacyListing;
+	}
+	
+	@RequestMapping(path = "/getNxPathLabsList")
+	public List<Business> getNxPathLabsListingList() throws InvalidFormatException, IOException {
+		List<Business> pathLabsListing = cacheNxData.getPathLabsListingList();
+		LOGGER.info("pathLabsListing = "+pathLabsListing);
+		return pathLabsListing;
+	}
+	
 	@RequestMapping(path = "/getNxNews")
 	public List<News> getNxNews() throws InvalidFormatException, IOException {
 		List<News> newsList = cacheNxData.getNewsList();
 		LOGGER.info("newsList = "+newsList);
 		return newsList;
 	}
+	
 	@RequestMapping(value = "/admin", method=RequestMethod.GET)
 	    public ModelAndView registerBusiness() {
 	        ModelAndView modelAndView = new ModelAndView();

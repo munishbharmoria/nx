@@ -2,6 +2,8 @@ package com.shop.model;
 
 public class Business {
 
+	public String category;
+	
 	public String name;
 	
 	public String address;
@@ -25,9 +27,10 @@ public class Business {
 		super();
 	}
 
-	public Business(String name, String address, String contactNumber, String website, String openTime, String imageUrl,
+	public Business(String category, String name, String address, String contactNumber, String website, String openTime, String imageUrl,
 			String map, String specialization, String market) {
 		super();
+		this.category = category;
 		this.name = name;
 		this.address = address;
 		this.contactNumber = contactNumber;
@@ -40,6 +43,13 @@ public class Business {
 	}
 	
 	
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
 	public String getName() {
 		return name;

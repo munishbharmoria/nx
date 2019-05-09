@@ -60,11 +60,15 @@
 		<div ng-if="enableSection  == 'PlaySchools'">
 			<jsp:include page="playSchoolsListing.jsp"></jsp:include>
 		</div>
-
-		<div ng-if="enableSection == 'register'">
-			<jsp:include page="registerListing.jsp"></jsp:include>
+		
+		<div ng-if="enableSection  == 'Pharmacy'">
+			<jsp:include page="pharmacyListing.jsp"></jsp:include>
 		</div>
 		
+		<div ng-if="enableSection == 'PathLabs'">
+			<jsp:include page="pathLabsListing.jsp"></jsp:include>
+		</div>
+
 		<div ng-if="enableSection == 'aboutUs'">
 			<jsp:include page="aboutUs.jsp"></jsp:include>
 		</div>
@@ -83,6 +87,10 @@
 		
 		<div ng-if="enableSection == 'customerCare'">
 			<jsp:include page="customerCare.jsp"></jsp:include>
+		</div>
+		
+		<div ng-if="enableSection == 'register'">
+			<jsp:include page="registerListing.jsp"></jsp:include>
 		</div>
 		
 		<hr noshade="noshade" />

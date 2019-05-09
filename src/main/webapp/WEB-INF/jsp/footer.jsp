@@ -21,6 +21,8 @@
 			
 			<tr>
 				<td align="left"><small class="text-muted" ></br></br>Copyrights 2019. All Rights Reserved. </small></td>
+				<td align="right" width="50%"><small class="text-muted" ng-click ="registerBusiness()">.</small></td>
+				
 			</tr>
 		</table>
 </div></br>

@@ -11,10 +11,11 @@
 		</tr>
 		<tr style=" background-color: lightblue;">
 			<td style="text-align: left;"></br>&nbsp;&nbsp;
-				Select Category: *
+				Select Category: 
 			</td>
 			<td>
-				 <select ng-model="businessCatagory" ng-init="businessCatagory=category.caption" ng-options="category.caption for category  in nxDirCategories"></select>
+				  <select ng-model="businessCategory" ng-init="businessCategory=category.caption" ng-options="category.caption for category  in nxDirCategories"></select>
+			
 			</td>
 		</tr>
 		<tr>
