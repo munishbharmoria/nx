@@ -68,6 +68,10 @@
 		<div ng-if="enableSection == 'PathLabs'">
 			<jsp:include page="pathLabsListing.jsp"></jsp:include>
 		</div>
+		
+		<div ng-if="enableSection == 'DailyNeeds'">
+			<jsp:include page="dailyNeedsListing.jsp"></jsp:include>
+		</div>
 
 		<div ng-if="enableSection == 'aboutUs'">
 			<jsp:include page="aboutUs.jsp"></jsp:include>

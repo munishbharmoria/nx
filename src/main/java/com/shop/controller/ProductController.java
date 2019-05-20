@@ -111,6 +111,13 @@ public class ProductController {
 		return pathLabsListing;
 	}
 	
+	@RequestMapping(path = "/getNxDailyNeedsList")
+	public List<Business> getNxDailyNeedsListingList() throws InvalidFormatException, IOException {
+		List<Business> dailyNeedsListing = cacheNxData.getDailyNeedsListingList();
+		LOGGER.info("dailyNeedsListing = "+dailyNeedsListing);
+		return dailyNeedsListing;
+	}
+	
 	@RequestMapping(path = "/getNxNews")
 	public List<News> getNxNews() throws InvalidFormatException, IOException {
 		List<News> newsList = cacheNxData.getNewsList();

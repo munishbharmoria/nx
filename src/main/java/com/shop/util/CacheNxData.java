@@ -38,13 +38,14 @@ public class CacheNxData {
 	public List<Business> nxShoppingList = new ArrayList<Business>();
 	public List<Business> nxPharmacyList = new ArrayList<Business>();
 	public List<Business> nxPathLabsList = new ArrayList<Business>();
+	public List<Business> nxDailyNeedsList = new ArrayList<Business>();
 	
 	public List<News> nxNewsList = new ArrayList<News>();
 	
 	public Workbook getWorkbook() throws InvalidFormatException, IOException {
 		Workbook workbook = WorkbookFactory.create(new File(
-				//"C:\\MunishData\\mp\\project\\workspace\\shop\\shop\\src\\main\\resources\\nxData_local.xlsx"));
-				"/root/nxdial/data/nxData_prod.xlsx"));
+				"C:\\MunishData\\mp\\project\\workspace\\shop\\shop\\src\\main\\resources\\nxData_local.xlsx"));
+				//"/root/nxdial/data/nxData_prod.xlsx"));
 		return workbook;
 	}
 	 
@@ -357,6 +358,36 @@ public class CacheNxData {
 		LOGGER.info("nxPathLabsList = "+nxPathLabsList);
 		
 		return nxPathLabsList;
+	}
+	
+	public List<Business> getDailyNeedsListingList() throws InvalidFormatException, IOException {
+		Workbook workbook = getWorkbook();
+		Sheet dailyNeedsListingSheet = workbook.getSheet("DailyNeedsListing");
+		Iterator<Row> dailyNeedsRowIterator = dailyNeedsListingSheet.rowIterator();
+		nxDailyNeedsList.clear();
+		while (dailyNeedsRowIterator.hasNext()) {
+			Row row = dailyNeedsRowIterator.next();
+			if(row.getRowNum() > 0) {
+				String number = (row.getCell(0) == null) ? "": row.getCell(0).toString();
+				String active = (row.getCell(1) == null) ? "": row.getCell(1).toString();
+				String category = (row.getCell(2) == null) ? "": row.getCell(2).toString();
+				String name = (row.getCell(3) == null) ? "": row.getCell(3).toString();
+				String address = (row.getCell(4) == null) ? "": row.getCell(4).toString();
+				String contactNumber = (row.getCell(5) == null) ? "": row.getCell(5).toString();
+				String website = (row.getCell(6) == null) ? "": row.getCell(6).toString();
+				String openTime = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				String imageUrl = (row.getCell(8) == null) ? "": row.getCell(8).toString();
+				String map = (row.getCell(9) == null) ? "#": row.getCell(9).toString();
+				String market = (row.getCell(10) == null) ? "": row.getCell(10).toString();
+				if("Y".equalsIgnoreCase(active)) {
+					nxDailyNeedsList.add(new Business(category, name, address, contactNumber, website, openTime, imageUrl, map, "", market));
+				}
+			}
+		}
+		System.out.println("nxDailyNeedsList = "+nxDailyNeedsList);
+		LOGGER.info("nxDailyNeedsList = "+nxDailyNeedsList);
+		
+		return nxDailyNeedsList;
 	}
 	
 	public List<News> getNewsList() throws InvalidFormatException, IOException {
