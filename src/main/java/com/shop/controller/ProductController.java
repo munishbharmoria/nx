@@ -111,11 +111,26 @@ public class ProductController {
 		return pathLabsListing;
 	}
 	
+	@RequestMapping(path = "/getNxTaxiServiceList")
+	public List<Business> getNxTaxiServiceListingList() throws InvalidFormatException, IOException {
+		List<Business> taxiServiceListing = cacheNxData.getTaxiServiceListingList();
+		LOGGER.info("taxiServiceListing = "+taxiServiceListing);
+		return taxiServiceListing;
+	}
+	
 	@RequestMapping(path = "/getNxDailyNeedsList")
 	public List<Business> getNxDailyNeedsListingList() throws InvalidFormatException, IOException {
 		List<Business> dailyNeedsListing = cacheNxData.getDailyNeedsListingList();
 		LOGGER.info("dailyNeedsListing = "+dailyNeedsListing);
 		return dailyNeedsListing;
+	}
+	
+	
+	@RequestMapping(path = "/getNxPersonalCareList")
+	public List<Business> getNxPersonalCareListingList() throws InvalidFormatException, IOException {
+		List<Business> personalCareListing = cacheNxData.getPersonalCareListingList();
+		LOGGER.info("personalCareListing = "+personalCareListing);
+		return personalCareListing;
 	}
 	
 	@RequestMapping(path = "/getNxNews")

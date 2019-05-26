@@ -4,6 +4,15 @@
 <%@ page session="false"%>
 <html>
 <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-140234422-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-140234422-1');
+</script>
 	<title>
 		NxDial.com - Noida Extension's Free Directory
 	</title>
@@ -71,6 +80,14 @@
 		
 		<div ng-if="enableSection == 'DailyNeeds'">
 			<jsp:include page="dailyNeedsListing.jsp"></jsp:include>
+		</div>
+		
+		<div ng-if="enableSection == 'TaxiServices'">
+			<jsp:include page="taxiServiceListing.jsp"></jsp:include>
+		</div>
+		
+		<div ng-if="enableSection == 'PersonalCare'">
+			<jsp:include page="personalCareListing.jsp"></jsp:include>
 		</div>
 
 		<div ng-if="enableSection == 'aboutUs'">

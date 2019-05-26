@@ -39,6 +39,10 @@ public class CacheNxData {
 	public List<Business> nxPharmacyList = new ArrayList<Business>();
 	public List<Business> nxPathLabsList = new ArrayList<Business>();
 	public List<Business> nxDailyNeedsList = new ArrayList<Business>();
+	public List<Business> nxTaxiServiceList = new ArrayList<Business>();
+	public List<Business> nxPersonalCareList = new ArrayList<Business>();
+	
+	
 	
 	public List<News> nxNewsList = new ArrayList<News>();
 	
@@ -360,6 +364,37 @@ public class CacheNxData {
 		return nxPathLabsList;
 	}
 	
+	
+	public List<Business> getTaxiServiceListingList() throws InvalidFormatException, IOException {
+		Workbook workbook = getWorkbook();
+		Sheet taxiServiceListingSheet = workbook.getSheet("TaxiServiceListing");
+		Iterator<Row> taxiServiceRowIterator = taxiServiceListingSheet.rowIterator();
+		nxTaxiServiceList.clear();
+		while (taxiServiceRowIterator.hasNext()) {
+			Row row = taxiServiceRowIterator.next();
+			if(row.getRowNum() > 0) {
+				String number = (row.getCell(0) == null) ? "": row.getCell(0).toString();
+				String active = (row.getCell(1) == null) ? "": row.getCell(1).toString();
+				String category = (row.getCell(2) == null) ? "": row.getCell(2).toString();
+				String name = (row.getCell(3) == null) ? "": row.getCell(3).toString();
+				String address = (row.getCell(4) == null) ? "": row.getCell(4).toString();
+				String contactNumber = (row.getCell(5) == null) ? "": row.getCell(5).toString();
+				String website = (row.getCell(6) == null) ? "": row.getCell(6).toString();
+				String openTime = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				String imageUrl = (row.getCell(8) == null) ? "": row.getCell(8).toString();
+				String map = (row.getCell(9) == null) ? "#": row.getCell(9).toString();
+				String market = (row.getCell(10) == null) ? "": row.getCell(10).toString();
+				if("Y".equalsIgnoreCase(active)) {
+					nxTaxiServiceList.add(new Business(category, name, address, contactNumber, website, openTime, imageUrl, map, "", market));
+				}
+			}
+		}
+		System.out.println("nxTaxiServiceList = "+nxTaxiServiceList);
+		LOGGER.info("nxTaxiServiceList = "+nxTaxiServiceList);
+		
+		return nxTaxiServiceList;
+	}
+	
 	public List<Business> getDailyNeedsListingList() throws InvalidFormatException, IOException {
 		Workbook workbook = getWorkbook();
 		Sheet dailyNeedsListingSheet = workbook.getSheet("DailyNeedsListing");
@@ -389,6 +424,38 @@ public class CacheNxData {
 		
 		return nxDailyNeedsList;
 	}
+	
+	
+	public List<Business> getPersonalCareListingList() throws InvalidFormatException, IOException {
+		Workbook workbook = getWorkbook();
+		Sheet personalCareListingSheet = workbook.getSheet("PersonalCareListing");
+		Iterator<Row> personalCareRowIterator = personalCareListingSheet.rowIterator();
+		nxPersonalCareList.clear();
+		while (personalCareRowIterator.hasNext()) {
+			Row row = personalCareRowIterator.next();
+			if(row.getRowNum() > 0) {
+				String number = (row.getCell(0) == null) ? "": row.getCell(0).toString();
+				String active = (row.getCell(1) == null) ? "": row.getCell(1).toString();
+				String category = (row.getCell(2) == null) ? "": row.getCell(2).toString();
+				String name = (row.getCell(3) == null) ? "": row.getCell(3).toString();
+				String address = (row.getCell(4) == null) ? "": row.getCell(4).toString();
+				String contactNumber = (row.getCell(5) == null) ? "": row.getCell(5).toString();
+				String website = (row.getCell(6) == null) ? "": row.getCell(6).toString();
+				String openTime = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				String imageUrl = (row.getCell(8) == null) ? "": row.getCell(8).toString();
+				String map = (row.getCell(9) == null) ? "#": row.getCell(9).toString();
+				String market = (row.getCell(10) == null) ? "": row.getCell(10).toString();
+				if("Y".equalsIgnoreCase(active)) {
+					nxPersonalCareList.add(new Business(category, name, address, contactNumber, website, openTime, imageUrl, map, "", market));
+				}
+			}
+		}
+		System.out.println("nxPersonalCareList = "+nxPersonalCareList);
+		LOGGER.info("nxPersonalCareList = "+nxPersonalCareList);
+		
+		return nxPersonalCareList;
+	}
+	
 	
 	public List<News> getNewsList() throws InvalidFormatException, IOException {
 		Workbook workbook = getWorkbook();

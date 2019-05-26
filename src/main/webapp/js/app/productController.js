@@ -222,6 +222,42 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 		});
 	}
 	
+	
+	/**
+	 * getNxTaxiServiceList is provide the PathLabs on home page
+	 */
+	$scope.getNxTaxiServiceList = function() { 
+		$http({
+			method : "GET",
+			url:$scope.prodUrlPrifix + "/getNxTaxiServiceList",
+			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
+			//data : angular.toJson(),
+			headers :{
+				'Content-Type' : 'application/json'}
+		}).success(function(response) {
+			  console.log('response: ' + response);
+			  $scope.nxTaxiServiceList = response;
+		});
+	}
+	
+	
+	/**
+	 * getNxPersonalCareList is provide the PathLabs on home page
+	 */
+	$scope.getNxPersonalCareList = function() { 
+		$http({
+			method : "GET",
+			url:$scope.prodUrlPrifix + "/getNxPersonalCareList",
+			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
+			//data : angular.toJson(),
+			headers :{
+				'Content-Type' : 'application/json'}
+		}).success(function(response) {
+			  console.log('response: ' + response);
+			  $scope.nxPersonalCareList = response;
+		});
+	}
+	
 	/**
 	 * getNxDirNews is to get news on home page
 	 */
