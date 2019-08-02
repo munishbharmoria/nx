@@ -27,7 +27,14 @@
 									<img src="<c:url value="/img/common/address.png"/>"class="img-rounded" width="20" height="20"> </a>
 									{{ nxTaxiService.address}}
 									</h5>
-									<h5><img src="<c:url value="/img/common/phone.png"/>"class="img-rounded" width="20" height="20"> {{ nxTaxiService.contactNumber}} </h5> 
+									<h5>
+									<a class="button" ng-href="tel:{{nxTaxiService.contactNumber}}">
+									<img src="<c:url value="/img/common/phone.png"/>"class="img-rounded" width="20" height="20"> 
+									{{nxTaxiService.contactNumber}}
+									</a>
+									 {{nxTaxiService.contactNumberOther}}
+									<%-- <img src="<c:url value="/img/common/phone.png"/>"class="img-rounded" width="20" height="20"> {{ nxTaxiService.contactNumber}}  --%>
+									</h5> 
 									<h5><img src="<c:url value="/img/common/openTime.png"/>"class="img-rounded" width="20" height="20"> {{ nxTaxiService.openTime}} </h5>
 									<h5><img src="<c:url value="/img/common/website.png"/>"class="img-rounded" width="20" height="20">   {{ nxTaxiService.website}} </h5> 
 						</td>

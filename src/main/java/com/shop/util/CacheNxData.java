@@ -3,7 +3,7 @@ package com.shop.util;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -14,7 +14,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import com.shop.model.Business;
@@ -41,6 +40,14 @@ public class CacheNxData {
 	public List<Business> nxDailyNeedsList = new ArrayList<Business>();
 	public List<Business> nxTaxiServiceList = new ArrayList<Business>();
 	public List<Business> nxPersonalCareList = new ArrayList<Business>();
+	public List<Business> nxBoutiqueList = new ArrayList<Business>();
+	public List<Business> nxRentSaleFlatList = new ArrayList<Business>();
+	public List<Business> nxBusRouteNmrcList = new ArrayList<Business>();
+	public List<Business> nxOtherCategoryList = new ArrayList<Business>();
+	
+	
+	public List<CategoryThumbnail> nxOtherCategoryThumbnailList = new ArrayList<CategoryThumbnail>();
+	
 	
 	
 	
@@ -48,8 +55,8 @@ public class CacheNxData {
 	
 	public Workbook getWorkbook() throws InvalidFormatException, IOException {
 		Workbook workbook = WorkbookFactory.create(new File(
-				"C:\\MunishData\\mp\\project\\workspace\\shop\\shop\\src\\main\\resources\\nxData_local.xlsx"));
-				//"/root/nxdial/data/nxData_prod.xlsx"));
+				//"C:\\MunishData\\mp\\project\\workspace\\shop\\shop\\src\\main\\resources\\nxData_local.xlsx"));
+				"/root/nxdial/data/nxData_prod.xlsx"));
 		return workbook;
 	}
 	 
@@ -68,7 +75,6 @@ public class CacheNxData {
 		}
 		System.out.println("nxDirCategoryList = "+nxDirCategoryList);
 		LOGGER.info("nxDirCategoryList = "+nxDirCategoryList);
-		
 		return nxDirCategoryList;
 	}
 	
@@ -91,6 +97,25 @@ public class CacheNxData {
 		return nxCategoryThumbnailList;
 	}
 	
+	public List<CategoryThumbnail> getOtherCategoryThumbnailList() throws InvalidFormatException, IOException {
+		Workbook workbook = getWorkbook();
+		nxOtherCategoryThumbnailList.clear();
+		Sheet otherCategoryThumbnailSheet = workbook.getSheet("OtherCategoryThumbnail");
+		Iterator<Row> ctRowIterator = otherCategoryThumbnailSheet.rowIterator();
+		while (ctRowIterator.hasNext()) {
+			Row row = ctRowIterator.next();
+			if(row.getRowNum() > 0) {
+				String caption = (row.getCell(0) == null) ? "": row.getCell(0).toString();
+				String imagePath = (row.getCell(1) == null) ? "": row.getCell(1).toString();
+				nxOtherCategoryThumbnailList.add(new CategoryThumbnail(caption, imagePath)); 
+			}
+		}
+		System.out.println("nxCategoryThumbnailList = "+nxOtherCategoryThumbnailList);
+		LOGGER.info("nxCategoryThumbnailList = "+nxOtherCategoryThumbnailList);
+		
+		return nxOtherCategoryThumbnailList;
+	}
+	
 	public List<Business> getRestaurantsListingList() throws InvalidFormatException, IOException {
 		Workbook workbook = getWorkbook();
 		Sheet restaurantsListingSheet = workbook.getSheet("RestaurantsListing");
@@ -105,13 +130,18 @@ public class CacheNxData {
 				String name = (row.getCell(3) == null) ? "": row.getCell(3).toString();
 				String address = (row.getCell(4) == null) ? "": row.getCell(4).toString();
 				String contactNumber = (row.getCell(5) == null) ? "": row.getCell(5).toString();
-				String website = (row.getCell(6) == null) ? "": row.getCell(6).toString();
-				String openTime = (row.getCell(7) == null) ? "": row.getCell(7).toString();
-				String imageUrl = (row.getCell(8) == null) ? "": row.getCell(8).toString();
-				String map = (row.getCell(9) == null) ? "#": row.getCell(9).toString();
-				String market = (row.getCell(10) == null) ? "": row.getCell(10).toString();
+				String contactNumberOther = "";
+				if(row.getCell(6) != null && row.getCell(6).toString().trim().length() > 0) {
+					contactNumberOther = ", "+row.getCell(6).toString();
+				}
+				String website = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				String openTime = (row.getCell(8) == null) ? "": row.getCell(8).toString();
+				String imageUrl = (row.getCell(9) == null) ? "": row.getCell(9).toString();
+				String map = (row.getCell(10) == null) ? "#": row.getCell(10).toString();
+				String market = (row.getCell(11) == null) ? "": row.getCell(11).toString();
 				if("Y".equalsIgnoreCase(active)) {
-					nxRestaurantsListingList.add(new Business(category, name, address, contactNumber, website, openTime, imageUrl, map, "", market));
+					nxRestaurantsListingList.add(new Business(category, name, address, contactNumber, contactNumberOther, 
+							website, openTime, imageUrl, map, "", market));
 				}
 			}
 			
@@ -119,6 +149,22 @@ public class CacheNxData {
 		System.out.println("nxRestaurantsListingList = "+nxRestaurantsListingList);
 		LOGGER.info("nxRestaurantsListingList = "+nxRestaurantsListingList);
 		
+		Sheet topList = workbook.getSheet("TopList");
+		Iterator<Row> topListIterator = topList.rowIterator();
+		int topListNumber = 0;
+		while (topListIterator.hasNext()) {
+			Row row = topListIterator.next();
+			if(row.getCell(0).toString().equals(("Restaurants")))
+			{
+				String celValue = Character.toString(row.getCell(1).toString().charAt(0));
+				topListNumber = Integer.parseInt(celValue);
+				break;
+			}
+		}
+		
+		if(nxRestaurantsListingList.size()>5) {
+			Collections.shuffle(nxRestaurantsListingList.subList(topListNumber, nxRestaurantsListingList.size()));
+		}
 		return nxRestaurantsListingList;
 	}
 	
@@ -136,19 +182,40 @@ public class CacheNxData {
 				String name = (row.getCell(3) == null) ? "": row.getCell(3).toString();
 				String address = (row.getCell(4) == null) ? "": row.getCell(4).toString();
 				String contactNumber = (row.getCell(5) == null) ? "": row.getCell(5).toString();
-				String website = (row.getCell(6) == null) ? "": row.getCell(6).toString();
-				String openTime = (row.getCell(7) == null) ? "": row.getCell(7).toString();
-				String imageUrl = (row.getCell(8) == null) ? "": row.getCell(8).toString();
-				String map = (row.getCell(9) == null) ? "#": row.getCell(9).toString();
-				String market = (row.getCell(10) == null) ? "": row.getCell(10).toString();
+				String contactNumberOther = "";
+				if(row.getCell(6) != null && row.getCell(6).toString().trim().length() > 0) {
+					contactNumberOther = ", "+row.getCell(6).toString();
+				}
+				String website = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				String openTime = (row.getCell(8) == null) ? "": row.getCell(8).toString();
+				String imageUrl = (row.getCell(9) == null) ? "": row.getCell(9).toString();
+				String map = (row.getCell(10) == null) ? "#": row.getCell(10).toString();
+				String market = (row.getCell(11) == null) ? "": row.getCell(11).toString();
 				if("Y".equalsIgnoreCase(active)) {
-					nxHospitalsListingList.add(new Business(category, name, address, contactNumber, website, openTime, imageUrl, map, "", market));
+					nxHospitalsListingList.add(new Business(category, name, address, contactNumber, contactNumberOther,
+							website, openTime, imageUrl, map, "", market));
 				}
 			}
 		}
 		System.out.println("nxHospitalsListingList = "+nxHospitalsListingList);
 		LOGGER.info("nxRestaurantsListingList = "+nxHospitalsListingList);
 		
+		Sheet topList = workbook.getSheet("TopList");
+		Iterator<Row> topListIterator = topList.rowIterator();
+		int topListNumber = 0;
+		while (topListIterator.hasNext()) {
+			Row row = topListIterator.next();
+			if(row.getCell(0).toString().equals(("Hospitals")))
+			{
+				String celValue = Character.toString(row.getCell(1).toString().charAt(0));
+				topListNumber = Integer.parseInt(celValue);
+				break;
+			}
+		}
+		
+		if(nxHospitalsListingList.size()>5) {
+			Collections.shuffle(nxHospitalsListingList.subList(topListNumber, nxHospitalsListingList.size()));
+		}
 		return nxHospitalsListingList;
 	}
 	
@@ -166,19 +233,40 @@ public class CacheNxData {
 				String name = (row.getCell(3) == null) ? "": row.getCell(3).toString();
 				String address = (row.getCell(4) == null) ? "": row.getCell(4).toString();
 				String contactNumber = (row.getCell(5) == null) ? "": row.getCell(5).toString();
-				String website = (row.getCell(6) == null) ? "": row.getCell(6).toString();
-				String openTime = (row.getCell(7) == null) ? "": row.getCell(7).toString();
-				String imageUrl = (row.getCell(8) == null) ? "": row.getCell(8).toString();
-				String map = (row.getCell(9) == null) ? "#": row.getCell(9).toString();
-				String market = (row.getCell(10) == null) ? "": row.getCell(10).toString();
+				String contactNumberOther = "";
+				if(row.getCell(6) != null && row.getCell(6).toString().trim().length() > 0) {
+					contactNumberOther = ", "+row.getCell(6).toString();
+				}
+				String website = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				String openTime = (row.getCell(8) == null) ? "": row.getCell(8).toString();
+				String imageUrl = (row.getCell(9) == null) ? "": row.getCell(9).toString();
+				String map = (row.getCell(10) == null) ? "#": row.getCell(10).toString();
+				String market = (row.getCell(11) == null) ? "": row.getCell(11).toString();
 				if("Y".equalsIgnoreCase(active)) {
-					nxShoppingList.add(new Business(category, name, address, contactNumber, website, openTime, imageUrl, map, "", market));
+					nxShoppingList.add(new Business(category, name, address, contactNumber, contactNumberOther,
+							website, openTime, imageUrl, map, "", market));
 				}
 			}
 		}
 		System.out.println("nxShoppingList = "+nxShoppingList);
 		LOGGER.info("nxShoppingList = "+nxShoppingList);
 		
+		Sheet topList = workbook.getSheet("TopList");
+		Iterator<Row> topListIterator = topList.rowIterator();
+		int topListNumber = 0;
+		while (topListIterator.hasNext()) {
+			Row row = topListIterator.next();
+			if(row.getCell(0).toString().equals(("Shopping")))
+			{
+				String celValue = Character.toString(row.getCell(1).toString().charAt(0));
+				topListNumber = Integer.parseInt(celValue);
+				break;
+			}
+		}
+		
+		if(nxShoppingList.size()>5) {
+			Collections.shuffle(nxShoppingList.subList(topListNumber, nxShoppingList.size()));
+		}
 		return nxShoppingList;
 	}
 	
@@ -197,19 +285,40 @@ public class CacheNxData {
 				String name = (row.getCell(3) == null) ? "": row.getCell(3).toString();
 				String address = (row.getCell(4) == null) ? "": row.getCell(4).toString();
 				String contactNumber = (row.getCell(5) == null) ? "": row.getCell(5).toString();
-				String website = (row.getCell(6) == null) ? "": row.getCell(6).toString();
-				String openTime = (row.getCell(7) == null) ? "": row.getCell(7).toString();
-				String imageUrl = (row.getCell(8) == null) ? "": row.getCell(8).toString();
-				String map = (row.getCell(9) == null) ? "#": row.getCell(9).toString();
-				String market = (row.getCell(10) == null) ? "": row.getCell(10).toString();
+				String contactNumberOther = "";
+				if(row.getCell(6) != null && row.getCell(6).toString().trim().length() > 0) {
+					contactNumberOther = ", "+row.getCell(6).toString();
+				}
+				String website = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				String openTime = (row.getCell(8) == null) ? "": row.getCell(8).toString();
+				String imageUrl = (row.getCell(9) == null) ? "": row.getCell(9).toString();
+				String map = (row.getCell(10) == null) ? "#": row.getCell(10).toString();
+				String market = (row.getCell(11) == null) ? "": row.getCell(11).toString();
 				if("Y".equalsIgnoreCase(active)) {
-					nxSchoolsListingList.add(new Business(category, name, address, contactNumber, website, openTime, imageUrl, map, "", market));
+					nxSchoolsListingList.add(new Business(category, name, address, contactNumber, contactNumberOther,
+							website, openTime, imageUrl, map, "", market));
 				}
 			}
 		}
 		System.out.println("nxSchoolsListingList = "+nxSchoolsListingList);
 		LOGGER.info("nxSchoolsListingList = "+nxSchoolsListingList);
 		
+		Sheet topList = workbook.getSheet("TopList");
+		Iterator<Row> topListIterator = topList.rowIterator();
+		int topListNumber = 0;
+		while (topListIterator.hasNext()) {
+			Row row = topListIterator.next();
+			if(row.getCell(0).toString().equals(("Schools")))
+			{
+				String celValue = Character.toString(row.getCell(1).toString().charAt(0));
+				topListNumber = Integer.parseInt(celValue);
+				break;
+			}
+		}
+		
+		if(nxSchoolsListingList.size()>5) {
+			Collections.shuffle(nxSchoolsListingList.subList(topListNumber, nxSchoolsListingList.size()));
+		}
 		return nxSchoolsListingList;
 	}
 	
@@ -227,20 +336,41 @@ public class CacheNxData {
 				String name = (row.getCell(3) == null) ? "": row.getCell(3).toString();
 				String address = (row.getCell(4) == null) ? "": row.getCell(4).toString();
 				String contactNumber = (row.getCell(5) == null) ? "": row.getCell(5).toString();
-				String website = (row.getCell(6) == null) ? "": row.getCell(6).toString();
-				String openTime = (row.getCell(7) == null) ? "": row.getCell(7).toString();
-				String imageUrl = (row.getCell(8) == null) ? "": row.getCell(8).toString();
-				String map = (row.getCell(9) == null) ? "#": row.getCell(9).toString();
-				String specialization = (row.getCell(10) == null) ? "": row.getCell(10).toString();
-				String market = (row.getCell(11) == null) ? "": row.getCell(11).toString();
+				String contactNumberOther = "";
+				if(row.getCell(6) != null && row.getCell(6).toString().trim().length() > 0) {
+					contactNumberOther = ", "+row.getCell(6).toString();
+				}
+				String website = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				String openTime = (row.getCell(8) == null) ? "": row.getCell(8).toString();
+				String imageUrl = (row.getCell(9) == null) ? "": row.getCell(9).toString();
+				String map = (row.getCell(10) == null) ? "#": row.getCell(10).toString();
+				String specialization = (row.getCell(11) == null) ? "": row.getCell(11).toString();
+				String market = (row.getCell(12) == null) ? "": row.getCell(12).toString();
 				if("Y".equalsIgnoreCase(active)) {
-					nxDoctorsListingList.add(new Business(category, name, address, contactNumber, website, openTime, imageUrl, map, specialization, market));
+					nxDoctorsListingList.add(new Business(category, name, address, contactNumber, contactNumberOther,
+							website, openTime, imageUrl, map, specialization, market));
 				}
 			}
 		}
 		System.out.println("nxDoctorsListingList = "+nxDoctorsListingList);
 		LOGGER.info("nxDoctorsListingList = "+nxDoctorsListingList);
 		
+		Sheet topList = workbook.getSheet("TopList");
+		Iterator<Row> topListIterator = topList.rowIterator();
+		int topListNumber = 0;
+		while (topListIterator.hasNext()) {
+			Row row = topListIterator.next();
+			if(row.getCell(0).toString().equals(("Doctors")))
+			{
+				String celValue = Character.toString(row.getCell(1).toString().charAt(0));
+				topListNumber = Integer.parseInt(celValue);
+				break;
+			}
+		}
+		
+		if(nxDoctorsListingList.size()>5) {
+			Collections.shuffle(nxDoctorsListingList.subList(topListNumber, nxDoctorsListingList.size()));
+		}
 		return nxDoctorsListingList;
 	}
 	
@@ -258,19 +388,40 @@ public class CacheNxData {
 				String name = (row.getCell(3) == null) ? "": row.getCell(3).toString();
 				String address = (row.getCell(4) == null) ? "": row.getCell(4).toString();
 				String contactNumber = (row.getCell(5) == null) ? "": row.getCell(5).toString();
-				String website = (row.getCell(6) == null) ? "": row.getCell(6).toString();
-				String openTime = (row.getCell(7) == null) ? "": row.getCell(7).toString();
-				String imageUrl = (row.getCell(8) == null) ? "": row.getCell(8).toString();
-				String map = (row.getCell(9) == null) ? "#": row.getCell(9).toString();
-				String market = (row.getCell(10) == null) ? "": row.getCell(10).toString();
+				String contactNumberOther = "";
+				if(row.getCell(6) != null && row.getCell(6).toString().trim().length() > 0) {
+					contactNumberOther = ", "+row.getCell(6).toString();
+				}
+				String website = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				String openTime = (row.getCell(8) == null) ? "": row.getCell(8).toString();
+				String imageUrl = (row.getCell(9) == null) ? "": row.getCell(9).toString();
+				String map = (row.getCell(10) == null) ? "#": row.getCell(10).toString();
+				String market = (row.getCell(11) == null) ? "": row.getCell(11).toString();
 				if("Y".equalsIgnoreCase(active)) {
-					nxPlaySchoolList.add(new Business(category, name, address, contactNumber, website, openTime, imageUrl, map, "", market));
+					nxPlaySchoolList.add(new Business(category, name, address, contactNumber, contactNumberOther,
+							website, openTime, imageUrl, map, "", market));
 				}
 			}
 		}
 		System.out.println("nxPlaySchoolList = "+nxPlaySchoolList);
 		LOGGER.info("nxPlaySchoolList = "+nxPlaySchoolList);
 		
+		Sheet topList = workbook.getSheet("TopList");
+		Iterator<Row> topListIterator = topList.rowIterator();
+		int topListNumber = 0;
+		while (topListIterator.hasNext()) {
+			Row row = topListIterator.next();
+			if(row.getCell(0).toString().equals(("PlaySchools")))
+			{
+				String celValue = Character.toString(row.getCell(1).toString().charAt(0));
+				topListNumber = Integer.parseInt(celValue);
+				break;
+			}
+		}
+		
+		if(nxPlaySchoolList.size()>5) {
+			Collections.shuffle(nxPlaySchoolList.subList(topListNumber, nxPlaySchoolList.size()));
+		}
 		return nxPlaySchoolList;
 	}
 
@@ -288,19 +439,41 @@ public class CacheNxData {
 				String name = (row.getCell(3) == null) ? "": row.getCell(3).toString();
 				String address = (row.getCell(4) == null) ? "": row.getCell(4).toString();
 				String contactNumber = (row.getCell(5) == null) ? "": row.getCell(5).toString();
-				String website = (row.getCell(6) == null) ? "": row.getCell(6).toString();
-				String openTime = (row.getCell(7) == null) ? "": row.getCell(7).toString();
-				String imageUrl = (row.getCell(8) == null) ? "": row.getCell(8).toString();
-				String map = (row.getCell(9) == null) ? "#": row.getCell(9).toString();
-				String market = (row.getCell(10) == null) ? "": row.getCell(10).toString();
+				String contactNumberOther = "";
+				if(row.getCell(6) != null && row.getCell(6).toString().trim().length() > 0) {
+					contactNumberOther = ", "+row.getCell(6).toString();
+				}
+				String website = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				String openTime = (row.getCell(8) == null) ? "": row.getCell(8).toString();
+				String imageUrl = (row.getCell(9) == null) ? "": row.getCell(9).toString();
+				String map = (row.getCell(10) == null) ? "#": row.getCell(10).toString();
+				String market = (row.getCell(11) == null) ? "": row.getCell(11).toString();
 				if("Y".equalsIgnoreCase(active)) {
-					nxAutomobilesListingList.add(new Business(category, name, address, contactNumber, website, openTime, imageUrl, map, "", market));
+					nxAutomobilesListingList.add(new Business(category, name, address, contactNumber, contactNumberOther,
+							website, openTime, imageUrl, map, "", market));
 				}
 			}
 			
 		}
 		System.out.println("nxAutomobilesListingList = "+nxAutomobilesListingList);
 		LOGGER.info("nxAutomobilesListingList = "+nxAutomobilesListingList);
+		
+		Sheet topList = workbook.getSheet("TopList");
+		Iterator<Row> topListIterator = topList.rowIterator();
+		int topListNumber = 0;
+		while (topListIterator.hasNext()) {
+			Row row = topListIterator.next();
+			if(row.getCell(0).toString().equals(("Automobiles")))
+			{
+				String celValue = Character.toString(row.getCell(1).toString().charAt(0));
+				topListNumber = Integer.parseInt(celValue);
+				break;
+			}
+		}
+				
+		if(nxAutomobilesListingList.size()>5) {
+			Collections.shuffle(nxAutomobilesListingList.subList(topListNumber, nxAutomobilesListingList.size()));
+		}
 		return nxAutomobilesListingList;
 	}
 	
@@ -318,19 +491,40 @@ public class CacheNxData {
 				String name = (row.getCell(3) == null) ? "": row.getCell(3).toString();
 				String address = (row.getCell(4) == null) ? "": row.getCell(4).toString();
 				String contactNumber = (row.getCell(5) == null) ? "": row.getCell(5).toString();
-				String website = (row.getCell(6) == null) ? "": row.getCell(6).toString();
-				String openTime = (row.getCell(7) == null) ? "": row.getCell(7).toString();
-				String imageUrl = (row.getCell(8) == null) ? "": row.getCell(8).toString();
-				String map = (row.getCell(9) == null) ? "#": row.getCell(9).toString();
-				String market = (row.getCell(10) == null) ? "": row.getCell(10).toString();
+				String contactNumberOther = "";
+				if(row.getCell(6) != null && row.getCell(6).toString().trim().length() > 0) {
+					contactNumberOther = ", "+row.getCell(6).toString();
+				}
+				String website = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				String openTime = (row.getCell(8) == null) ? "": row.getCell(8).toString();
+				String imageUrl = (row.getCell(9) == null) ? "": row.getCell(9).toString();
+				String map = (row.getCell(10) == null) ? "#": row.getCell(10).toString();
+				String market = (row.getCell(11) == null) ? "": row.getCell(11).toString();
 				if("Y".equalsIgnoreCase(active)) {
-					nxPharmacyList.add(new Business(category, name, address, contactNumber, website, openTime, imageUrl, map, "", market));
+					nxPharmacyList.add(new Business(category, name, address, contactNumber, contactNumberOther,
+							website, openTime, imageUrl, map, "", market));
 				}
 			}
 		}
 		System.out.println("nxPharmacyList = "+nxPharmacyList);
 		LOGGER.info("nxPharmacyList = "+nxPharmacyList);
 		
+		Sheet topList = workbook.getSheet("TopList");
+		Iterator<Row> topListIterator = topList.rowIterator();
+		int topListNumber = 0;
+		while (topListIterator.hasNext()) {
+			Row row = topListIterator.next();
+			if(row.getCell(0).toString().equals(("Pharmacy")))
+			{
+				String celValue = Character.toString(row.getCell(1).toString().charAt(0));
+				topListNumber = Integer.parseInt(celValue);
+				break;
+			}
+		}
+		
+		if(nxPharmacyList.size()>5) {
+			Collections.shuffle(nxPharmacyList.subList(topListNumber, nxPharmacyList.size()));
+		}
 		return nxPharmacyList;
 	}
 	
@@ -348,19 +542,40 @@ public class CacheNxData {
 				String name = (row.getCell(3) == null) ? "": row.getCell(3).toString();
 				String address = (row.getCell(4) == null) ? "": row.getCell(4).toString();
 				String contactNumber = (row.getCell(5) == null) ? "": row.getCell(5).toString();
-				String website = (row.getCell(6) == null) ? "": row.getCell(6).toString();
-				String openTime = (row.getCell(7) == null) ? "": row.getCell(7).toString();
-				String imageUrl = (row.getCell(8) == null) ? "": row.getCell(8).toString();
-				String map = (row.getCell(9) == null) ? "#": row.getCell(9).toString();
-				String market = (row.getCell(10) == null) ? "": row.getCell(10).toString();
+				String contactNumberOther = "";
+				if(row.getCell(6) != null && row.getCell(6).toString().trim().length() > 0) {
+					contactNumberOther = ", "+row.getCell(6).toString();
+				}
+				String website = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				String openTime = (row.getCell(8) == null) ? "": row.getCell(8).toString();
+				String imageUrl = (row.getCell(9) == null) ? "": row.getCell(9).toString();
+				String map = (row.getCell(10) == null) ? "#": row.getCell(10).toString();
+				String market = (row.getCell(11) == null) ? "": row.getCell(11).toString();
 				if("Y".equalsIgnoreCase(active)) {
-					nxPathLabsList.add(new Business(category, name, address, contactNumber, website, openTime, imageUrl, map, "", market));
+					nxPathLabsList.add(new Business(category, name, address, contactNumber, contactNumberOther,
+							website, openTime, imageUrl, map, "", market));
 				}
 			}
 		}
 		System.out.println("nxPathLabsList = "+nxPathLabsList);
 		LOGGER.info("nxPathLabsList = "+nxPathLabsList);
 		
+		Sheet topList = workbook.getSheet("TopList");
+		Iterator<Row> topListIterator = topList.rowIterator();
+		int topListNumber = 0;
+		while (topListIterator.hasNext()) {
+			Row row = topListIterator.next();
+			if(row.getCell(0).toString().equals(("PathLabs")))
+			{
+				String celValue = Character.toString(row.getCell(1).toString().charAt(0));
+				topListNumber = Integer.parseInt(celValue);
+				break;
+			}
+		}
+		
+		if(nxPathLabsList.size()>5) {
+			Collections.shuffle(nxPathLabsList.subList(topListNumber, nxPathLabsList.size()));
+		}
 		return nxPathLabsList;
 	}
 	
@@ -379,19 +594,40 @@ public class CacheNxData {
 				String name = (row.getCell(3) == null) ? "": row.getCell(3).toString();
 				String address = (row.getCell(4) == null) ? "": row.getCell(4).toString();
 				String contactNumber = (row.getCell(5) == null) ? "": row.getCell(5).toString();
-				String website = (row.getCell(6) == null) ? "": row.getCell(6).toString();
-				String openTime = (row.getCell(7) == null) ? "": row.getCell(7).toString();
-				String imageUrl = (row.getCell(8) == null) ? "": row.getCell(8).toString();
-				String map = (row.getCell(9) == null) ? "#": row.getCell(9).toString();
-				String market = (row.getCell(10) == null) ? "": row.getCell(10).toString();
+				String contactNumberOther = "";
+				if(row.getCell(6) != null && row.getCell(6).toString().trim().length() > 0) {
+					contactNumberOther = ", "+row.getCell(6).toString();
+				}
+				String website = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				String openTime = (row.getCell(8) == null) ? "": row.getCell(8).toString();
+				String imageUrl = (row.getCell(9) == null) ? "": row.getCell(9).toString();
+				String map = (row.getCell(10) == null) ? "#": row.getCell(10).toString();
+				String market = (row.getCell(11) == null) ? "": row.getCell(11).toString();
 				if("Y".equalsIgnoreCase(active)) {
-					nxTaxiServiceList.add(new Business(category, name, address, contactNumber, website, openTime, imageUrl, map, "", market));
+					nxTaxiServiceList.add(new Business(category, name, address, contactNumber, contactNumberOther,
+							website, openTime, imageUrl, map, "", market));
 				}
 			}
 		}
 		System.out.println("nxTaxiServiceList = "+nxTaxiServiceList);
 		LOGGER.info("nxTaxiServiceList = "+nxTaxiServiceList);
 		
+		Sheet topList = workbook.getSheet("TopList");
+		Iterator<Row> topListIterator = topList.rowIterator();
+		int topListNumber = 0;
+		while (topListIterator.hasNext()) {
+			Row row = topListIterator.next();
+			if(row.getCell(0).toString().equals(("TaxiServices")))
+			{
+				String celValue = Character.toString(row.getCell(1).toString().charAt(0));
+				topListNumber = Integer.parseInt(celValue);
+				break;
+			}
+		}
+		
+		if(nxTaxiServiceList.size()>5) {
+			Collections.shuffle(nxTaxiServiceList.subList(topListNumber, nxTaxiServiceList.size()));
+		}
 		return nxTaxiServiceList;
 	}
 	
@@ -409,19 +645,40 @@ public class CacheNxData {
 				String name = (row.getCell(3) == null) ? "": row.getCell(3).toString();
 				String address = (row.getCell(4) == null) ? "": row.getCell(4).toString();
 				String contactNumber = (row.getCell(5) == null) ? "": row.getCell(5).toString();
-				String website = (row.getCell(6) == null) ? "": row.getCell(6).toString();
-				String openTime = (row.getCell(7) == null) ? "": row.getCell(7).toString();
-				String imageUrl = (row.getCell(8) == null) ? "": row.getCell(8).toString();
-				String map = (row.getCell(9) == null) ? "#": row.getCell(9).toString();
-				String market = (row.getCell(10) == null) ? "": row.getCell(10).toString();
+				String contactNumberOther = "";
+				if(row.getCell(6) != null && row.getCell(6).toString().trim().length() > 0) {
+					contactNumberOther = ", "+row.getCell(6).toString();
+				}
+				String website = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				String openTime = (row.getCell(8) == null) ? "": row.getCell(8).toString();
+				String imageUrl = (row.getCell(9) == null) ? "": row.getCell(9).toString();
+				String map = (row.getCell(10) == null) ? "#": row.getCell(10).toString();
+				String market = (row.getCell(11) == null) ? "": row.getCell(11).toString();
 				if("Y".equalsIgnoreCase(active)) {
-					nxDailyNeedsList.add(new Business(category, name, address, contactNumber, website, openTime, imageUrl, map, "", market));
+					nxDailyNeedsList.add(new Business(category, name, address, contactNumber, contactNumberOther,
+							website, openTime, imageUrl, map, "", market));
 				}
 			}
 		}
 		System.out.println("nxDailyNeedsList = "+nxDailyNeedsList);
 		LOGGER.info("nxDailyNeedsList = "+nxDailyNeedsList);
 		
+		Sheet topList = workbook.getSheet("TopList");
+		Iterator<Row> topListIterator = topList.rowIterator();
+		int topListNumber = 0;
+		while (topListIterator.hasNext()) {
+			Row row = topListIterator.next();
+			if(row.getCell(0).toString().equals(("DailyNeeds")))
+			{
+				String celValue = Character.toString(row.getCell(1).toString().charAt(0));
+				topListNumber = Integer.parseInt(celValue);
+				break;
+			}
+		}
+		
+		if(nxDailyNeedsList.size()>5) {
+			Collections.shuffle(nxDailyNeedsList.subList(topListNumber, nxDailyNeedsList.size()));
+		}
 		return nxDailyNeedsList;
 	}
 	
@@ -440,20 +697,202 @@ public class CacheNxData {
 				String name = (row.getCell(3) == null) ? "": row.getCell(3).toString();
 				String address = (row.getCell(4) == null) ? "": row.getCell(4).toString();
 				String contactNumber = (row.getCell(5) == null) ? "": row.getCell(5).toString();
-				String website = (row.getCell(6) == null) ? "": row.getCell(6).toString();
-				String openTime = (row.getCell(7) == null) ? "": row.getCell(7).toString();
-				String imageUrl = (row.getCell(8) == null) ? "": row.getCell(8).toString();
-				String map = (row.getCell(9) == null) ? "#": row.getCell(9).toString();
-				String market = (row.getCell(10) == null) ? "": row.getCell(10).toString();
+				String contactNumberOther = "";
+				if(row.getCell(6) != null && row.getCell(6).toString().trim().length() > 0) {
+					contactNumberOther = ", "+row.getCell(6).toString();
+				}
+				String website = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				String openTime = (row.getCell(8) == null) ? "": row.getCell(8).toString();
+				String imageUrl = (row.getCell(9) == null) ? "": row.getCell(9).toString();
+				String map = (row.getCell(10) == null) ? "#": row.getCell(10).toString();
+				String market = (row.getCell(11) == null) ? "": row.getCell(11).toString();
 				if("Y".equalsIgnoreCase(active)) {
-					nxPersonalCareList.add(new Business(category, name, address, contactNumber, website, openTime, imageUrl, map, "", market));
+					nxPersonalCareList.add(new Business(category, name, address, contactNumber, contactNumberOther,
+							website, openTime, imageUrl, map, "", market));
 				}
 			}
 		}
 		System.out.println("nxPersonalCareList = "+nxPersonalCareList);
 		LOGGER.info("nxPersonalCareList = "+nxPersonalCareList);
 		
+		Sheet topList = workbook.getSheet("TopList");
+		Iterator<Row> topListIterator = topList.rowIterator();
+		int topListNumber = 0;
+		while (topListIterator.hasNext()) {
+			Row row = topListIterator.next();
+			if(row.getCell(0).toString().equals(("PersonalCare")))
+			{
+				String celValue = Character.toString(row.getCell(1).toString().charAt(0));
+				topListNumber = Integer.parseInt(celValue);
+				break;
+			}
+		}
+		
+		if(nxPersonalCareList.size()>5) {
+			Collections.shuffle(nxPersonalCareList.subList(topListNumber, nxPersonalCareList.size()));
+		}
 		return nxPersonalCareList;
+	}
+	
+	public List<Business> getBoutiqueListingList() throws InvalidFormatException, IOException {
+		Workbook workbook = getWorkbook();
+		Sheet boutiqueListingSheet = workbook.getSheet("BoutiqueListing");
+		Iterator<Row> boutiqueRowIterator = boutiqueListingSheet.rowIterator();
+		nxBoutiqueList.clear();
+		while (boutiqueRowIterator.hasNext()) {
+			Row row = boutiqueRowIterator.next();
+			if(row.getRowNum() > 0) {
+				String number = (row.getCell(0) == null) ? "": row.getCell(0).toString();
+				String active = (row.getCell(1) == null) ? "": row.getCell(1).toString();
+				String category = (row.getCell(2) == null) ? "": row.getCell(2).toString();
+				String name = (row.getCell(3) == null) ? "": row.getCell(3).toString();
+				String address = (row.getCell(4) == null) ? "": row.getCell(4).toString();
+				String contactNumber = (row.getCell(5) == null) ? "": row.getCell(5).toString();
+				String contactNumberOther = "";
+				if(row.getCell(6) != null && row.getCell(6).toString().trim().length() > 0) {
+					contactNumberOther = ", "+row.getCell(6).toString();
+				}
+				String website = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				String openTime = (row.getCell(8) == null) ? "": row.getCell(8).toString();
+				String imageUrl = (row.getCell(9) == null) ? "": row.getCell(9).toString();
+				String map = (row.getCell(10) == null) ? "#": row.getCell(10).toString();
+				String market = (row.getCell(11) == null) ? "": row.getCell(11).toString();
+				if("Y".equalsIgnoreCase(active)) {
+					nxBoutiqueList.add(new Business(category, name, address, contactNumber, contactNumberOther,
+							website, openTime, imageUrl, map, "", market));
+				}
+			}
+		}
+		System.out.println("nxBoutiqueList = "+nxBoutiqueList);
+		LOGGER.info("nxBoutiqueList = "+nxBoutiqueList);
+		
+		Sheet topList = workbook.getSheet("TopList");
+		Iterator<Row> topListIterator = topList.rowIterator();
+		int topListNumber = 0;
+		while (topListIterator.hasNext()) {
+			Row row = topListIterator.next();
+			if(row.getCell(0).toString().equals(("Boutique")))
+			{
+				String celValue = Character.toString(row.getCell(1).toString().charAt(0));
+				topListNumber = Integer.parseInt(celValue);
+				break;
+			}
+		}
+		
+		if(nxBoutiqueList.size()>5) {
+			Collections.shuffle(nxBoutiqueList.subList(topListNumber, nxBoutiqueList.size()));
+		}
+		return nxBoutiqueList;
+	}
+	
+	
+	public List<Business> getRentSaleFlatListingList() throws InvalidFormatException, IOException {
+		Workbook workbook = getWorkbook();
+		Sheet rentSaleFlatListingSheet = workbook.getSheet("RentSaleFlatListing");
+		Iterator<Row> rentSaleFlatRowIterator = rentSaleFlatListingSheet.rowIterator();
+		nxRentSaleFlatList.clear();
+		while (rentSaleFlatRowIterator.hasNext()) {
+			Row row = rentSaleFlatRowIterator.next();
+			if(row.getRowNum() > 0) {
+				String number = (row.getCell(0) == null) ? "": row.getCell(0).toString();
+				String active = (row.getCell(1) == null) ? "": row.getCell(1).toString();
+				String category = (row.getCell(2) == null) ? "": row.getCell(2).toString();
+				String categoryType = (row.getCell(3) == null) ? "": row.getCell(3).toString();
+				String ownerDealer = (row.getCell(4) == null) ? "": row.getCell(4).toString();
+				String flatSize = (row.getCell(5) == null) ? "": row.getCell(5).toString();
+				String flatDetails = (row.getCell(6) == null) ? "": row.getCell(6).toString();
+				String address = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				String ownerDealerName = (row.getCell(8) == null) ? "": row.getCell(8).toString();
+				String contactNumber = (row.getCell(9) == null) ? "": row.getCell(9).toString();
+				String cost = (row.getCell(10) == null) ? "": row.getCell(10).toString();
+				String imageUrl = (row.getCell(11) == null) ? "": row.getCell(11).toString();
+				String map = (row.getCell(12) == null) ? "": row.getCell(12).toString();
+				String locality = (row.getCell(13) == null) ? "": row.getCell(13).toString();
+				if("Y".equalsIgnoreCase(active)) {
+					nxRentSaleFlatList.add(new Business(categoryType, ownerDealer, flatSize, flatDetails, address, ownerDealerName, contactNumber,
+							cost, imageUrl, map, locality, ""));
+				}
+			}
+		}
+		System.out.println("nxRentSaleFlatList = "+nxRentSaleFlatList);
+		LOGGER.info("nxRentSaleFlatList = "+nxRentSaleFlatList);
+		
+		Sheet topList = workbook.getSheet("TopList");
+		Iterator<Row> topListIterator = topList.rowIterator();
+		int topListNumber = 0;
+		while (topListIterator.hasNext()) {
+			Row row = topListIterator.next();
+			if(row.getCell(0).toString().equals(("RentSaleFlat")))
+			{
+				String celValue = Character.toString(row.getCell(1).toString().charAt(0));
+				topListNumber = Integer.parseInt(celValue);
+				break;
+			}
+		}
+		
+		if(nxRentSaleFlatList.size()>5) {
+			Collections.shuffle(nxRentSaleFlatList.subList(topListNumber, nxRentSaleFlatList.size()));
+		}
+		return nxRentSaleFlatList;
+	}
+	
+	
+	public List<Business> getBusRouteNmrcListingList() throws InvalidFormatException, IOException {
+		Workbook workbook = getWorkbook();
+		Sheet busRouteNmrcListingSheet = workbook.getSheet("BusRouteNmrcListing");
+		Iterator<Row> busRouteNmrcRowIterator = busRouteNmrcListingSheet.rowIterator();
+		nxBusRouteNmrcList.clear();
+		while (busRouteNmrcRowIterator.hasNext()) {
+			Row row = busRouteNmrcRowIterator.next();
+			if(row.getRowNum() > 0) {
+				String number = (row.getCell(0) == null) ? "": row.getCell(0).toString();
+				String active = (row.getCell(1) == null) ? "": row.getCell(1).toString();
+				String fromTo = (row.getCell(2) == null) ? "": row.getCell(2).toString();
+				String imageUrl = (row.getCell(3) == null) ? "": row.getCell(3).toString();
+				
+				if("Y".equalsIgnoreCase(active)) {
+					nxBusRouteNmrcList.add(new Business(fromTo, imageUrl));
+				}
+			}
+		}
+		System.out.println("nxBusRouteNmrcList = "+nxBusRouteNmrcList);
+		LOGGER.info("nxBusRouteNmrcList = "+nxBusRouteNmrcList);
+		return nxBusRouteNmrcList;
+	}
+	
+	public List<Business> getOtherCategoryListingList(String otherSelectedCategory) throws InvalidFormatException, IOException {
+		Workbook workbook = getWorkbook();
+		Sheet personalCareListingSheet = workbook.getSheet("OtherCategoryListing");
+		Iterator<Row> otherCategoryRowIterator = personalCareListingSheet.rowIterator();
+		nxOtherCategoryList.clear();
+		while (otherCategoryRowIterator.hasNext()) {
+			Row row = otherCategoryRowIterator.next();
+			if(row.getRowNum() > 0) {
+				String number = (row.getCell(0) == null) ? "": row.getCell(0).toString();
+				String active = (row.getCell(1) == null) ? "": row.getCell(1).toString();
+				String category = (row.getCell(2) == null) ? "": row.getCell(2).toString();
+				String name = (row.getCell(3) == null) ? "": row.getCell(3).toString();
+				String address = (row.getCell(4) == null) ? "": row.getCell(4).toString();
+				String contactNumber = (row.getCell(5) == null) ? "": row.getCell(5).toString();
+				String contactNumberOther = "";
+				if(row.getCell(6) != null && row.getCell(6).toString().trim().length() > 0) {
+					contactNumberOther = ", "+row.getCell(6).toString();
+				}
+				String website = (row.getCell(7) == null) ? "": row.getCell(7).toString();
+				String openTime = (row.getCell(8) == null) ? "": row.getCell(8).toString();
+				String imageUrl = (row.getCell(9) == null) ? "": row.getCell(9).toString();
+				String map = (row.getCell(10) == null) ? "#": row.getCell(10).toString();
+				String market = (row.getCell(11) == null) ? "": row.getCell(11).toString();
+				if("Y".equalsIgnoreCase(active) && category.equals(otherSelectedCategory)) {
+					nxOtherCategoryList.add(new Business(category, name, address, contactNumber, contactNumberOther,
+							website, openTime, imageUrl, map, "", market));
+				}
+			}
+		}
+		System.out.println("nxOtherCategoryList = "+nxOtherCategoryList);
+		LOGGER.info("nxOtherCategoryList = "+nxOtherCategoryList);
+		Collections.shuffle(nxOtherCategoryList);
+		return nxOtherCategoryList;
 	}
 	
 	

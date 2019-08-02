@@ -9,16 +9,16 @@
 		<tr>
 			<td width="1%"> </td>
 			<td disabled="true">
-			<a href="<c:url value="/"/>" style="text-decoration: none;">
+			<a ng-click="getMyAction('Home'); goToTop()" style="text-decoration: none;cursor: pointer">
 			<large style='font-family: "Comic Sans MS", cursive, sans-serif; font-size: 35px;color:blue;font-weight: bold;'>Nx</large>
 			<large style='font-family: "Comic Sans MS", cursive, sans-serif; font-size: 35px;color:red;font-weight: bold;'>Dial.com</large>
 			<br>
-			<large style='font-family: "Comic Sans MS", cursive, sans-serif; font-size: 11px;color:gray;font-weight: bold;'>Noida Extension's Free Directory</large>
+			<large style='font-family: "Comic Sans MS", cursive, sans-serif; font-size: 11px;color:gray;font-weight: bold;'>Noida Extension's Online Directory</large>
 			</a>
 			</td>
 			<td>
-				<marquee align="center" width="75%" style='font-family: "Comic Sans MS", cursive, sans-serif;'  behavior="alternate" direction="right" onMouseOver="this.stop()" onMouseOut="this.start()">
-		<small style="color:red">WhatsApp </small><u style="color:blue">8800587117</u><small style="color:red"> your detail for free listing</small>
+				<marquee align="center" width="70%" style='font-family: "Comic Sans MS", cursive, sans-serif;'  scrollamount="2" behavior="alternate" direction="right" onMouseOver="this.stop()" onMouseOut="this.start()">
+		<small style="color:red">WhatsApp </small><u style="color:blue">8800587117</u><small style="color:red"> for free listing</small>
 	</marquee> 
 			
 			</td>
@@ -27,7 +27,14 @@
 				<img src="<c:url value="/img/common/freeListing.png"/>" class="img-rounded"/>
 			
 			&nbsp;&nbsp; 
-				<u style='color:black;font-family: "Comic Sans MS", cursive, sans-serif;'>Call </u><u style='color:blue;font-family: "Comic Sans MS", cursive, sans-serif;'>8800587117</u><u style='olor:black;font-family: "Comic Sans MS", cursive, sans-serif;'> for Advertise</u>
+			<a class="button" ng-href="tel:08800587117">
+			<img src="<c:url value="/img/common/phone.png"/>"class="img-rounded" width="20" height="20"> 
+					<u style='color:blue;font-family: "Comic Sans MS", cursive, sans-serif;'>8800587117
+					</u>
+					<u style='color:black;font-family: "Comic Sans MS", cursive, sans-serif;'>for Advertise
+					</u>
+			</a>
+				
 					<!-- 	<a th:href="@{/admin}">Login</a> -->
 			<%-- <a href="<c:url value="/admin"/>">	Login</a>&nbsp;&nbsp; 
 			<a href="<c:url value="#"/>">	Logout</a> --%>

@@ -7,8 +7,10 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 		$scope.listingImageWidth = "300";
 		$scope.listingImageHeight = "150";
 		$scope.enableSection = "Home";
-		//$scope.prodUrlPrifix = "/nxdial-1";  // for production value should be "/nxdial-1" & for local it should be ""
-		$scope.prodUrlPrifix = ""; 
+		
+		$scope.prodUrlPrifix = "/nxdial-1";  // for production value should be "/nxdial-1" & for local it should be ""
+		//$scope.prodUrlPrifix = ""; 
+		
 		$scope.openCloseTime =["","12:00 AM","12:30 AM","01:00 AM","01:30 AM","02:00 AM","02:30 AM","03:00 AM","03:30 AM","04:00 AM","04:30 AM","05:00 AM","05:30 AM",
 								"06:00 AM","06:30 AM","07:00 AM","07:30 AM","08:00 AM","08:30 AM","09:00 AM","09:30 AM","10:00 AM","10:30 AM","11:00 AM","11:30 AM",
 								"12:00 PM","12:30 PM","01:00 PM","01:30 PM","02:00 PM","02:30 PM","03:00 PM","03:30 PM","04:00 PM","04:30 PM","05:00 PM","05:30 PM",
@@ -47,6 +49,23 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 		}).success(function(response) {
 			  console.log('response: ' + response);
 			  $scope.nxCategoriesThumbnails = response;
+		});
+	}
+	
+	/**
+	 * getNxDirThumnailOtherCategories is provide the popular categories on home page
+	 */
+	$scope.getNxDirThumnailOtherCategories = function() { 
+		$http({
+			method : "GET",
+			url:$scope.prodUrlPrifix + "/getNxThumnailOtherCategories",
+			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
+			//data : angular.toJson(),
+			headers :{
+				'Content-Type' : 'application/json'}
+		}).success(function(response) {
+			  console.log('response: ' + response);
+			  $scope.nxOtherCategoriesThumbnails = response;
 		});
 	}
 	
@@ -259,6 +278,77 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 	}
 	
 	/**
+	 * getNxBoutiqueList is provide the PathLabs on home page
+	 */
+	$scope.getNxBoutiqueList = function() { 
+		$http({
+			method : "GET",
+			url:$scope.prodUrlPrifix + "/getNxBoutiqueList",
+			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
+			//data : angular.toJson(),
+			headers :{
+				'Content-Type' : 'application/json'}
+		}).success(function(response) {
+			  console.log('response: ' + response);
+			  $scope.nxBoutiqueList = response;
+		});
+	}
+	
+	/**
+	 * getNxRentSaleFlatList is provide the Rent Flats on home page
+	 */
+	$scope.getNxRentSaleFlatList = function() { 
+		$http({
+			method : "GET",
+			url:$scope.prodUrlPrifix + "/getNxRentSaleFlatList",
+			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
+			//data : angular.toJson(),
+			headers :{
+				'Content-Type' : 'application/json'}
+		}).success(function(response) {
+			  console.log('response: ' + response);
+			  $scope.nxRentSaleFlatList = response;
+		});
+	}
+	
+	
+	/**
+	 * getNxBusRouteNmrcList is provide the Rent Flats on home page
+	 */
+	$scope.getNxBusRouteNmrcList = function() { 
+		$http({
+			method : "GET",
+			url:$scope.prodUrlPrifix + "/getNxBusRouteNmrcList",
+			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
+			//data : angular.toJson(),
+			headers :{
+				'Content-Type' : 'application/json'}
+		}).success(function(response) {
+			  console.log('response: ' + response);
+			  $scope.nxBusRouteNmrcList = response;
+		});
+	}
+	
+	
+	/**
+	 * getNxOtherCategoryList is provide the PathLabs on home page
+	 */
+	$scope.getNxOtherCategoryList = function() { 
+		$http({
+			method : "GET",
+			url:$scope.prodUrlPrifix + "/getNxOtherCategoryList",
+			params :  {otherSelectedCategory :  $scope.otherSelectedCategory}, 
+			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
+			//data : angular.toJson(),
+			headers :{
+				'Content-Type' : 'application/json'}
+		}).success(function(response) {
+			  console.log('response: ' + response);
+			  $scope.nxOtherCategoryList = response;
+		});
+	}
+	
+	/**
 	 * getNxDirNews is to get news on home page
 	 */
 	$scope.getNxDirNews = function() { 
@@ -277,7 +367,11 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 	
 	$scope.getMyAction= function(url) { 
 		$scope.enableSection = url;
-		//$scope.enableListing = true;
+	}
+	
+	$scope.getMyActionOtherCategory= function(url) { 
+		$scope.otherSelectedCategory = url;
+		$scope.enableSection = 'OtherCategory';
 	}
 	
 	/* $scope.setListingFalse= function() { 
@@ -321,6 +415,11 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 	$scope.customerCare = function() { 
 		$scope.enableSection = "customerCare";
 	}
+	
+	$scope.goToTop = function() {
+		  document.body.scrollTop = 0; // For Safari
+		  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+		} 
 	
 	$scope.submitListing = function (businessName, category, businessAdd, businessContactNo, openHours, closeHours, ownOpenCloseHours, imageSrc) {
 		if(businessName == undefined || category == undefined || businessAdd == undefined || businessContactNo == undefined ||

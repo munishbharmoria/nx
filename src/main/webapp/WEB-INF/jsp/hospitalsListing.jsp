@@ -27,7 +27,14 @@
 									<img src="<c:url value="/img/common/address.png"/>"class="img-rounded" width="20" height="20"> </a>
 									{{nxHospital.address}}
 									</h5>
-									<h5><img src="<c:url value="/img/common/phone.png"/>"class="img-rounded" width="20" height="20"> {{ nxHospital.contactNumber}} </h5> 
+									<h5>
+									<a class="button" ng-href="tel:{{nxHospital.contactNumber}}">
+									<img src="<c:url value="/img/common/phone.png"/>"class="img-rounded" width="20" height="20"> 
+									{{nxHospital.contactNumber}}
+									</a>
+									 {{nxHospital.contactNumberOther}}
+									<%-- <img src="<c:url value="/img/common/phone.png"/>"class="img-rounded" width="20" height="20"> {{ nxHospital.contactNumber}}  --%>
+									</h5> 
 									<h5><img src="<c:url value="/img/common/openTime.png"/>"class="img-rounded" width="20" height="20"> {{ nxHospital.openTime}} </h5>
 									<h5><img src="<c:url value="/img/common/website.png"/>"class="img-rounded" width="20" height="20">   {{ nxHospital.website}} </h5> 
 						</td>

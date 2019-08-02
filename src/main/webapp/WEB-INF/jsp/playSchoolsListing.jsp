@@ -27,9 +27,16 @@
 									<img src="<c:url value="/img/common/address.png"/>"class="img-rounded" width="20" height="20"> </a>
 									{{nxPlaySchool.address}}
 									</h5>
-									<h5><img src="<c:url value="/img/common/phone.png"/>"class="img-rounded" width="20" height="20"> {{nxPlaySchool.contactNumber}} </h5> 
+									<h5>
+									<a class="button" ng-href="tel:{{nxPlaySchool.contactNumber}}">
+									<img src="<c:url value="/img/common/phone.png"/>"class="img-rounded" width="20" height="20"> 
+									{{nxPlaySchool.contactNumber}}
+									</a>
+									 {{nxPlaySchool.contactNumberOther}}
+									<%-- <img src="<c:url value="/img/common/phone.png"/>"class="img-rounded" width="20" height="20"> {{nxPlaySchool.contactNumber}}  --%>
+									</h5> 
+									<h5><img src="<c:url value="/img/common/openTime.png"/>"class="img-rounded" width="20" height="20"> {{nxPlaySchool.openTime}} </h5>
 									<h5><img src="<c:url value="/img/common/website.png"/>"class="img-rounded" width="20" height="20"> {{nxPlaySchool.website}} </h5>
-									<h5><img src="<c:url value="/img/common/openTime.png"/>"class="img-rounded" width="20" height="20"> {{nxPlaySchool.openTime}} </h5> 
 						</td>
 						<td valign="top">
 							<small style="color: red">{{nxPlaySchool.market}}</small>

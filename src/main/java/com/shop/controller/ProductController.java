@@ -10,8 +10,10 @@ import org.apache.logging.log4j.Logger;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -46,6 +48,13 @@ public class ProductController {
 		List<CategoryThumbnail> catThumbListing = cacheNxData.getCategoryThumbnailList();
 		LOGGER.info("catThumbListing = "+catThumbListing);
 		return catThumbListing;
+	}
+	
+	@RequestMapping(path = "/getNxThumnailOtherCategories")
+	public List<CategoryThumbnail> getNxThumnailOtherCategories() throws InvalidFormatException, IOException {
+		List<CategoryThumbnail> otherCatThumbListing = cacheNxData.getOtherCategoryThumbnailList();
+		LOGGER.info("OtherCatThumbListing = "+otherCatThumbListing);
+		return otherCatThumbListing;
 	}
 	
 	@RequestMapping(path = "/getNxRestaurentList")
@@ -131,6 +140,37 @@ public class ProductController {
 		List<Business> personalCareListing = cacheNxData.getPersonalCareListingList();
 		LOGGER.info("personalCareListing = "+personalCareListing);
 		return personalCareListing;
+	}
+	
+	
+	@RequestMapping(path = "/getNxBoutiqueList")
+	public List<Business> getNxBoutiqueListingList() throws InvalidFormatException, IOException {
+		List<Business> boutiqueListing = cacheNxData.getBoutiqueListingList();
+		LOGGER.info("boutiqueListing = "+boutiqueListing);
+		return boutiqueListing;
+	}
+	
+	
+	@RequestMapping(path = "/getNxRentSaleFlatList")
+	public List<Business> getNxRentSaleFlatListingList() throws InvalidFormatException, IOException {
+		List<Business> rentSaleFlatListing = cacheNxData.getRentSaleFlatListingList();
+		LOGGER.info("rentSaleFlatListing = "+rentSaleFlatListing);
+		return rentSaleFlatListing;
+	}
+	
+	
+	@RequestMapping(path = "/getNxBusRouteNmrcList")
+	public List<Business> getNxBusRouteNmrcListingList() throws InvalidFormatException, IOException {
+		List<Business> busRouteNmrcListing = cacheNxData.getBusRouteNmrcListingList();
+		LOGGER.info("busRouteNmrcListing = "+busRouteNmrcListing);
+		return busRouteNmrcListing;
+	}
+	
+	@RequestMapping(path = "/getNxOtherCategoryList")
+	public List<Business> getNxOtherCategoryListingList(@RequestParam String otherSelectedCategory) throws InvalidFormatException, IOException {
+		List<Business> otherCategoryListing = cacheNxData.getOtherCategoryListingList(otherSelectedCategory);
+		LOGGER.info("otherCategoryListing = "+otherCategoryListing);
+		return otherCategoryListing;
 	}
 	
 	@RequestMapping(path = "/getNxNews")

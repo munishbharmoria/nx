@@ -25,9 +25,16 @@
 									<h5>
 									<a href="{{nxPharmacy.map}}" onClick="return popup(this, 'location')">		
 									<img src="<c:url value="/img/common/address.png"/>"class="img-rounded" width="20" height="20"> </a>
-									{{ nxPharmacy.address}}
+									{{nxPharmacy.address}}
 									</h5>
-									<h5><img src="<c:url value="/img/common/phone.png"/>"class="img-rounded" width="20" height="20"> {{ nxPharmacy.contactNumber}} </h5> 
+									<h5>
+									<a class="button" ng-href="tel:{{nxPharmacy.contactNumber}}">
+									<img src="<c:url value="/img/common/phone.png"/>"class="img-rounded" width="20" height="20"> 
+									{{nxPharmacy.contactNumber}}
+									</a>
+									 {{nxPharmacy.contactNumberOther}}
+									<%-- <img src="<c:url value="/img/common/phone.png"/>"class="img-rounded" width="20" height="20"> {{ nxPharmacy.contactNumber}}  --%>
+									</h5> 
 									<h5><img src="<c:url value="/img/common/openTime.png"/>"class="img-rounded" width="20" height="20"> {{ nxPharmacy.openTime}} </h5>
 									<h5><img src="<c:url value="/img/common/website.png"/>"class="img-rounded" width="20" height="20">   {{ nxPharmacy.website}} </h5> 
 						</td>
