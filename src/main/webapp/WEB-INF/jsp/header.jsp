@@ -16,15 +16,18 @@
 			<large style='font-family: "Comic Sans MS", cursive, sans-serif; font-size: 11px;color:gray;font-weight: bold;'>Noida Extension's Online Directory</large>
 			</a>
 			</td>
-			<td>
+			<td><a class="button" ng-href="https://wa.me/918800587117">
 				<marquee align="center" width="70%" style='font-family: "Comic Sans MS", cursive, sans-serif;'  scrollamount="2" behavior="alternate" direction="right" onMouseOver="this.stop()" onMouseOut="this.start()">
 		<small style="color:red">WhatsApp </small><u style="color:blue">8800587117</u><small style="color:red"> for free listing</small>
-	</marquee> 
+	</marquee>  </a>
+			
 			
 			</td>
 			<td align="right">
 			<!-- 	<img src="<c:url value="/img/common/freeListing.png"/>" class="img-rounded" ng-click ="registerBusiness()" style="cursor: pointer;"/>  -->
+				<a class="button" ng-href="https://wa.me/918800587117">
 				<img src="<c:url value="/img/common/freeListing.png"/>" class="img-rounded"/>
+				</a>
 			
 			&nbsp;&nbsp; 
 			<a class="button" ng-href="tel:08800587117">

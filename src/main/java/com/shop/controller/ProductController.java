@@ -166,6 +166,14 @@ public class ProductController {
 		return busRouteNmrcListing;
 	}
 	
+	
+	@RequestMapping(path = "/getNxSearchSiteList")
+	public List<Business> getNxSearchSiteListingList(@RequestParam String searchSiteString) throws InvalidFormatException, IOException {
+		List<Business> searchSiteListing = cacheNxData.getSearchSiteListingList(searchSiteString);
+		LOGGER.info("busSearchSiteListing = "+searchSiteListing);
+		return searchSiteListing;
+	}
+	
 	@RequestMapping(path = "/getNxOtherCategoryList")
 	public List<Business> getNxOtherCategoryListingList(@RequestParam String otherSelectedCategory) throws InvalidFormatException, IOException {
 		List<Business> otherCategoryListing = cacheNxData.getOtherCategoryListingList(otherSelectedCategory);

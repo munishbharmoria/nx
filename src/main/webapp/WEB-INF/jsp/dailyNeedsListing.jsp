@@ -8,7 +8,7 @@
 		<table width="100%">
 		<tr>
 			<td align="left">&nbsp;&nbsp;&nbsp;&nbsp;Daily Needs Shops in Noida Extension</td>
-			<td align="right">Search:&nbsp;<input type="test" size="50" placeholder="search for anything.." ng-model="searchFilter"></td>
+			<td align="right">Search:&nbsp;<input type="test" size="50" placeholder="search for {{enableSection}}.." ng-model="searchFilter"></td>
 			</tr>
 		</table>
 		</br>

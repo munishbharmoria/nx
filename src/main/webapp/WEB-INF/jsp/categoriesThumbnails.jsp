@@ -4,7 +4,17 @@
 <%@ page session="false"%>
 
 <div ng-init="getNxDirThumnailCategories()" class="container" style="width: 100%;">
-	&nbsp;&nbsp;&nbsp;&nbsp;<h4  class="figure-caption text-left" style="margin-left: 20px; color: blue;">Popular Services</h4>
+		<table width="100%">
+		<tr>
+			<td align="left">&nbsp;&nbsp;&nbsp;&nbsp;<h4  class="figure-caption text-left" style="margin-left: 20px; color: blue;">Popular Services</h4>
+			</td>
+			<td align="right">Search:&nbsp;
+			<input type="test" size="50" placeholder="search for anything.." ng-model="searchSiteString" ng-keydown="$event.keyCode === 13 && getMyAction('SearchSite', searchSiteString); goToTop();">
+				<button class="fa fa-search" style="color: maroon;"  ng-click="getMyAction('SearchSite', searchSiteString); goToTop();"></button>
+			</td>
+		</tr>
+		</table>
+		
 		<ul class="nav navbar-nav" style="margin-left: 20px;">
 			<li ng-repeat="nxDirThumnail in nxCategoriesThumbnails">
 			<h5  class="figure-caption text-left" ng-model="data" ng-init="data=nxDirThumnail.caption"> {{nxDirThumnail.caption}}</h5>

@@ -4,12 +4,16 @@ var module = angular.module('shopModule', ['ngRoute']);
 angular.module('shopModule').controller('shopController', [ '$scope', '$http', '$window', function($scope, $http, $interval) {
 	
 		$scope.initialize = function(){
+			
+		$scope.myInterval = 3000;
+			
 		$scope.listingImageWidth = "300";
 		$scope.listingImageHeight = "150";
 		$scope.enableSection = "Home";
+		$scope.searchString = "";
 		
-		$scope.prodUrlPrifix = "/nxdial-1";  // for production value should be "/nxdial-1" & for local it should be ""
-		//$scope.prodUrlPrifix = ""; 
+		//$scope.prodUrlPrifix = "/nxdial-1";  // for production value should be "/nxdial-1" & for local it should be ""
+		$scope.prodUrlPrifix = ""; 
 		
 		$scope.openCloseTime =["","12:00 AM","12:30 AM","01:00 AM","01:30 AM","02:00 AM","02:30 AM","03:00 AM","03:30 AM","04:00 AM","04:30 AM","05:00 AM","05:30 AM",
 								"06:00 AM","06:30 AM","07:00 AM","07:30 AM","08:00 AM","08:30 AM","09:00 AM","09:30 AM","10:00 AM","10:30 AM","11:00 AM","11:30 AM",
@@ -313,7 +317,7 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 	
 	
 	/**
-	 * getNxBusRouteNmrcList is provide the Rent Flats on home page
+	 * getNxBusRouteNmrcList is provide the Metro Bus Routes
 	 */
 	$scope.getNxBusRouteNmrcList = function() { 
 		$http({
@@ -329,9 +333,28 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 		});
 	}
 	
+	/**
+	 * getNxSearchSiteList is provide the Search Result
+	 */
+	$scope.getNxSearchSiteList = function() { 
+		$http({
+			method : "GET",
+			url:$scope.prodUrlPrifix + "/getNxSearchSiteList",
+			params :  {searchSiteString :  $scope.searchString}, 
+			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
+			//data : angular.toJson(),
+			headers :{
+				'Content-Type' : 'application/json'}
+		}).success(function(response) {
+			  console.log('response: ' + response);
+			  $scope.nxSearchSiteList = response;
+		});
+	}
+	
+	
 	
 	/**
-	 * getNxOtherCategoryList is provide the PathLabs on home page
+	 * getNxOtherCategoryList is provide the Other Categories on home page
 	 */
 	$scope.getNxOtherCategoryList = function() { 
 		$http({
@@ -367,6 +390,11 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 	
 	$scope.getMyAction= function(url) { 
 		$scope.enableSection = url;
+	}
+	
+	$scope.getMyAction= function(url, searchString) { 
+		$scope.enableSection = url;
+		$scope.searchString = searchString;
 	}
 	
 	$scope.getMyActionOtherCategory= function(url) { 

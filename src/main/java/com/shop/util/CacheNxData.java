@@ -43,6 +43,8 @@ public class CacheNxData {
 	public List<Business> nxBoutiqueList = new ArrayList<Business>();
 	public List<Business> nxRentSaleFlatList = new ArrayList<Business>();
 	public List<Business> nxBusRouteNmrcList = new ArrayList<Business>();
+	public List<Business> searchSiteList = new ArrayList<Business>();
+	public List<Business> searchSiteListFiltered = new ArrayList<Business>();
 	public List<Business> nxOtherCategoryList = new ArrayList<Business>();
 	
 	
@@ -55,8 +57,8 @@ public class CacheNxData {
 	
 	public Workbook getWorkbook() throws InvalidFormatException, IOException {
 		Workbook workbook = WorkbookFactory.create(new File(
-				//"C:\\MunishData\\mp\\project\\workspace\\shop\\shop\\src\\main\\resources\\nxData_local.xlsx"));
-				"/root/nxdial/data/nxData_prod.xlsx"));
+				"C:\\MunishData\\mp\\project\\workspace\\shop\\shop\\src\\main\\resources\\nxData_local.xlsx"));
+				//"/root/nxdial/data/nxData_prod.xlsx"));
 		return workbook;
 	}
 	 
@@ -860,6 +862,46 @@ public class CacheNxData {
 		return nxBusRouteNmrcList;
 	}
 	
+	
+	public List<Business> getSearchSiteListingList(String searchSiteString) throws InvalidFormatException, IOException {
+		
+		searchSiteListFiltered.clear();
+		searchSiteList.clear();
+		searchSiteList.addAll(getRestaurantsListingList());
+		searchSiteList.addAll(getDoctorsListingList());
+		searchSiteList.addAll(getHospitalsListingList());
+		searchSiteList.addAll(getPharmacyListingList());
+		searchSiteList.addAll(getPathLabsListingList());
+		//searchSiteList.addAll(getRentSaleFlatListingList());
+		searchSiteList.addAll(getDailyNeedsListingList());
+		searchSiteList.addAll(getSchoolsListingList());
+		searchSiteList.addAll(getPlaySchoolsListingList());
+		searchSiteList.addAll(getTaxiServiceListingList());
+		searchSiteList.addAll(getPersonalCareListingList());
+		searchSiteList.addAll(getAutomobilesListingList());
+		searchSiteList.addAll(getShoppingListingList());
+		searchSiteList.addAll(getBoutiqueListingList());
+		searchSiteList.addAll(getOtherCategoryListingList("All"));
+		
+		for(Business business : searchSiteList) {
+			try {
+				if((business.getCategory() != null && business.getCategory().toLowerCase().contains(searchSiteString.toLowerCase())) || 
+						(business.getName() != null && business.getName().toLowerCase().contains(searchSiteString.toLowerCase())) ||
+						(business.getAddress() != null && business.getAddress().toLowerCase().contains(searchSiteString.toLowerCase())) || 
+						(business.getMarket() != null && business.getMarket().toLowerCase().contains(searchSiteString.toLowerCase())) ||
+				   (business.getCategory().equals("Doctors") && business.getSpecialization() != null && business.getSpecialization().toLowerCase().contains(searchSiteString.toLowerCase())))
+				   {
+						searchSiteListFiltered.add(business);
+				   }
+			} catch (Exception e) {
+				System.out.println("Error Found");
+				e.printStackTrace();// TODO: handle exception
+			}
+			
+		}
+		return searchSiteListFiltered;
+	}
+	
 	public List<Business> getOtherCategoryListingList(String otherSelectedCategory) throws InvalidFormatException, IOException {
 		Workbook workbook = getWorkbook();
 		Sheet personalCareListingSheet = workbook.getSheet("OtherCategoryListing");
@@ -883,7 +925,7 @@ public class CacheNxData {
 				String imageUrl = (row.getCell(9) == null) ? "": row.getCell(9).toString();
 				String map = (row.getCell(10) == null) ? "#": row.getCell(10).toString();
 				String market = (row.getCell(11) == null) ? "": row.getCell(11).toString();
-				if("Y".equalsIgnoreCase(active) && category.equals(otherSelectedCategory)) {
+				if("Y".equalsIgnoreCase(active) && (category.equals(otherSelectedCategory) || otherSelectedCategory.equals("All"))) {
 					nxOtherCategoryList.add(new Business(category, name, address, contactNumber, contactNumberOther,
 							website, openTime, imageUrl, map, "", market));
 				}

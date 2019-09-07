@@ -50,6 +50,11 @@
 			<jsp:include page="categoriesThumbnails.jsp"></jsp:include>
 			<jsp:include page="otherCategoriesThumbnails.jsp"></jsp:include>
 		</div>
+		
+		<div ng-if="enableSection=='SearchSite'">
+			<jsp:include page="news.jsp"></jsp:include>
+			<jsp:include page="searchSiteListing.jsp"></jsp:include>
+		</div>
 
 		<div ng-if="enableSection=='Restaurants'">
 			<jsp:include page="restaurantsListing.jsp"></jsp:include>
