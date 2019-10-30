@@ -5,8 +5,6 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 	
 		$scope.initialize = function(){
 			
-		$scope.myInterval = 3000;
-			
 		$scope.listingImageWidth = "300";
 		$scope.listingImageHeight = "150";
 		$scope.enableSection = "Home";

@@ -12,22 +12,21 @@
 			<div class="item active">
 				<a class="button" ng-href="tel:09319241740"><img style='height: 170px; width: 1000px' src="<c:url value="/img/advertisement/adv_UMgroupAdvNoidaGSTReady.png"/>" ></a>
 			</div>
+			<%-- <div class="item">
+				<a class="button" ng-href="https://wa.me/918826222118" target="_blank"> <img style='height: 170px; width: 1100px' src="<c:url value="/img/advertisement/adv_santaclauz.png"/>" ></a>
+			</div> --%>
 			<div class="item">
 				<a class="button" ng-href="tel:08920035584"><img style='height: 170px; width: 1000px' src="<c:url value="/img/advertisement/adv_AtreyaEventPvtLtd.png"/>" ></a>
 			</div> 
 			 <div class="item">
-				<a class="button" ng-href="tel:08800587117"><img style='height: 170px; width: 1000px' src="<c:url value="/img/advertisement/adv_AdvertiseYourShopHere.png"/>" ></a>
-				<%--<a class="button" ng-href="tel:08800448390"><img style='height: 170px; width: 1000px' src="<c:url value="/img/advertisement/adv_PawanChauhanHalwaiandcatererBanner.png"/>" ></a>--%>
+				<a class="button" ng-href="https://wa.me/918800587117" target="_blank"><img style='height: 170px; width: 1000px' src="<c:url value="/img/advertisement/adv_AdvertiseYourShopHere.png"/>" ></a>
 			</div> 
 			<div class="item">
 				<a style="cursor: pointer" ng-click="getMyAction('Metro Bus'); goToTop()"> <img style='height: 170px; width: 1000px' src="<c:url value="/img/advertisement/adv_MetroBusService.png"/>"  ></a>
 			</div>
-			<%-- <div class="item">
-				<a style="cursor: pointer" href="https://www.milkbasket.com/" target="_blank"> <img style='height: 170px; width: 1100px' src="<c:url value="/img/advertisement/adv_milkBasket.JPG"/>" ></a>
-			</div>
-			<div class="item">
+			 <%-- <div class="item">
 				<a style="cursor: pointer" href="http://www.sarvottamnoida.com/" target="_blank"> <img style='height: 170px; width: 1100px' src="<c:url value="/img/advertisement/adv_sarvottamInternationalSchool.png"/>" ></a>
-			</div>  --%>
+			</div>   --%>
 	</div>
 	<div class="carousel-inner" align="center" ng-if="enableSection=='Restaurants'">
 			<div class="item active">

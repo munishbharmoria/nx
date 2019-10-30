@@ -25,7 +25,7 @@
 			</td>
 			<td align="right">
 			<!-- 	<img src="<c:url value="/img/common/freeListing.png"/>" class="img-rounded" ng-click ="registerBusiness()" style="cursor: pointer;"/>  -->
-				<a class="button" ng-href="https://wa.me/918800587117">
+				<a class="button" ng-href="https://wa.me/918800587117" target="_blank">
 				<img src="<c:url value="/img/common/freeListing.png"/>" class="img-rounded"/>
 				</a>
 			

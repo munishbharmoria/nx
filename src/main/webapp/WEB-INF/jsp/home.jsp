@@ -149,7 +149,11 @@
 			<jsp:include page="footer.jsp"></jsp:include>
 		</div>
 		<button onclick="topFunction()" id="myBtn" title="Go to top"
-			align="right">Top</button>
-	</div>
+			align="right">Top1</button>
+			
+		<a class="button" ng-href="https://wa.me/918800587117" target="_blank">
+			<img class="img-fluid" alt="Responsive image" src="<c:url value="/img/common/whatsApp.jpg"/>" >
+		</a>	
+	
 </body>
 </html>

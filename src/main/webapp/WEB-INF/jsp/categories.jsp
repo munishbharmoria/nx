@@ -14,8 +14,8 @@
 						{{nxCategory.name}}
 						&nbsp;&nbsp;
 					</h5>
-					
-			</ul>
+				</li>			
+			 </ul>
 	</nav>
 </div>
 

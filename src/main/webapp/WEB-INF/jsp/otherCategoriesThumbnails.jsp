@@ -13,3 +13,24 @@
 		</li>
 	</ul>
 </div>
+
+
+<!-- Rference https://bootsnipp.com/snippets/zDQkr -->
+
+<div class="container" ng-init="getNxDirThumnailOtherCategories()" > 
+  <div class="carousel slide" id="myCarousel">
+        <div class="carousel-inner">
+            <div class="item">
+                <div class="row">
+                    <div class="col-xs-3" ng-repeat="nxDirThumnail in nxOtherCategoriesThumbnails"">
+                    <a href="#">
+                    <img style="cursor: pointer" ng-click="getMyActionOtherCategory(data); goToTop()" src="<c:url value="{{nxDirThumnail.imagePath}}"/>" class="img-rounded hvr-grow" width="135" height="135">
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+    </div>
+</div>

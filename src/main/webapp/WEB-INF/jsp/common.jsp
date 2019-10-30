@@ -16,6 +16,7 @@
 	<script src="<c:url value="/js/lib/bootstrap-3.3.6/js/bootstrap.js"/>"></script>  
 	<script src="<c:url value="/js/lib/bootstrap-3.3.6/js/bootstrap.min.js"/>"></script> 
 	<script src="<c:url value="/js/app/productController.js"/>"></script>  
+	<script src="<c:url value="/js/custom.js"/>"></script> 
 	<!-- JS Files Ended -->
 	
 	

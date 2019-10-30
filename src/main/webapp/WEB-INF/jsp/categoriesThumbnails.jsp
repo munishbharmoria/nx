@@ -15,11 +15,12 @@
 		</tr>
 		</table>
 		
-		<ul class="nav navbar-nav" style="margin-left: 20px;">
+			<ul class="nav navbar-nav" style="margin-left: 20px;">
 			<li ng-repeat="nxDirThumnail in nxCategoriesThumbnails">
-			<h5  class="figure-caption text-left" ng-model="data" ng-init="data=nxDirThumnail.caption"> {{nxDirThumnail.caption}}</h5>
-				<img style="cursor: pointer" ng-click="getMyAction(data); goToTop()" src="<c:url value="{{nxDirThumnail.imagePath}}"/>" class="img-rounded hvr-grow" width="135" height="135">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<h5  class="figure-caption text-left" ng-model="data" ng-init="data=nxDirThumnail.caption"> {{nxDirThumnail.caption}}</h5>
+					<img style="cursor: pointer" ng-click="getMyAction(data); goToTop()" src="<c:url value="{{nxDirThumnail.imagePath}}"/>" class="img-rounded hvr-grow" width="135" height="135">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 			</li>
 		</ul>
+		
 	</div>
