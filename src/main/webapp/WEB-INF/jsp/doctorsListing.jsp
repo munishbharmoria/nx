@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 
 <%-- <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 980px; background-color: #eed; margin: auto;">
   <!-- Indicators -->

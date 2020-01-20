@@ -1,5 +1,79 @@
 @charset "ISO-8859-1";
 
+body.home
+{
+	width: 1000px; height: 1000px; background-color: #eed; margin: auto;
+}
+div.homeBase
+{
+	width: 1000px;background-color: #eee;padding-left: 10px;padding-right: 10px;
+}
+div.downPadding10
+{
+	padding-bottom: 10px;
+}
+div.colorDarkBlack
+{
+	background-color: #eed;
+}
+h5.categories
+{
+	padding-left: 3px; color:white;cursor: pointer;font-family: "Comic Sans MS", cursive, sans-serif;
+}
+img.advertise
+{
+	height: 170px; width: 1000px;
+}
+span.headerNx 
+{ 
+	font-family: "Comic Sans MS", cursive, sans-serif; font-size: 35px;color:blue;font-weight: bold;
+	display: inline-block; cursor: pointer; text-decoration : none;
+}
+span.headerDial 
+{ 	
+	font-family: "Comic Sans MS", cursive, sans-serif; font-size: 35px;color:red;font-weight: bold;
+	display: inline-block; cursor: pointer; text-decoration : none;
+}
+span.headerNxDir
+{
+	font-family: "Comic Sans MS", cursive, sans-serif; font-size: 11px;color:gray;font-weight: bold;
+	cursor: pointer; text-decoration : none
+}
+span.colorRed
+{
+	color:red;
+}
+span.colorBlue
+{
+	color:blue;
+}
+span.colorBlack
+{
+	color:black;
+}
+span.underline
+{
+	text-decoration: underline;
+}
+a.underline
+{
+	text-decoration: underline;
+}
+marquee.slide
+{
+	font-family: "Comic Sans MS", cursive, sans-serif; width: 80%; text-align: center;
+}
+marquee.news
+{
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
+div.width30
+{
+	font-family: "width: 80%;
+}
+
+
+
 .even {
  background-color: #ccc;
 }
@@ -59,3 +133,5 @@
     .MultiCarousel .rightLst { right:0; }
     
         .MultiCarousel .leftLst.over, .MultiCarousel .rightLst.over { pointer-events: none; background:#ccc; }
+        
+   

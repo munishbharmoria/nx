@@ -11,6 +11,15 @@ public class News {
 		this.news = news;
 		this.newsURL = newsURL;
 	}
+	
+	
+
+	public News(String news) {
+		super();
+		this.news = news;
+	}
+
+
 
 	public String getNews() {
 		return news;

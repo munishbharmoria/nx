@@ -2,49 +2,40 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<%@ page session="false"%>
-
-<div align="left">
+<div>
 	<table width="100%">
 		<tr>
-			<td width="1%"> </td>
-			<td disabled="true">
-			<a ng-click="getMyAction('Home'); goToTop()" style="text-decoration: none;cursor: pointer">
-			<large style='font-family: "Comic Sans MS", cursive, sans-serif; font-size: 35px;color:blue;font-weight: bold;'>Nx</large>
-			<large style='font-family: "Comic Sans MS", cursive, sans-serif; font-size: 35px;color:red;font-weight: bold;'>Dial.com</large>
-			<br>
-			<large style='font-family: "Comic Sans MS", cursive, sans-serif; font-size: 11px;color:gray;font-weight: bold;'>Noida Extension's Online Directory</large>
-			</a>
+			<td>
+				<a class="button"  ng-click="getMyAction('Home'); goToTop()">
+					<div class="width30">
+							<span class="headerNx">Nx</span>
+							<span class="headerDial">Dial.com</span>
+					</div>	
+					<div class="width30">
+							<span class="headerNxDir">Noida Extension's Online Directory</span>
+					</div>
+				</a>
 			</td>
-			<td><a class="button" ng-href="https://wa.me/918800587117">
-				<marquee align="center" width="70%" style='font-family: "Comic Sans MS", cursive, sans-serif;'  scrollamount="2" behavior="alternate" direction="right" onMouseOver="this.stop()" onMouseOut="this.start()">
-		<small style="color:red">WhatsApp </small><u style="color:blue">8800587117</u><small style="color:red"> for free listing</small>
-	</marquee>  </a>
-			
-			
+			<td>
+				<a class="button" ng-href="https://wa.me/918800587117" target="_blank">
+					<marquee  class="slide" scrollamount="2" behavior="alternate" direction="right" onMouseOver="this.stop()" onMouseOut="this.start()">
+						<span class="colorRed">WhatsApp</span>
+						<span class="colorBlue underline">8800587117</span>
+						<span class="colorRed">for free listing</span>
+					</marquee>  
+				</a>
 			</td>
 			<td align="right">
-			<!-- 	<img src="<c:url value="/img/common/freeListing.png"/>" class="img-rounded" ng-click ="registerBusiness()" style="cursor: pointer;"/>  -->
 				<a class="button" ng-href="https://wa.me/918800587117" target="_blank">
-				<img src="<c:url value="/img/common/freeListing.png"/>" class="img-rounded"/>
+					<img src="<c:url value="/img/common/freeListing.png"/>" class="img-rounded"/>
 				</a>
-			
-			&nbsp;&nbsp; 
-			<a class="button" ng-href="tel:08800587117">
-			<img src="<c:url value="/img/common/phone.png"/>"class="img-rounded" width="20" height="20"> 
-					<u style='color:blue;font-family: "Comic Sans MS", cursive, sans-serif;'>8800587117
-					</u>
-					<u style='color:black;font-family: "Comic Sans MS", cursive, sans-serif;'>for Advertise
-					</u>
-			</a>
-				
-					<!-- 	<a th:href="@{/admin}">Login</a> -->
-			<%-- <a href="<c:url value="/admin"/>">	Login</a>&nbsp;&nbsp; 
-			<a href="<c:url value="#"/>">	Logout</a> --%>
-			&nbsp;&nbsp;</td>
+				<a class="button underline" ng-href="tel:08800587117">
+					<img src="<c:url value="/img/common/phone.png"/>" class="img-rounded" width="20" height="20"/> 
+					<span class="colorBlue">8800587117</span>
+					<span class="colorBlack">for Advertise</span>
+				</a>
+			</td>
 		</tr>
 	</table>
-	<!-- <marquee align="center" width="100%" behavior="scroll" direction="right" onMouseOver="this.stop()" onMouseOut="this.start()">
-		<small style="color:black">WhatsApp </small><u style="color:blue">8800587117</u><small style="color:black"> your detail for free listing</small>
-	</marquee>  -->
 </div>
+

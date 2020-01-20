@@ -38,6 +38,15 @@ public class ProductController {
 	
 	@RequestMapping(path = "/getNxDirCategories")
 	public List<Category> getNxDirCategories() throws InvalidFormatException, IOException {
+		//clear cache start
+		try {
+			ProcessBuilder pb = new ProcessBuilder("/root/nxdial/tools/clearCache.sh");
+			pb.start();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		//clear cache end
+		
 		List<Category> catListing = cacheNxData.getCategoriesList();
 		LOGGER.info("catListing = "+catListing);
 		return catListing;

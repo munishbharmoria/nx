@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 
 <div ng-init="getNxBusRouteNmrcList()" class="container" style="width: 1000px;">
 		<h3 class="font-weight-bold" align="center" style="color: Blue; background-color: orange; ;">&nbsp;&nbsp;&nbsp;&nbsp;

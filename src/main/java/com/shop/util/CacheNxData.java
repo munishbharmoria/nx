@@ -57,8 +57,8 @@ public class CacheNxData {
 	
 	public Workbook getWorkbook() throws InvalidFormatException, IOException {
 		Workbook workbook = WorkbookFactory.create(new File(
-				"C:\\MunishData\\mp\\project\\workspace\\shop\\shop\\src\\main\\resources\\nxData_local.xlsx"));
-				//"/root/nxdial/data/nxData_prod.xlsx"));
+				//"C:\\MunishData\\mp\\workspace\\nx\\src\\main\\resources\\nxData_local.xlsx"));
+				"/root/nxdial/data/nxData_prod.xlsx"));
 		return workbook;
 	}
 	 
@@ -943,14 +943,15 @@ public class CacheNxData {
 		Sheet shopingListingSheet = workbook.getSheet("NewsList");
 		Iterator<Row> shoppingRowIterator = shopingListingSheet.rowIterator();
 		nxNewsList.clear();
+		StringBuffer newsAll = new StringBuffer();
 		while (shoppingRowIterator.hasNext()) {
 			Row row = shoppingRowIterator.next();
 			if(row.getRowNum() > 0) {
-				String news = (row.getCell(0) == null) ? "": row.getCell(0).toString();
-				String newsURL = (row.getCell(1) == null) ? "": row.getCell(1).toString();
-				nxNewsList.add(new News(news, newsURL));
+				String news = "   >>> " + ((row.getCell(0) == null) ? "": row.getCell(0).toString());
+				newsAll = newsAll.append(news);
 			}
 		}
+		nxNewsList.add(new News(newsAll.toString()));
 		System.out.println("nxNewsList = "+nxNewsList);
 		LOGGER.info("nxNewsList = "+nxNewsList);
 		

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+
 <html>
 <head>
 <script async
@@ -26,20 +26,16 @@
 <title>NxDial.com - Noida Extension's Free Directory</title>
 <link rel="shortcut icon" href="/img/NxD.ico" type="image/x-icon">
 </head>
-<body ng-app='shopModule' class="mh-100"
-	style="width: 1000px; height: 1000px; background-color: #eed; margin: auto;">
+<body ng-app='shopModule' class="mh-100 home">
 	<jsp:include page="common.jsp"></jsp:include>
 
-	<div ng-controller="shopController" style="width: 1000px;background-color: #eee"
-		ng-init="initialize()">
+	<div ng-controller="shopController" class="homeBase" ng-init="initialize()">
 
-		<div>
+		<div class="downPadding10">
 			<jsp:include page="header.jsp"></jsp:include>
 		</div>
 
-		</br>
-
-		<div style="width: 980px; background-color: #eed; margin: auto;">
+		<div class="colorDarkBlack">
 			<jsp:include page="categories.jsp"></jsp:include>
 			<jsp:include page="advertisement.jsp"></jsp:include>
 		</div>
@@ -149,11 +145,11 @@
 			<jsp:include page="footer.jsp"></jsp:include>
 		</div>
 		<button onclick="topFunction()" id="myBtn" title="Go to top"
-			align="right">Top1</button>
+			align="right">Top</button>
 			
-		<a class="button" ng-href="https://wa.me/918800587117" target="_blank">
+		<%-- <a class="button" ng-href="https://wa.me/918800587117" target="_blank">
 			<img class="img-fluid" alt="Responsive image" src="<c:url value="/img/common/whatsApp.jpg"/>" >
-		</a>	
+		</a>	 --%>
 	
 </body>
 </html>
