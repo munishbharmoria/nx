@@ -442,6 +442,10 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 		$scope.enableSection = "customerCare";
 	}
 	
+	$scope.privacyPolicy = function() { 
+		$scope.enableSection = "privacyPolicy";
+	}
+	
 	$scope.goToTop = function() {
 		  document.body.scrollTop = 0; // For Safari
 		  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera

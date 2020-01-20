@@ -7,7 +7,9 @@
 
 	<!-- Wrapper for slides -->
 	
-	<div class="carousel-inner" align="center" ng-if="enableSection=='Home' || enableSection=='SearchSite'" >
+	<div class="carousel-inner" align="center" ng-if="enableSection=='Home' || enableSection=='SearchSite'
+	  || enableSection=='aboutUs' || enableSection=='contactUs' || enableSection=='freeListing' || enableSection=='advertise' || 
+	  enableSection=='customerCare' || enableSection=='privacyPolicy'" >
 			<div class="item active">
 				<a class="button" ng-href="tel:09319241740">
 					<img style='height: 170px; width: 1000px' src="<c:url value="/img/advertisement/adv_UMgroupAdvNoidaGSTReady.png"/>" >

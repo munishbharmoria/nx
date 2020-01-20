@@ -5,11 +5,10 @@
 <div  ng-init="getNxDirCategories()">
 	<nav class="navbar navbar-inverse">
 			<ul class="nav navbar-nav">
-				<li ng-repeat="nxCategory in nxDirCategories">
+				<li ng-repeat="nxCategory in nxDirCategories" style="padding-left: 5px;padding-right: 5px;">
 					<h5 ng-model="data" ng-init="data=nxCategory.caption" ng-click="getMyAction(data)"
 					 class="hvr-grow categories"> 
 						{{nxCategory.name}}
-						&nbsp;&nbsp;
 					</h5>
 				</li>			
 			 </ul>

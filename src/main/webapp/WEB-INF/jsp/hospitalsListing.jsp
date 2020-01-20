@@ -2,45 +2,57 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<div ng-init="getNxHospitalList()" class="container" style="width: 1000px;">
-		</br>
+
+<div style="padding-top: 20px;padding-left: 10px;padding-right: 10px;">
 		<table width="100%">
 			<tr>
-				<td align="left">&nbsp;&nbsp;&nbsp;&nbsp;Hospitals in Noida Extension</td>
-				<td align="right">Search:&nbsp;<input type="test" size="50" placeholder="search for {{enableSection}}.." ng-model="searchFilter"></td>
+				<td align="left">
+					Hospitals in Noida Extension
+				</td>
+				<td align="right">
+					Search:<input type="test" size="50" placeholder="search for {{enableSection}}.." ng-model="searchFilter">
+				</td>
 			</tr>
 		</table>
-		</br>
+</div>
+
+<div ng-init="getNxHospitalList()" style="padding-top: 20px;padding-left: 10px;padding-right: 10px;">
 		<ul class="list-group" >
 			<li class="list-group-item"  ng-repeat="nxHospital in nxHospitalsList | filter:searchFilter" >
-				<table style=" border-spacing: 105px;" cellpadding="100">
+				<table style=" border-spacing: 105px;">
 					<tr>
-						<td width="30%">
-								<img src="<c:url value="{{nxHospital.imageUrl}}"/>"class="img-rounded" width={{listingImageWidth}} height={{listingImageHeight}}>
+						<td style="padding-right: 5px;width: 30%">
+								<img src="<c:url value="{{nxHospital.imageUrl}}"/> " class="img-rounded" width={{listingImageWidth}} height={{listingImageHeight}}/>
 						</td>
-						<td width="1%"></td>
-						<td valign="top" width="60%" style="text-align:left;">
-									<h4>{{ nxHospital.name}}</h4>
-									<h5>
-									<a href="{{nxHospital.map}}" onClick="return popup(this, 'location')">		
-									<img src="<c:url value="/img/common/address.png"/>"class="img-rounded" width="20" height="20"> </a>
-									{{nxHospital.address}}
-									</h5>
-									<h5>
-									<a class="button" ng-href="tel:{{nxHospital.contactNumber}}">
-									<img src="<c:url value="/img/common/phone.png"/>"class="img-rounded" width="20" height="20"> 
+						<td valign="top" style="text-align:left;width: 60%">
+							<h4>
+								{{nxHospital.name}}
+							</h4>
+							<h5>
+								<a href="{{nxHospital.map}}" onClick="return popup(this, 'location')">		
+									<img src="<c:url value="/img/common/address.png"/>" class="img-rounded" width="20" height="20"/> 
+								</a>
+								{{nxHospital.address}}
+							</h5>
+							<h5>
+								<a class="button" ng-href="tel:{{nxHospital.contactNumber}}">
+									<img src="<c:url value="/img/common/phone.png"/>"class="img-rounded" width="20" height="20"/> 
 									{{nxHospital.contactNumber}}
-									</a>
-									 {{nxHospital.contactNumberOther}}
-									<%-- <img src="<c:url value="/img/common/phone.png"/>"class="img-rounded" width="20" height="20"> {{ nxHospital.contactNumber}}  --%>
-									</h5> 
-									<h5><img src="<c:url value="/img/common/openTime.png"/>"class="img-rounded" width="20" height="20"> {{ nxHospital.openTime}} </h5>
-									<h5><img src="<c:url value="/img/common/website.png"/>"class="img-rounded" width="20" height="20">   {{ nxHospital.website}} </h5> 
+								</a>
+								{{nxHospital.contactNumberOther}}
+							</h5> 
+							<h5>
+								<img src="<c:url value="/img/common/openTime.png"/>"class="img-rounded" width="20" height="20"/> 
+								{{ nxHospital.openTime}} 
+							</h5>
+							<h5>
+								<img src="<c:url value="/img/common/website.png"/>"class="img-rounded" width="20" height="20"/>   
+								{{ nxHospital.website}} 
+							</h5> 
 						</td>
-						<td valign="top">
-							<small style="color: red">{{nxHospital.market}}</small>
+						<td valign="top" style="text-align:left;color: red">
+							<small>{{nxHospital.market}}</small>
 						</td>
-						<td width="1%"></td>
 					</tr>
 				</table>
 			</li>
