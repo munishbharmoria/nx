@@ -9,7 +9,7 @@
 		</h3>
 </div>
 
-<div ng-init="getNxBusRouteNmrcList()" style="padding-left: 10px;padding-right: 10px;">
+<div ng-init="getNxBusRouteNmrcList()" style="padding-left: 10px;padding-right: 10px;padding-bottom: 10px">
 		<ul class="nav navbar-nav" style="margin-left: 20px;">
 			<li ng-repeat="nxBusRouteNmrc in nxBusRouteNmrcList" style="padding-left: 10px;padding-right: 10px;">
 				<h4  class="figure-caption text-left" ng-model="data" ng-init="data=nxDirThumnail.caption"> 

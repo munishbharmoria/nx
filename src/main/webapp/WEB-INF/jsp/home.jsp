@@ -25,123 +25,86 @@ async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></scr
 
 </head>
 
-<body ng-app='shopModule' class="mh-100 home">
+<body ng-app='shopModule' class="home" >
 
 	<jsp:include page="common.jsp"></jsp:include>
 
-		<div ng-controller="shopController" class="homeBase" ng-init="initialize()">
+	<div ng-controller="shopController" class="homeBase" ng-init="initialize()">
 
-		<div class="downPadding10">
+		<div>
 			<jsp:include page="header.jsp"></jsp:include>
 		</div>
 
-		<div class="colorDarkBlack">
+		<div ng-if="enableSection=='Home'">
 			<jsp:include page="categories.jsp"></jsp:include>
 			<jsp:include page="advertisement.jsp"></jsp:include>
-		</div>
-
-
-		<div ng-if="enableSection=='Home'">
 			<jsp:include page="news.jsp"></jsp:include>
 			<jsp:include page="categoriesThumbnails.jsp"></jsp:include>
-			<jsp:include page="otherCategoriesThumbnails.jsp"></jsp:include>
 		</div>
-
-		<div ng-if="enableSection=='SearchSite'">
+		
+		<div ng-if="enableSection=='SearchSite'" >
+			<jsp:include page="advertisement.jsp"></jsp:include>
 			<jsp:include page="news.jsp"></jsp:include>
 			<jsp:include page="searchSiteListing.jsp"></jsp:include>
 		</div>
-
-		<div ng-if="enableSection=='Restaurants'">
-			<jsp:include page="restaurantsListing.jsp"></jsp:include>
-		</div>
-
-		<div ng-if="enableSection == 'Doctors'">
-			<jsp:include page="doctorsListing.jsp"></jsp:include>
-		</div>
-
-		<div ng-if="enableSection  == 'Hospitals'">
-			<jsp:include page="hospitalsListing.jsp"></jsp:include>
-		</div>
-
-		<div ng-if="enableSection  == 'Pharmacy'">
-			<jsp:include page="pharmacyListing.jsp"></jsp:include>
-		</div>
-
-		<div ng-if="enableSection == 'Path Labs'">
-			<jsp:include page="pathLabsListing.jsp"></jsp:include>
-		</div>
-
-		<div ng-if="enableSection  == 'Schools'">
-			<jsp:include page="schoolsListing.jsp"></jsp:include>
-		</div>
-
-		<div ng-if="enableSection  == 'Play Schools'">
-			<jsp:include page="playSchoolsListing.jsp"></jsp:include>
-		</div>
-
-		<div ng-if="enableSection == 'Daily Needs'">
-			<jsp:include page="dailyNeedsListing.jsp"></jsp:include>
-		</div>
-
-		<div ng-if="enableSection == 'Taxi Services'">
-			<jsp:include page="taxiServiceListing.jsp"></jsp:include>
-		</div>
-
-		<div ng-if="enableSection == 'Parlour & Salon'">
-			<jsp:include page="personalCareListing.jsp"></jsp:include>
-		</div>
-
-		<div ng-if="enableSection=='Automobiles'">
-			<jsp:include page="automobilesListing.jsp"></jsp:include>
-		</div>
-
-		<div ng-if="enableSection=='Shopping'">
-			<jsp:include page="shoppingListing.jsp"></jsp:include>
-		</div>
-
-		<div ng-if="enableSection=='Boutique'">
-			<jsp:include page="boutiqueListing.jsp"></jsp:include>
+		
+		 <div ng-if="enableSection=='SelectedCategory'" >
+			<jsp:include page="advertisement.jsp"></jsp:include>
+			<jsp:include page="nxdialAllListings.jsp"></jsp:include>
 		</div>
 
 		<div ng-if="enableSection=='Rent & Sale'">
+			<jsp:include page="advertisement.jsp"></jsp:include>
 			<jsp:include page="rentSaleFlatListing.jsp"></jsp:include>
 		</div>
-
+		
+		<div ng-if="enableSection=='newsListing'">
+			<jsp:include page="newsListing.jsp"></jsp:include>
+		</div>
+		
 		<div ng-if="enableSection=='Metro Bus'">
+			<jsp:include page="advertisement.jsp"></jsp:include>
 			<jsp:include page="busRouteNmrcListing.jsp"></jsp:include>
 		</div>
 
-		<div ng-if="enableSection=='OtherCategory'">
-			<jsp:include page="otherCategoryListing.jsp"></jsp:include>
-		</div>
-
 		<div ng-if="enableSection == 'aboutUs'">
+			<jsp:include page="categories.jsp"></jsp:include>
+			<jsp:include page="advertisement.jsp"></jsp:include>
 			<jsp:include page="news.jsp"></jsp:include>
 			<jsp:include page="aboutUs.jsp"></jsp:include>
 		</div>
 
 		<div ng-if="enableSection == 'contactUs'">
+			<jsp:include page="categories.jsp"></jsp:include>
+			<jsp:include page="advertisement.jsp"></jsp:include>
 			<jsp:include page="news.jsp"></jsp:include>
 			<jsp:include page="contactUs.jsp"></jsp:include>
 		</div>
 
 		<div ng-if="enableSection == 'freeListing'">
+			<jsp:include page="categories.jsp"></jsp:include>
+			<jsp:include page="advertisement.jsp"></jsp:include>
 			<jsp:include page="news.jsp"></jsp:include>
 			<jsp:include page="freeListing.jsp"></jsp:include>
 		</div>
 
 		<div ng-if="enableSection == 'advertise'">
+			<jsp:include page="categories.jsp"></jsp:include>
+			<jsp:include page="advertisement.jsp"></jsp:include>
 			<jsp:include page="news.jsp"></jsp:include>
 			<jsp:include page="advertise.jsp"></jsp:include>
 		</div>
 
 		<div ng-if="enableSection == 'customerCare'">
+			<jsp:include page="categories.jsp"></jsp:include>
+			<jsp:include page="advertisement.jsp"></jsp:include>
 			<jsp:include page="news.jsp"></jsp:include>
 			<jsp:include page="customerCare.jsp"></jsp:include>
 		</div>
 		
 		<div ng-if="enableSection == 'privacyPolicy'">
+			<jsp:include page="categories.jsp"></jsp:include>
+			<jsp:include page="advertisement.jsp"></jsp:include>
 			<jsp:include page="news.jsp"></jsp:include>
 			<jsp:include page="privacyPolicy.jsp"></jsp:include>
 		</div>
@@ -159,5 +122,6 @@ async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></scr
 		<%-- <a class="button" ng-href="https://wa.me/918800587117" target="_blank">
 			<img class="img-fluid" alt="Responsive image" src="<c:url value="/img/common/whatsApp.jpg"/>" >
 		</a>	 --%>
+		</div>
 </body>
 </html>

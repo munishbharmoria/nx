@@ -18,7 +18,7 @@
 <div ng-init="getNxRentSaleFlatList()" style="padding-top: 20px;padding-left: 10px;padding-right: 10px;">	
 		<ul class="list-group" >
 			<li class="list-group-item"  ng-repeat="nxRentSaleFlat in nxRentSaleFlatList | filter:searchFilter" >
-				<table style=" border-spacing: 105px;">
+				<table style=" border-spacing: 105px;width: 100%">
 					<tr>
 						<td style="padding-right: 5px;width: 30%">
 								<img src="<c:url value="{{nxRentSaleFlat.imageUrl}}"/>"class="img-rounded" width={{listingImageWidth}} height={{listingImageHeight}}/>
@@ -48,7 +48,7 @@
 							</h5> 
 									
 						</td>
-						<td valign="top" style="text-align:left;color: red">
+						<td valign="top" style="text-align:lft;color: red; width: 10%;">
 							<small >{{nxRentSaleFlat.locality}}</small>
 						</td>
 					</tr>

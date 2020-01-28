@@ -3,10 +3,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div ng-init="getNxDirNews()">
-		<li ng-repeat="nxNews in nxNewsList">
-			<marquee align="center" class="news" direction="left" onMouseOver="this.stop()" onMouseOut="this.start()"> 
-					<span class="colorRed">News Headline: </span>{{nxNews.news}} 
-			</marquee>
-		</li>
+	<table width="100%">
+			<tr>
+				<td align="right" width="70%">
+					<li ng-repeat="nxNews in nxNewsList">
+						<marquee align="center" class="news" direction="left" onMouseOver="this.stop()" onMouseOut="this.start()"> 
+								<span class="colorRed">News Headline: </span>{{nxNews.news}} 
+						</marquee>
+					</li>
+				</td>
+			</tr>
+		</table>
 </div>
 

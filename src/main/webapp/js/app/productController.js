@@ -38,6 +38,24 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 	} 
 	
 	/**
+	 * getNxCategoryList is provide the selected Category list, after search
+	 */
+	$scope.getNxSelectedCategoryList = function() { 
+		$http({
+			method : "GET",
+			url:$scope.prodUrlPrifix + "/getNxCategoryList",
+			params :  {selectedCategory :  $scope.selectedCategory}, 
+			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
+			//data : angular.toJson(),
+			headers :{
+				'Content-Type' : 'application/json'}
+		}).success(function(response) {
+			  console.log('response: ' + response);
+			  $scope.nxCategoryList = response;
+		});
+	}
+	
+	/**
 	 * getNxDirThumnailCategories is provide the popular categories on home page
 	 */
 	$scope.getNxDirThumnailCategories = function() { 
@@ -54,247 +72,6 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 		});
 	}
 	
-	/**
-	 * getNxDirThumnailOtherCategories is provide the popular categories on home page
-	 */
-	$scope.getNxDirThumnailOtherCategories = function() { 
-		$http({
-			method : "GET",
-			url:$scope.prodUrlPrifix + "/getNxThumnailOtherCategories",
-			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
-			//data : angular.toJson(),
-			headers :{
-				'Content-Type' : 'application/json'}
-		}).success(function(response) {
-			  console.log('response: ' + response);
-			  $scope.nxOtherCategoriesThumbnails = response;
-		});
-	}
-	
-	/**
-	 * getNxRestaurantList is provide the restaurant listing categories on home page
-	 */
-	$scope.getNxRestaurantList = function() { 
-		$http({
-			method : "GET",
-			url:$scope.prodUrlPrifix + "/getNxRestaurentList",
-			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
-			//data : angular.toJson(),
-			headers :{
-				'Content-Type' : 'application/json'}
-		}).success(function(response) {
-			  console.log('response: ' + response);
-			  $scope.nxRestList = response;
-		});
-	}
-	
-	/**
-	 * getNxAutomobileList is provide the automobiles listing on home page
-	 */
-	$scope.getNxAutomobileList = function() { 
-		$http({
-			method : "GET",
-			url:$scope.prodUrlPrifix + "/getNxAutomobileList",
-			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
-			//data : angular.toJson(),
-			headers :{
-				'Content-Type' : 'application/json'}
-		}).success(function(response) {
-			  console.log('response: ' + response);
-			  $scope.nxAutoMList = response;
-		});
-	}
-	
-	
-	/**
-	 * getNxShoppingList is provide the shopping listing on home page
-	 */
-	$scope.getNxShoppingList = function() { 
-		$http({
-			method : "GET",
-			url:$scope.prodUrlPrifix + "/getNxShoppingList",
-			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
-			//data : angular.toJson(),
-			headers :{
-				'Content-Type' : 'application/json'}
-		}).success(function(response) {
-			  console.log('response: ' + response);
-			  $scope.nxShopList = response;
-		});
-	}
-	
-	
-	/**
-	 * getNxHospitalList is provide the hospitals listing categories on home page
-	 */
-	$scope.getNxHospitalList = function() { 
-		$http({
-			method : "GET",
-			url:$scope.prodUrlPrifix + "/getNxHospitalList",
-			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
-			//data : angular.toJson(),
-			headers :{
-				'Content-Type' : 'application/json'}
-		}).success(function(response) {
-			  console.log('response: ' + response);
-			  $scope.nxHospitalsList = response;
-		});
-	}
-	
-	/**
-	 * getNxSchoolList is provide the schools listing categories on home page
-	 */
-	$scope.getNxSchoolList = function() { 
-		$http({
-			method : "GET",
-			url:$scope.prodUrlPrifix + "/getNxSchoolList",
-			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
-			//data : angular.toJson(),
-			headers :{
-				'Content-Type' : 'application/json'}
-		}).success(function(response) {
-			  console.log('response: ' + response);
-			  $scope.nxSchoolsList = response;
-		});
-	}
-	
-	/**
-	 * getNxDoctorList is provide the doctors listing categories on home page
-	 */
-	$scope.getNxDoctorList = function() { 
-		$http({
-			method : "GET",
-			url:$scope.prodUrlPrifix + "/getNxDoctorList",
-			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
-			//data : angular.toJson(),
-			headers :{
-				'Content-Type' : 'application/json'}
-		}).success(function(response) {
-			  console.log('response: ' + response);
-			  $scope.nxDoctorsList = response;
-		});
-	}
-	
-	/**
-	 * getNxPlaySchoolList is provide the play schools listing on home page
-	 */
-	$scope.getNxPlaySchoolList = function() { 
-		$http({
-			method : "GET",
-			url:$scope.prodUrlPrifix + "/getNxPlaySchoolList",
-			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
-			//data : angular.toJson(),
-			headers :{
-				'Content-Type' : 'application/json'}
-		}).success(function(response) {
-			  console.log('response: ' + response);
-			  $scope.nxPlaySchoolsList = response;
-		});
-	}
-	
-	/**
-	 * getNxPharmacyList is provide the pharmacy shops on home page
-	 */
-	$scope.getNxPharmacyList = function() { 
-		$http({
-			method : "GET",
-			url:$scope.prodUrlPrifix + "/getNxPharmacyList",
-			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
-			//data : angular.toJson(),
-			headers :{
-				'Content-Type' : 'application/json'}
-		}).success(function(response) {
-			  console.log('response: ' + response);
-			  $scope.nxPharmacyList = response;
-		});
-	}
-	
-	/**
-	 * getNxDailyNeedsList is provide the pharmacy shops on home page
-	 */
-	$scope.getNxDailyNeedsList = function() { 
-		$http({
-			method : "GET",
-			url:$scope.prodUrlPrifix + "/getNxDailyNeedsList",
-			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
-			//data : angular.toJson(),
-			headers :{
-				'Content-Type' : 'application/json'}
-		}).success(function(response) {
-			  console.log('response: ' + response);
-			  $scope.nxDailyNeedsList = response;
-		});
-	}
-	
-	/**
-	 * getNxPathLabsList is provide the PathLabs on home page
-	 */
-	$scope.getNxPathLabsList = function() { 
-		$http({
-			method : "GET",
-			url:$scope.prodUrlPrifix + "/getNxPathLabsList",
-			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
-			//data : angular.toJson(),
-			headers :{
-				'Content-Type' : 'application/json'}
-		}).success(function(response) {
-			  console.log('response: ' + response);
-			  $scope.nxPathLabsList = response;
-		});
-	}
-	
-	
-	/**
-	 * getNxTaxiServiceList is provide the PathLabs on home page
-	 */
-	$scope.getNxTaxiServiceList = function() { 
-		$http({
-			method : "GET",
-			url:$scope.prodUrlPrifix + "/getNxTaxiServiceList",
-			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
-			//data : angular.toJson(),
-			headers :{
-				'Content-Type' : 'application/json'}
-		}).success(function(response) {
-			  console.log('response: ' + response);
-			  $scope.nxTaxiServiceList = response;
-		});
-	}
-	
-	
-	/**
-	 * getNxPersonalCareList is provide the PathLabs on home page
-	 */
-	$scope.getNxPersonalCareList = function() { 
-		$http({
-			method : "GET",
-			url:$scope.prodUrlPrifix + "/getNxPersonalCareList",
-			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
-			//data : angular.toJson(),
-			headers :{
-				'Content-Type' : 'application/json'}
-		}).success(function(response) {
-			  console.log('response: ' + response);
-			  $scope.nxPersonalCareList = response;
-		});
-	}
-	
-	/**
-	 * getNxBoutiqueList is provide the PathLabs on home page
-	 */
-	$scope.getNxBoutiqueList = function() { 
-		$http({
-			method : "GET",
-			url:$scope.prodUrlPrifix + "/getNxBoutiqueList",
-			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
-			//data : angular.toJson(),
-			headers :{
-				'Content-Type' : 'application/json'}
-		}).success(function(response) {
-			  console.log('response: ' + response);
-			  $scope.nxBoutiqueList = response;
-		});
-	}
 	
 	/**
 	 * getNxRentSaleFlatList is provide the Rent Flats on home page
@@ -310,6 +87,23 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 		}).success(function(response) {
 			  console.log('response: ' + response);
 			  $scope.nxRentSaleFlatList = response;
+		});
+	}
+	
+	/**
+	 * getNxNewsList is provide the list of all news
+	 */
+	$scope.getNxNewsList = function() { 
+		$http({
+			method : "GET",
+			url:$scope.prodUrlPrifix + "/getNxNewsList",
+			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
+			//data : angular.toJson(),
+			headers :{
+				'Content-Type' : 'application/json'}
+		}).success(function(response) {
+			  console.log('response: ' + response);
+			  $scope.nxNewsList = response;
 		});
 	}
 	
@@ -350,22 +144,42 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 	}
 	
 	
-	
 	/**
-	 * getNxOtherCategoryList is provide the Other Categories on home page
+	 * getUniqueLocations is provide the selected Category list
 	 */
-	$scope.getNxOtherCategoryList = function() { 
+	$scope.getUniqueLocations = function() { 
 		$http({
 			method : "GET",
-			url:$scope.prodUrlPrifix + "/getNxOtherCategoryList",
-			params :  {otherSelectedCategory :  $scope.otherSelectedCategory}, 
+			url:$scope.prodUrlPrifix + "/getUniqueLocationsList",
+			params :  {selectedCategory :  $scope.selectedCategory}, 
 			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
 			//data : angular.toJson(),
 			headers :{
 				'Content-Type' : 'application/json'}
 		}).success(function(response) {
 			  console.log('response: ' + response);
-			  $scope.nxOtherCategoryList = response;
+			  $scope.nxUniqueLocationsList = response;
+			  
+		});
+	}
+	
+	
+	/**
+	 * getUniqueLocationsOfSearch is provide the selected Category list
+	 */
+	$scope.getUniqueLocationsOfSearch = function() { 
+		$scope.nxUniqueLocationsOfSearchList = "";
+		$http({
+			method : "GET",
+			url:$scope.prodUrlPrifix + "/getUniqueLocationsOfSearchList",
+			params :  {selectedCategory :  $scope.searchString}, 
+			//url:"order/summary/"+'2017-11-01'+"/"+'2017-11-07',
+			//data : angular.toJson(),
+			headers :{
+				'Content-Type' : 'application/json'}
+		}).success(function(response) {
+			  console.log('response: ' + response);
+			  $scope.nxUniqueLocationsOfSearchList = response;
 		});
 	}
 	
@@ -386,8 +200,35 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 		});
 	}
 	
+	$scope.filterSearch= function(data) {
+		$scope.searchFilter1 = data;
+	}
+	
+	$scope.clearSearchFilter= function(url) { 
+		$scope.searchFilter1 = '';
+	}
+	
 	$scope.getMyAction= function(url) { 
 		$scope.enableSection = url;
+	}
+	
+	$scope.advertiseSection = 'Home';
+	$scope.getMyAction1= function(category) { 
+		if(category == 'Home')
+		{
+			$scope.enableSection = 'Home';
+		} 
+		else if(category == 'Rent & Sale'){
+			$scope.enableSection = 'Rent & Sale';
+		} 
+		else if(category == 'Metro Bus'){
+			$scope.enableSection = 'Metro Bus';
+		} 
+		else {
+			$scope.enableSection = 'SelectedCategory';
+		}
+		$scope.advertiseSection = category;
+		$scope.selectedCategory = category;
 	}
 	
 	$scope.getMyAction= function(url, searchString) { 
@@ -399,6 +240,7 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 		$scope.otherSelectedCategory = url;
 		$scope.enableSection = 'OtherCategory';
 	}
+	
 	
 	/* $scope.setListingFalse= function() { 
 		$scope.enableListing = false;
@@ -445,6 +287,21 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 	$scope.privacyPolicy = function() { 
 		$scope.enableSection = "privacyPolicy";
 	}
+	
+	$scope.newsListing = function() { 
+		$scope.enableSection = "newsListing";
+	}
+	
+	$scope.isNewsSelected = false;
+	$scope.selectedNews = function(newsHeadline, newsHeadlineDetails, newsSource, newsSourceLink,  newsDate, imageUrl ) { 
+		$scope.isNewsSelected = true;
+		$scope.selectedNewsHeadline = newsHeadline;
+		$scope.selectedNewsHeadlineDetails = newsHeadlineDetails;
+		$scope.selectedNewsSource = newsSource;
+		$scope.selectedNewsSourceLink = newsSourceLink;
+		$scope.selectedNewsDate = newsDate;
+		$scope.selectedNewsImageUrl = imageUrl;
+	}	
 	
 	$scope.goToTop = function() {
 		  document.body.scrollTop = 0; // For Safari

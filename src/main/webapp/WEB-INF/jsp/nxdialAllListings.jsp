@@ -2,55 +2,47 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<div style="padding-top: 10px;padding-bottom: 10px;padding-left: 10px;padding-right: 10px;">
-		<table width="100%">
+
+<div style="padding-top: 20px;padding-left: 15px;padding-right: 10px;">
+<table>
+		<tr>
+			<table width="100%">
 				<tr>
 					<td style="width: 50%; text-align: left">
-						You searched for '{{searchString}}'
+						<h4>{{selectedCategory}} in Noida Extension</h4>
 					</td>
-					<td style="text-align: right; width: 10%; color: red;cursor: pointer;" ng-click='clearSearchFilter()'>
+					<td style="text-align: right; width: 15%; color: red;cursor: pointer;" ng-click='clearSearchFilter()'>
 						Clear All
 					</td>
-					<td style="width: 15%; text-align: right;padding-right: 3px;">
-						Filter Result:
+					<td style="width: 10%; text-align: right;padding-right: 3px;">
+						Filter:
 					</td>
 					<td style="width: 25%; align: right;">
-					<input type="test" size="50" placeholder="Filter here.." style="color: red" ng-model="searchFilter">
+					<input type="test" size="50" placeholder="Filter for {{selectedCategory}}.."
+						ng-model="searchFilter">
 					</td>
 				</tr>
-				
-				
-			<!-- <tr>
-				<td align="left" width="30%">
-					You searched for '{{searchString}}'
-				</td>
-				<td align="right" style="width: 20%; color: red;cursor: pointer;text-align: right;" ng-click='clearSearchFilter()'>
-					Clear All
-				</td>
-				<td align="right" width="40%">
-					Filter Result:<input type="test" size="50" placeholder="Filter here.." style="color: red" ng-model="searchFilter">
-				</td>
-			</tr> -->
-		</table>
-</div> 
-
+			</table>
+		</tr>
+</table>
+</div>
 <h5 style="padding-left: 15px;padding-right: 10px; font-weight:bold;color: dark gray;">SORT RESULT NEAR YOU</h5>
-<div ng-init="getUniqueLocationsOfSearch()" style="padding-left: 10px;padding-right: 10px;">
+<div ng-init="getUniqueLocations()" style="padding-left: 10px;padding-right: 10px;">
 <table valign="top">
-		<tr>
+		<tr valign="top">
 			<td valign="top" width="15%">
 				<ul class="list-group" >
-					<li ng-class-odd="'odd'" ng-class-even="'even'" class="list-group-item" ng-repeat="nxUniqueLocationOfSearch in nxUniqueLocationsOfSearchList" > 
-						<a class="underline" style="text-decoration: none;cursor: pointer;" ng-click="filterSearch(data)" ng-model="data" ng-init="data=nxUniqueLocationOfSearch.marketMain">
-							{{nxUniqueLocationOfSearch.marketMain}} 
-						</a>	
+					<li ng-class-odd="'odd'" ng-class-even="'even'" class="list-group-item" ng-repeat="nxUniqueLocation in nxUniqueLocationsList" > 
+							<a class="underline" style="text-decoration: none;cursor: pointer;" ng-click="filterSearch(data)" ng-model="data" ng-init="data=nxUniqueLocation.marketMain">
+								<span>{{nxUniqueLocation.marketMain}}</span>
+							</a>
 					</li>
 				</ul>
 			</td>
 		<td align="left" width="85%">
-			<div ng-init="getNxSearchSiteList()">	
+			<div ng-init="getNxSelectedCategoryList()" style="padding-left: 10px;padding-right: 10px;">	
 					<ul class="list-group" >
-						<li class="list-group-item"  ng-repeat="nxCategory in nxSearchSiteList | filter:searchFilter | filter:searchFilter1" > 
+						<li class="list-group-item"  ng-repeat="nxCategory in nxCategoryList | filter:searchFilter | filter:searchFilter1" > 
 							<table style=" border-spacing: 105px;">
 								<tr>
 									<td style="padding-right: 5px;width: 15%">
@@ -87,7 +79,7 @@
 											</a>
 										</h5> 
 									</td>
-									<td valign="top" style="text-align:left;color: red; width: 10%">
+									<td valign="top" style="text-align:left;color: red; width: 15%">
 										<small >{{nxCategory.market}}</small>
 									</td>
 								</tr>
