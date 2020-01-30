@@ -2,6 +2,8 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+
+
 <div style="background-color: F5DEB3; padding-bottom: 10px;padding-left: 10px;padding-right: 10px">
 	<table width="100%">
 		<tr>
@@ -40,3 +42,6 @@
 		</tr>
 	</table>
 </div>
+
+
+

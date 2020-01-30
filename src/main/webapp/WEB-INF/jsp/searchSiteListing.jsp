@@ -41,14 +41,14 @@
 			<td valign="top" width="15%">
 				<ul class="list-group" >
 					<li ng-class-odd="'odd'" ng-class-even="'even'" class="list-group-item" ng-repeat="nxUniqueLocationOfSearch in nxUniqueLocationsOfSearchList" > 
-						<a class="underline" style="text-decoration: none;cursor: pointer;" ng-click="filterSearch(data)" ng-model="data" ng-init="data=nxUniqueLocationOfSearch.marketMain">
+						<a class="underline" style="text-decoration: none;cursor: pointer;" ng-click="filterSearch(data);goToTop();" ng-model="data" ng-init="data=nxUniqueLocationOfSearch.marketMain">
 							{{nxUniqueLocationOfSearch.marketMain}} 
 						</a>	
 					</li>
 				</ul>
 			</td>
 		<td align="left" width="85%">
-			<div ng-init="getNxSearchSiteList()">	
+			<div ng-init="getNxSearchSiteList()" style="padding-left: 10px;padding-right: 10px;">	
 					<ul class="list-group" >
 						<li class="list-group-item"  ng-repeat="nxCategory in nxSearchSiteList | filter:searchFilter | filter:searchFilter1" > 
 							<table style=" border-spacing: 105px;">

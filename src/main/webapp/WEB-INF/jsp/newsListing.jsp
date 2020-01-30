@@ -6,22 +6,25 @@
 <div style="padding-left: 10px;padding-right: 10px;">
 	<h4>Noida Extension's News</h4>
 </div>
-<div ng-if="isNewsSelected" style="padding-top: 10px;padding-left: 10px;padding-right: 10px;background: white; border-radius: 5px;">
-		<table width="100%">
-			<tr>
-				<td align="left" width="30%" style="padding-right: 20px;">
-					<img src="<c:url value="{{selectedNewsImageUrl}}"/>" class="img-rounded" width="350" height="300">
+<div ng-if="isNewsSelected" align="left" style="padding-left: 15px;padding-right: 15px;background-color: white;">
+		<table>
+			<tr align="left">
+				<td align="left" width="30%" style="padding-right: 20px; padding-top: 10px;">
+					<img src="<c:url value="{{selectedNewsImageUrl}}"/>" class="img-rounded" width="450" height="250">
 				</td>
-				<td align="left" style="vertical-align: text-top;" >
-						 <h2>{{selectedNewsHeadline}}</h2>
-						 <h4>{{selectedNewsHeadlineDetails}}</h4>
-						 <a class="button" ng-href="{{selectedNewsSourceLink}}" target="_blank">
-							Read More
-						</a>
+				<td align="left" width="70%" style="vertical-align: top;text-align: left;">
+					<h4>{{selectedNewsHeadline}}</h4>
+					 <small style="vertical-align: top;white-space:pre-wrap; text-align: left;">{{selectedNewsHeadlineDetails}}
+					 </small>
+					 <a class="button" ng-href="{{selectedNewsSourceLink}}" target="_blank">
+						<h5>
+							<span>Read More</span>
+						<h5>
+					</a>
 				</td>
 			</tr>
-			<tr>
-				<td align="left" style="padding-top: 3px;padding-bottom: 3px;">
+			<tr align="left">
+				<td style="padding-top: 5px;padding-bottom: 5px;">
 						<span>{{selectedNewsSource}}</span> 
 						<span style="color: gray;"> - {{selectedNewsDate}}</span>
 				</td>
@@ -38,7 +41,6 @@
 			</tr>
 		</table>
 </div>
-
 <div ng-init="getNxNewsList();" style="padding-top: 10px;padding-left: 10px;padding-right: 10px;">		
 		<ul class="list-group" >
 			<li class="list-group-item"  ng-repeat="nxNews in nxNewsList" >

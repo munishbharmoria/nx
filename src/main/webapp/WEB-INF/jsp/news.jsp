@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<div ng-init="getNxDirNews()">
+<div ng-init="getNxDirNews()" style="padding-left: 10px;padding-right: 10px;">
 	<table width="100%">
 			<tr>
 				<td align="right" width="70%">

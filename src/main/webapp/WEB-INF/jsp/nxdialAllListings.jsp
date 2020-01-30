@@ -33,7 +33,7 @@
 			<td valign="top" width="15%">
 				<ul class="list-group" >
 					<li ng-class-odd="'odd'" ng-class-even="'even'" class="list-group-item" ng-repeat="nxUniqueLocation in nxUniqueLocationsList" > 
-							<a class="underline" style="text-decoration: none;cursor: pointer;" ng-click="filterSearch(data)" ng-model="data" ng-init="data=nxUniqueLocation.marketMain">
+							<a class="underline" style="text-decoration: none;cursor: pointer;" ng-click="filterSearch(data);goToTop();" ng-model="data" ng-init="data=nxUniqueLocation.marketMain">
 								<span>{{nxUniqueLocation.marketMain}}</span>
 							</a>
 					</li>
