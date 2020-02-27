@@ -362,14 +362,48 @@ function popup(mylink, windowname, website) {
 
 
 
+
+	
+
 function advertisementHome()
 {
+	var isMobile = {
+		    Android: function() {
+		        return navigator.userAgent.match(/Android/i);
+		    },
+		    BlackBerry: function() {
+		        return navigator.userAgent.match(/BlackBerry/i);
+		    },
+		    iOS: function() {
+		        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+		    },
+		    Opera: function() {
+		        return navigator.userAgent.match(/Opera Mini/i);
+		    },
+		    Windows: function() {
+		        return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+		    },
+		    any: function() {
+		        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+		    }
+		};
 	
-	//window.open("/nxdial-1/img/doctor/doctor_DrKamanaPurohit.jpeg", "DoctorKamana", 'width=200,height=200,scrollbars=yes,screenX=605,screenY=605,top=400');
-	//window.open("/nxdial-1/img/restaurant/restaurant_MirchMasalaChineseFastFood.jpeg", "RestaurantMirchMasala", 'width=200,height=200,scrollbars=yes,screenX=400,screenY=400,top=400');
+	alert(isMobile.any());
+//	if( isMobile.Windows() ) 
+//		alert('Android');
+//	
+	alert(Object.values(isMobile.any()));
+	
+	if(isMobile.any() == null)
+	{
+		window.parent("/nxdial-1/img/nxdialAlert.jpg", "https://wa.me/918800587117", 'width=300,height=300,scrollbars=yes,screenX=500,screenY=800,top=200');
+		//window.open("/nxdial-1/img/restaurant/restaurant_MirchMasalaChineseFastFood.jpeg", "RestaurantMirchMasala", 'width=200,height=200,scrollbars=yes,screenX=400,screenY=400,top=400');
 
-	//window.open("/img/doctor/doctor_DrKamanaPurohit.jpeg", "DoctorKamana", 'width=200,height=200,scrollbars=yes,screenX=605,screenY=605,top=400');
-	//window.open("/img/restaurant/restaurant_MirchMasalaChineseFastFood.jpeg", "RestaurantMirchMasala", 'width=200,height=200,scrollbars=yes,screenX=400,screenY=400,top=400');
+		//window.open("/img/doctor/doctor_DrKamanaPurohit.jpeg", "DoctorKamana", 'width=200,height=200,scrollbars=yes,screenX=605,screenY=605,top=400');
+		//window.open("/img/restaurant/restaurant_MirchMasalaChineseFastFood.jpeg", "RestaurantMirchMasala", 'width=200,height=200,scrollbars=yes,screenX=400,screenY=400,top=400');
+	}
+	
+	
 }
 
 // When the user scrolls down 20px from the top of the document, show the button

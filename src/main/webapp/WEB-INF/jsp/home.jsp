@@ -5,8 +5,9 @@
 <html>
 <head>
 <script data-ad-client="ca-pub-8688561335438798" 
-async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
+async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+		
+</script>
 	
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async
@@ -22,7 +23,7 @@ async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></scr
 	<title>NxDial.com - Noida Extension's Online Directory</title>
 	
 	<link rel="shortcut icon" href="/img/NxD.ico" type="image/x-icon">
-
+	
 </head>
 
 <body ng-app='shopModule' class="home" >

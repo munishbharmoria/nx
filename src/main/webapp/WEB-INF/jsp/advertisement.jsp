@@ -11,6 +11,11 @@
 		  || advertiseSection=='aboutUs' || advertiseSection=='contactUs' || advertiseSection=='freeListing' || advertiseSection=='advertise' || 
 		  advertiseSection=='customerCare' || advertiseSection=='privacyPolicy'" >
 				<div class="item active">
+					<a class="button" ng-href="tel:07807073085">
+						<img style='height: 17%; width: 100%' src="<c:url value="/img/advertisement/adv_DrSSChandelOrtho.png"/>" >
+					</a>
+				</div>
+				<div class="item">
 					<a class="button" ng-href="tel:09319241740">
 						<img style='height: 17%; width: 100%' src="<c:url value="/img/advertisement/adv_AryaAutomobile.jpg"/>" >
 					</a>
@@ -228,7 +233,8 @@
 						|| advertiseSection=='Electronic Shops' || advertiseSection=='Crockery Shops'
 						|| advertiseSection=='Home & Décor' || advertiseSection=='Hardware & Paint'
 						|| advertiseSection=='Cycle Shops' || advertiseSection=='ATMs'
-						|| advertiseSection=='Banks' || advertiseSection==''">
+						|| advertiseSection=='Banks' || advertiseSection=='Cake Shops'
+						|| advertiseSection=='Tution'">
 				<div class="item active">
 					<a class="button" ng-href="tel:08800587117">
 						<img style='height: 17%; width: 100%' src="<c:url value="/img/advertisement/adv_AdvertiseYourShopHere.png"/>" >

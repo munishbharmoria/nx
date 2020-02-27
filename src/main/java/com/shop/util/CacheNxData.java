@@ -239,7 +239,10 @@ public class CacheNxData {
 				String name = (row.getCell(3) == null) ? "": row.getCell(3).toString();	
 				String address = (row.getCell(4) == null) ? "": row.getCell(4).toString();	
 				String contactNumber = (row.getCell(5) == null) ? "": row.getCell(5).toString();	
-				String contactNumberOther = (row.getCell(6) == null) ? "": row.getCell(6).toString();	
+				String contactNumberOther = "";
+				if(row.getCell(6) != null && row.getCell(6).toString().trim().length() > 0) {
+					contactNumberOther = ", "+row.getCell(6).toString();
+				}
 				String website = (row.getCell(7) == null) ? "": row.getCell(7).toString();	
 				String openTime = (row.getCell(8) == null) ? "": row.getCell(8).toString();	
 				String imageUrl = (row.getCell(9) == null) ? "": row.getCell(9).toString();	

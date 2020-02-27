@@ -66,7 +66,7 @@
 												<img src="<c:url value="/img/common/phone.png"/>" class="img-rounded" width="20" height="20"/> 
 												{{nxCategory.contactNumber}} 
 											</a>
-											{{nxCategory.contactNumber}}
+											{{nxCategory.contactNumberOther}}
 										</h5> 
 										<h5>
 											<img src="<c:url value="/img/common/openTime.png"/>" class="img-rounded" width="20" height="20"/> 

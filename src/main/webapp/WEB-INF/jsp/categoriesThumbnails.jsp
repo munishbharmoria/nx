@@ -8,7 +8,7 @@
 		<tr width="100%">
 			<td width="100%">
 				<ul class="nav navbar-nav" >
-					<li style="padding-top: 14px;padding-right: 22px;padding-left: 20px;padding-bottom: 20px;" ng-repeat="nxDirThumnail in nxCategoriesThumbnails">
+					<li style="padding-top: 14px;padding-right: 25px;padding-left: 10px;padding-bottom: 20px;" ng-repeat="nxDirThumnail in nxCategoriesThumbnails">
 						<h5  class="figure-caption text-left" ng-model="data" ng-init="data=nxDirThumnail.caption"> 
 							{{nxDirThumnail.caption}}
 						</h5>
