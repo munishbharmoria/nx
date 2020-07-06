@@ -37,11 +37,12 @@
 					<img src="<c:url value="/img/common/phone.png"/>" class="img-rounded" width="20" height="20"/> 
 					<span class="colorBlue">8800587117</span>
 					<span class="colorBlack">for Advertise</span>
-				</a>
+				</a> 
 			</td>
 		</tr>
 	</table>
 </div>
+
 
 
 

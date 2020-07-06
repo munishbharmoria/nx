@@ -84,14 +84,14 @@ public class ProductController {
 	@RequestMapping(path = "/getNxSearchSiteList")
 	public List<Business> getNxSearchSiteListingList(@RequestParam String searchSiteString) throws InvalidFormatException, IOException {
 		List<Business> searchSiteListing = cacheNxData.getSearchSiteListingList(searchSiteString);
-		LOGGER.info("busSearchSiteListing = "+searchSiteListing);
+		LOGGER.info("searchSiteListing = "+searchSiteListing);
 		return searchSiteListing;
 	}
 	
 	@RequestMapping(path = "/getNxCategoryList")
 	public List<Business> getNxCategoryListingList(@RequestParam String selectedCategory) throws InvalidFormatException, IOException {
 		List<Business> categoryListing = cacheNxData.getCategoryListingList(selectedCategory);
-		//LOGGER.info("otherCategoryListing = "+categoryListing);
+		//LOGGER.info("categoryListing = "+categoryListing);
 		return categoryListing;
 	}
 	
@@ -99,16 +99,24 @@ public class ProductController {
 	@RequestMapping(path = "/getUniqueLocationsList")
 	public List<Business> getUniqueLocationsList(@RequestParam String selectedCategory) throws InvalidFormatException, IOException {
 		List<Business> uniqueLocationsListing = cacheNxData.getUniqueLocationsListingList(selectedCategory);
-		//LOGGER.info("otherCategoryListing = "+uniqueLocationsListing);
+		//LOGGER.info("uniqueLocationsListing = "+uniqueLocationsListing);
 		return uniqueLocationsListing;
 	}
 	
 	@RequestMapping(path = "/getUniqueLocationsOfSearchList")
 	public List<Business> getUniqueLocationsOfSearchList(@RequestParam String selectedCategory) throws InvalidFormatException, IOException {
 		List<Business> uniqueLocationsOfSearchListing = cacheNxData.getUniqueLocationsOfSearchListingList(selectedCategory);
-		//LOGGER.info("otherCategoryListing = "+uniqueLocationsListing);
+		//LOGGER.info("uniqueLocationsListing = "+uniqueLocationsListing);
 		return uniqueLocationsOfSearchListing;
 	}
+	
+	@RequestMapping(path = "/getNxDoctorsSpecializationKeyList")
+	public List<Business> getDoctorsSpecializationKeyList() throws InvalidFormatException, IOException {
+		List<Business> doctorsSpecializationKeyListing = cacheNxData.getDoctorsSpecializationKeyListingList();
+		//LOGGER.info("doctorsSpecializationKeyListing = "+doctorsSpecializationKeyListing);
+		return doctorsSpecializationKeyListing;
+	}
+	
 	
 	@RequestMapping(path = "/getNxNews")
 	public List<News> getNxNews() throws InvalidFormatException, IOException {

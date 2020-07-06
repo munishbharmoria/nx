@@ -41,6 +41,8 @@ public class CacheNxData {
 	public Set<String> nxUniqueLocationsSet = new HashSet<String>();
 	public Set<String> nxUniqueLocationsOfSearchSet = new HashSet<String>();
 	
+	public Set<String> nxUniqueDoctorsSpecializationKeySet = new HashSet<String>();
+	
 	public List<CategoryThumbnail> nxOtherCategoryThumbnailList = new ArrayList<CategoryThumbnail>();
 	
 	
@@ -50,9 +52,9 @@ public class CacheNxData {
 	
 	public Workbook getWorkbook() throws InvalidFormatException, IOException {
 		Workbook workbook = WorkbookFactory.create(new File(
-				//"C:\\MunishData\\mp\\workspace\\nx\\src\\main\\resources\\nxData_local.xlsx"));
+				"C:\\munishdata\\mp\\workspace\\nxdial\\nx\\src\\main\\resources\\nxData_local.xlsx"));
 				//"C:\\MunishData\\mp\\workspace\\nx\\src\\main\\resources\\nxData_local_all.xlsx"));
-				"/root/nxdial/data/nxData_prod.xlsx"));
+				//"/root/nxdial/data/nxData_prod.xlsx"));
 		return workbook;
 	}
 	 
@@ -330,6 +332,38 @@ public class CacheNxData {
 		{
 			Business business = new Business();
 			business.setMarketMain(location);
+			uniqueList.add(business);
+		}
+		//System.out.println("nxCategoryList = "+nxCategoryList);
+		//LOGGER.info("nxCategoryList = "+nxCategoryList);
+		return uniqueList;
+	}
+	
+	
+	public List<Business> getDoctorsSpecializationKeyListingList() throws InvalidFormatException, IOException {
+		Workbook workbook = getWorkbook();
+		Sheet categoryListingSheet = workbook.getSheet("NxDialAllListing");
+		Iterator<Row> categoryRowIterator = categoryListingSheet.rowIterator();
+		nxUniqueDoctorsSpecializationKeySet.clear();
+		while (categoryRowIterator.hasNext()) {
+			Row row = categoryRowIterator.next();
+			if(row.getRowNum() > 0) {
+				String doctorSpecializationKey = (row.getCell(15) == null) ? "": row.getCell(15).toString();	
+				String active = (row.getCell(1) == null) ? "": row.getCell(1).toString();	
+				if(doctorSpecializationKey != "" && "Y".equalsIgnoreCase(active)) {
+					String keyColl[] = doctorSpecializationKey.split(" ");
+					for (String key : keyColl)
+					{
+						nxUniqueDoctorsSpecializationKeySet.add(key);
+					}
+				}
+			}
+		}
+		List<Business> uniqueList = new ArrayList<Business>();
+		for (String specializationKey : nxUniqueDoctorsSpecializationKeySet)
+		{
+			Business business = new Business();
+			business.setSpecializationKey(specializationKey);
 			uniqueList.add(business);
 		}
 		//System.out.println("nxCategoryList = "+nxCategoryList);

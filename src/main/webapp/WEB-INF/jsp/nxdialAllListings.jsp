@@ -3,28 +3,37 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
-<div style="padding-top: 20px;padding-left: 15px;padding-right: 10px;">
-<table>
-		<tr>
-			<table width="100%">
-				<tr>
-					<td style="width: 50%; text-align: left">
-						<h4>{{selectedCategory}} in Noida Extension</h4>
-					</td>
-					<td style="text-align: right; width: 15%; color: red;cursor: pointer;" ng-click='clearSearchFilter()'>
-						Clear All
-					</td>
-					<td style="width: 10%; text-align: right;padding-right: 3px;">
-						Filter:
-					</td>
-					<td style="width: 25%; align: right;">
-					<input type="test" size="50" placeholder="Filter for {{selectedCategory}}.."
-						ng-model="searchFilter">
-					</td>
-				</tr>
-			</table>
-		</tr>
-</table>
+<div ng-init="getNxDoctorsSpecializationKeyList()"  style="padding-top: 20px;padding-left: 15px;padding-right: 10px;">
+	<table>
+			<tr>
+				<table width="100%">
+					<tr>
+						<td style="width: 50%; text-align: left">
+							<h4>{{selectedCategory}} in Noida Extension</h4>
+						</td>
+						<td style="text-align: right; width: 15%; color: red;cursor: pointer;" ng-click='clearSearchFilter()'>
+							Clear All
+						</td>
+						<td style="width: 10%; text-align: right;padding-right: 3px;">
+							Filter:
+						</td>
+						<td style="width: 25%; align: right;">
+						<input type="test" size="50" placeholder="Filter for {{selectedCategory}}.."
+							ng-model="searchFilter">
+						</td>
+					</tr>
+					<tr>
+						<td style="width: 50%; text-align: left">
+							<div ng-repeat="nxDirDoctorsSpecializationKey in nxDirDoctorsSpecializationKeyList">
+								<a class="underline" style="text-decoration: none;cursor: pointer;" ng-click="filterSearch(dataKey);goToTop();" ng-model="dataKey">
+									<span>{{nxDirDoctorsSpecializationKey.specializationKey}}</span>
+								</a>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</tr>
+	</table>
 </div>
 <h5 style="padding-left: 15px;padding-right: 10px; font-weight:bold;color: dark gray;">SORT RESULT NEAR YOU</h5>
 <div ng-init="getUniqueLocations()" style="padding-left: 10px;padding-right: 10px;">
@@ -67,13 +76,16 @@
 												{{nxCategory.contactNumber}} 
 											</a>
 											{{nxCategory.contactNumberOther}}
+											<a class="button" ng-href="https://wa.me/91{{nxCategory.contactNumber}}" target="_blank">
+												<img src="<c:url value="/img/common/whatsApp.png"/>" class="img-rounded" width="20" height="20"/>
+											</a>
 										</h5> 
 										<h5>
 											<img src="<c:url value="/img/common/openTime.png"/>" class="img-rounded" width="20" height="20"/> 
 											{{ nxCategory.openTime}} 
 										</h5>
 										<h5 ng-if="nxCategory.website!=''">
-											<a href="{{nxCategory.website}}" onClick="return popup(this, 'location')">	
+											<a href="{{nxCategory.website}}" target="_blank">	
 												<img src="<c:url value="/img/common/website.png"/>" class="img-rounded" width="20" height="20"/>   
 												{{ nxCategory.website}} 
 											</a>

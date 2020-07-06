@@ -26,6 +26,8 @@ public class Business {
 	
 	public String specialization;
 	
+	public String specializationKey;
+	
 	public String market;
 	
 	public String marketMain;
@@ -208,6 +210,14 @@ public class Business {
 
 	public void setSpecialization(String specialization) {
 		this.specialization = specialization;
+	}
+	
+	public String getSpecializationKey() {
+		return specializationKey;
+	}
+
+	public void setSpecializationKey(String specializationKey) {
+		this.specializationKey = specializationKey;
 	}
 
 	public String getMarket() {

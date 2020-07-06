@@ -7,18 +7,25 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 			
 		$scope.listingImageWidth = "300";
 		$scope.listingImageHeight = "150";
+		
+		$scope.advertiseImageWidth = "100%";
+		$scope.advertiseImageHeight = "15%";
+		
+		$scope.advertiseImageWidth1 = "100%";
+		$scope.advertiseImageHeight1 = "15%";
+		
 		$scope.enableSection = "Home";
 		$scope.searchString = "";
 		
-		$scope.prodUrlPrifix = "/nxdial-1";  // for production value should be "/nxdial-1" & for local it should be ""
-		//$scope.prodUrlPrifix = ""; 
+		//$scope.prodUrlPrifix = "/nxdial-1";  // for production value should be "/nxdial-1" & for local it should be ""
+		$scope.prodUrlPrifix = ""; 
 		
 		$scope.openCloseTime =["","12:00 AM","12:30 AM","01:00 AM","01:30 AM","02:00 AM","02:30 AM","03:00 AM","03:30 AM","04:00 AM","04:30 AM","05:00 AM","05:30 AM",
 								"06:00 AM","06:30 AM","07:00 AM","07:30 AM","08:00 AM","08:30 AM","09:00 AM","09:30 AM","10:00 AM","10:30 AM","11:00 AM","11:30 AM",
 								"12:00 PM","12:30 PM","01:00 PM","01:30 PM","02:00 PM","02:30 PM","03:00 PM","03:30 PM","04:00 PM","04:30 PM","05:00 PM","05:30 PM",
 								"06:00 PM","06:30 PM","07:00 PM","07:30 PM","08:00 PM","08:30 PM","09:00 PM","09:30 PM","10:00 PM","10:30 PM","11:00 PM","11:30 PM"];
-		advertisementHome();
-		
+		//advertisementHome();
+		$scope.whichPlatform = whichPlatform();
 	}
 		
 		
@@ -56,6 +63,21 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 			  $scope.nxCategoryList = response;
 		});
 	}
+	
+	/**
+	 * getNxDoctorsSpecializationKeyList is provide the doctor's specialization key in Doctors listing
+	 */
+	$scope.getNxDoctorsSpecializationKeyList = function() { 
+		$http({
+			method : "GET",
+			url:$scope.prodUrlPrifix + "/getNxDoctorsSpecializationKeyList",	
+			headers :{
+				'Content-Type' : 'application/json'}
+		}).success(function(response) {
+			  console.log('response: ' + response);
+			  $scope.nxDirDoctorsSpecializationKeyList = response;
+		});
+	} 
 	
 	/**
 	 * getNxDirThumnailCategories is provide the popular categories on home page
@@ -236,6 +258,7 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 	$scope.getMyAction= function(url, searchString) { 
 		$scope.enableSection = url;
 		$scope.searchString = searchString;
+		$scope.advertiseSection = url;
 	}
 	
 	$scope.getMyActionOtherCategory= function(url) { 
@@ -388,11 +411,6 @@ function advertisementHome()
 		    }
 		};
 	
-	alert(isMobile.any());
-//	if( isMobile.Windows() ) 
-//		alert('Android');
-//	
-	alert(Object.values(isMobile.any()));
 	
 	if(isMobile.any() == null)
 	{
@@ -402,19 +420,18 @@ function advertisementHome()
 		//window.open("/img/doctor/doctor_DrKamanaPurohit.jpeg", "DoctorKamana", 'width=200,height=200,scrollbars=yes,screenX=605,screenY=605,top=400');
 		//window.open("/img/restaurant/restaurant_MirchMasalaChineseFastFood.jpeg", "RestaurantMirchMasala", 'width=200,height=200,scrollbars=yes,screenX=400,screenY=400,top=400');
 	}
-	
-	
 }
+
 
 // When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    document.getElementById("myBtn").style.display = "block";
-  } else {
-    document.getElementById("myBtn").style.display = "none";
-  }
+	  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+	    document.getElementById("myBtn").style.display = "block";
+	  } else {
+	    document.getElementById("myBtn").style.display = "none";
+	  }
 }
 
 // When the user clicks on the button, scroll to the top of the document
@@ -423,3 +440,69 @@ function topFunction() {
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 } 
 
+
+// To set facebook link
+function whichPlatform()
+{
+	var isMobile = {
+		    Android: function() {
+		        return navigator.userAgent.match(/Android/i);
+		    },
+		    BlackBerry: function() {
+		        return navigator.userAgent.match(/BlackBerry/i);
+		    },
+		    iOS: function() {
+		        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+		    },
+		    Opera: function() {
+		        return navigator.userAgent.match(/Opera Mini/i);
+		    },
+		    Windows: function() {
+		        return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+		    },
+		    any: function() {
+		        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+		    }
+		};
+	return isMobile.any();
+	/*if('Android' == isMobile.any())
+		{
+			return 'fb://page/430200921108236';
+		}
+	else{
+		return 'https://www.facebook.com/nxdial/';
+	}*/
+	//alert(isMobile.any());
+//	if( isMobile.Windows() ) 
+//		alert('Android');
+//	
+//	alert(Object.values(isMobile.any()));
+	
+}
+
+
+//Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn"); 
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+window.onload = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}

@@ -1,25 +1,26 @@
 package com.shop.test;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.FileAttribute;
+import java.nio.file.attribute.PosixFilePermission;
+import java.nio.file.attribute.PosixFilePermissions;
+import java.util.Set;
 
-import org.springframework.util.SystemPropertyUtils;
 
 public class Test {
-
 	public static void main(String[] args) throws Exception {
-		Map map = new HashMap();
-		System.out.println(map.get("aa"));
+		
+		String str = "00";
+			System.out.println(Integer.parseInt(str));
+			String str1 = "09";
+			System.out.println(Integer.parseInt(str1));
 	}
 }
-
-

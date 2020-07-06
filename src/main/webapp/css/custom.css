@@ -2,11 +2,11 @@
 
 body.home
 {
-	 height: 1000px; background-color: #eed; 
+	 height: 1000px; 
 }
 div.homeBase
 {
-	background-color: #eee; padding-left: 35px; padding-right: 35px;
+	background-color: #C0C0C0; padding-left: 35px; padding-right: 35px;
 }
 div.downPadding10
 {
@@ -168,6 +168,72 @@ div.width30
 	.carousel-inner .active.left { left: -25%; }
 	.carousel-inner .next        { left:  25%; }
 	.carousel-inner .prev		 { left: -25%; }	
+}
+
+.icon-bar {
+  position: fixed;
+  top: 50%;
+  right: 1%;
+  -webkit-transform: translatex(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 6px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 40px;
+  margin: 2px;
+  border-radius: 5px;
+  transform: translate(0px, 0px);
+}
+
+.icon-bar a:hover {
+  background-color: #000;
+}
+
+
+.whatsapp {
+  background: #32CD32;
+  color: white;
+}
+
+.phone {
+  background: #bb0000;
+  color: white;
+}
+
+.facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.google {
+  background: #dd4b39;
+  color: white;
+}
+
+.linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.youtube {
+  background: #bb0000;
+  color: white;
+}
+
+.content {
+  margin-left: 75px;
+  font-size: 30px;
 }
 
    

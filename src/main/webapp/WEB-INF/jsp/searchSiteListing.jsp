@@ -50,7 +50,7 @@
 		<td align="left" width="85%">
 			<div ng-init="getNxSearchSiteList()" style="padding-left: 10px;padding-right: 10px;">	
 					<ul class="list-group" >
-						<li class="list-group-item"  ng-repeat="nxCategory in nxSearchSiteList | filter:searchFilter | filter:searchFilter1" > 
+						<li class="list-group-item"  ng-repeat="nxCategory in nxSearchSiteList | filter:searchFilter | filter:searchFilter1 | orderBy: 'category'" > 
 							<table style=" border-spacing: 105px;">
 								<tr>
 									<td style="padding-right: 5px;width: 15%">
@@ -58,7 +58,7 @@
 									</td>
 									<td valign="top" style="text-align:left;width: 75%">
 										<h4>
-											{{ nxCategory.name}}
+											<span style="color: #0480d6;">{{ nxCategory.category}} > </span>{{ nxCategory.name}}
 										</h4>
 										<h5 ng-if="nxCategory.specialization!=''">
 											<img src="<c:url value="/img/common/speciality.png"/>" class="img-rounded" width="20" height="20"/> 
@@ -74,7 +74,10 @@
 												<img src="<c:url value="/img/common/phone.png"/>" class="img-rounded" width="20" height="20"/> 
 												{{nxCategory.contactNumber}} 
 											</a>
-											{{nxCategory.contactNumber}}
+											{{nxCategory.contactNumberOther}}
+											<a class="button" ng-href="https://wa.me/91{{nxCategory.contactNumber}}" target="_blank">
+												<img src="<c:url value="/img/common/whatsApp.png"/>" class="img-rounded" width="20" height="20"/>
+											</a>
 										</h5> 
 										<h5>
 											<img src="<c:url value="/img/common/openTime.png"/>" class="img-rounded" width="20" height="20"/> 
