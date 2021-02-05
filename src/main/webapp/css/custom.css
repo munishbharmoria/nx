@@ -6,7 +6,7 @@ body.home
 }
 div.homeBase
 {
-	background-color: #C0C0C0; padding-left: 35px; padding-right: 35px;
+	background-color: #C0C0C0; padding-left: 0px; padding-right: 0px;
 }
 div.downPadding10
 {
@@ -234,6 +234,23 @@ div.width30
 .content {
   margin-left: 75px;
   font-size: 30px;
+}
+
+#pop up advertisement
+
+.left-nav,.right-nav{
+         float:left; 
+      }
+      .right-nav{
+        margin-left:20px;
+      }
+      a{
+        cursor:pointer; 
+      }
+
+
+.modal-header {
+  text-align: center;
 }
 
    

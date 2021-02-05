@@ -24,7 +24,7 @@
 			</tr>
 		</table>	
 </div> -->
-<div  ng-init="getNxDirCategories()">
+<div  ng-init="getNxDirCategories()" style="padding-left: 5px;padding-right: 5px;">
 	<nav class="navbar navbar-inverse">
 			<ul class="nav navbar-nav">
 				<li ng-repeat="nxCategory in nxDirCategories" style="padding-left: 5px;padding-right: 5px;">

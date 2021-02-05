@@ -8,7 +8,7 @@
 		<tr width="100%">
 			<td width="100%">
 				<ul class="nav navbar-nav" >
-						<li style="padding-top: 14px;padding-right: 25px;padding-left: 10px;padding-bottom: 20px;" 
+						<li style="padding-top: 14px;padding-right: 10px;padding-left: 30px;padding-bottom: 20px;" 
 						ng-repeat="nxDirThumnail in nxCategoriesThumbnails" ng-if="$index < 14">
 							<h5  class="figure-caption text-left" ng-model="data" ng-init="data=nxDirThumnail.caption"> 
 								{{nxDirThumnail.caption}}
@@ -30,7 +30,7 @@
 		<tr width="100%">
 			<td width="100%">
 				<ul class="nav navbar-nav" >
-						<li style="padding-top: 14px;padding-right: 25px;padding-left: 10px;padding-bottom: 20px;" 
+						<li style="padding-top: 14px;padding-right: 10px;padding-left: 30px;padding-bottom: 20px;" 
 						ng-repeat="nxDirThumnail in nxCategoriesThumbnails" ng-if="$index > 13">
 							<h5  class="figure-caption text-left" ng-model="data" ng-init="data=nxDirThumnail.caption"> 
 								{{nxDirThumnail.caption}}

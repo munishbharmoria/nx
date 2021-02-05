@@ -1,7 +1,7 @@
 'use strict';
 
-var module = angular.module('shopModule', ['ngRoute']);
-angular.module('shopModule').controller('shopController', [ '$scope', '$http', '$window', function($scope, $http) {
+var module = angular.module('shopModule', ['ngRoute' , 'ui.bootstrap' , 'ngTouch' , 'ngAnimate']);
+angular.module('shopModule').controller('shopController', [ '$scope', '$http', '$window', '$uibModal', function($scope, $http, $uibModal) {
 	
 		$scope.initialize = function(){
 			
@@ -28,6 +28,19 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 		$scope.whichPlatform = whichPlatform();
 	}
 		
+		  
+		  /* $scope.openModal = function(){
+			 $scope.modalInstance = $uibModal.open({
+			  ariaLabelledBy: 'modal-title',
+			  ariaDescribedBy: 'modal-body',
+			  templateUrl: 'modalWindow.html',
+			  controller :'ModelHandlerController',
+			  controllerAs: '$ctrl',
+			  size: 'lg',
+			  resolve: {
+			  
+			  }
+			  });  */
 		
 	/**
 	 * getNxDirCategories is provide the categories on the top of the page
@@ -364,6 +377,21 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 
 } ]);
 
+
+/*app.controller("ModelHandlerController",function($scope,$uibModalInstance){
+	 
+	 $scope.cancelModal = function(){
+	 console.log("cancelmodal");
+	 $uibModalInstance.dismiss('close');
+	 }
+	 $scope.ok = function(){
+	 $uibModalInstance.close('save');
+	 
+	 }
+	 
+	});*/
+
+
 function popup(mylink, windowname, website) {
 	var mapUrl = String(mylink);
 	if (mapUrl.charAt(mapUrl.length - 1) != '#') {
@@ -478,31 +506,4 @@ function whichPlatform()
 //	
 //	alert(Object.values(isMobile.any()));
 	
-}
-
-
-//Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn"); 
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-window.onload = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
 }

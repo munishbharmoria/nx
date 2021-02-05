@@ -8,9 +8,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -26,7 +25,7 @@ import com.shop.model.News;
 @Component
 public class CacheNxData {
 	
-	private static final Logger LOGGER = LogManager.getLogger(CacheNxData.class);
+	static Logger LOGGER = Logger.getLogger(CacheNxData.class.getName());
 
 	public List<Category> nxDirCategoryList = new ArrayList<Category>();
 	public List<CategoryThumbnail> nxCategoryThumbnailList = new ArrayList<CategoryThumbnail>();

@@ -13,13 +13,14 @@
 						<div class="item active">
 							<div class="row" style="padding-top: 10px;padding-right: 15px;padding-left: 15px;padding-bottom: 10px;">
 								<div class="col-xs-4" >
-									<a class="button" ng-href="tel:01206850573">
-										<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight1}}; width: {{advertiseImageWidth1}}' src="<c:url value="/img/advertisement/adv1_FiveStarChicken.png"/>" >
+									<a class="button" ng-href="tel:08800587117">
+										<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight1}}; width: {{advertiseImageWidth1}}' src="<c:url value="/img/advertisement/adv1_TenantPoliceVerification.png"/>" >
 									</a>
+									
 								</div>
 								<div class="col-xs-4">
-									<a class="button" ng-href="tel:08826164813">
-										<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight1}}; width: {{advertiseImageWidth1}}' src="<c:url value="/img/advertisement/adv_OneTouchAirCondition&Refrigeration.png"/>" >
+									<a class="button" ng-href="tel:01206850573">
+										<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight1}}; width: {{advertiseImageWidth1}}' src="<c:url value="/img/advertisement/adv1_FiveStarChicken.png"/>" >
 									</a>
 								</div>
 								<div class="col-xs-4">
@@ -51,12 +52,12 @@
 				</div>
 				
 				<!-- Controls -->
-				  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+				<!--   <a class="left carousel-control" href="#myCarousel" data-slide="prev">
 				    <span class="glyphicon glyphicon-chevron-left"></span>
 				  </a>
 				  <a class="right carousel-control" href="#myCarousel" data-slide="next">
 				    <span class="glyphicon glyphicon-chevron-right"></span>
-				  </a> 
+				  </a>  -->
 			</div>
 	</div>
 </div>
