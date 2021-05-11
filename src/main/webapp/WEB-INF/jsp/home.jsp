@@ -135,7 +135,7 @@ async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 			</div>
 			
 			<div ng-if="whichPlatform == 'Android'" class="icon-bar">
-				  <a href="https://wa.me/08800587117" target="_blank" class="whatsapp"><i class="fa fa-whatsapp"></i></a> 
+				  <a href="https://wa.me/918800587117" target="_blank" class="whatsapp"><i class="fa fa-whatsapp"></i></a> 
 				  <a href="tel:08800587117" target="_blank" class="phone"><i class="fa fa-phone"></i></a> 
 				  <a href="fb://page/430200921108236" target="_blank" class="facebook"><i class="fa fa-facebook"></i></a>
 				  
@@ -145,7 +145,7 @@ async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 				  <a href="#" class="youtube"><i class="fa fa-youtube"></i></a>  -->
 			</div>
 			<div ng-if="whichPlatform == 'iOS'" class="icon-bar">
-				  <a href="https://wa.me/08800587117" target="_blank" class="whatsapp"><i class="fa fa-whatsapp"></i></a> 
+				  <a href="https://wa.me/918800587117" target="_blank" class="whatsapp"><i class="fa fa-whatsapp"></i></a> 
 				  <a href="tel:08800587117" target="_blank" class="phone"><i class="fa fa-phone"></i></a> 
 				  <a href="fb://page/?id=430200921108236" target="_blank" class="facebook"><i class="fa fa-facebook"></i></a>
 				  

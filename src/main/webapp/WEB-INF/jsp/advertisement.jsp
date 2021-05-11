@@ -10,6 +10,16 @@
 		  || advertiseSection=='aboutUs' || advertiseSection=='contactUs' || advertiseSection=='freeListing' || advertiseSection=='advertise' || 
 		  advertiseSection=='customerCare' || advertiseSection=='privacyPolicy'" >
 				<div class="item active">
+					<a class="button" ng-href="https://wa.me/917898993241" target="_blank">
+						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_ToothSaverDentalClinic.png"/>" >
+					</a>
+				</div>
+				<div class="item">
+					<a class="button" ng-href="https://wa.me/918744034442" target="_blank">
+						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_GhungrooKathakAcademy.png"/>" >
+					</a>
+				</div>
+				<div class="item">
 					<a class="button" ng-href="tel:08800587117">
 						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_GSTRegistration.jpg"/>" >
 					</a>
@@ -19,7 +29,7 @@
 						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_TenantPoliceVerification.png"/>" >
 					</a>
 				</div>
-				<div class="item">
+				<%-- <div class="item">
 					<a class="button" ng-href="tel:07807073085">
 						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_DrSSChandelOrtho.png"/>" >
 					</a>
@@ -33,17 +43,17 @@
 					<a class="button" ng-href="https://www.zomato.com/ncr/five-star-chicken-crossing-republik-ghaziabad" target="_blank">
 						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_FiveStarChicken.png"/>" >
 					</a>
-				</div>
+				</div> --%>
 				<%-- <div class="item">
 					<a class="button" ng-href="tel:08826164813">
 						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_Auntyskitchen.png"/>" >
 					</a>
 				</div> --%>
-				<div class="item">
+				<%-- <div class="item">
 					<a class="button" ng-href="tel:08826164813">
 						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_OneTouchAirCondition&Refrigeration.png"/>" >
 					</a>
-				</div>
+				</div> --%>
 				<%-- <div class="item">
 					<a class="button" ng-href="tel:09319241740">
 						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_AryaAutomobile.jpg"/>" >
@@ -54,11 +64,11 @@
 						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_UMgroupAdvNoidaGSTReady.png"/>" >
 					</a>
 				</div> --%>
-				<div class="item">
+				<%-- <div class="item">
 					<a class="button" ng-href="https://timesofindia.indiatimes.com/city/noida/noida-metro-gets-nod-to-build-second-greater-noida-corridor/articleshow/72357664.cms" target="_blank">
 						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_metroAquaToNoidaX.png"/>" >
 					</a>
-				</div>
+				</div> --%>
 				<%-- <div class="item">
 					<a class="button" ng-href="tel:08800587117">
 						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_AdvertiseYourShopHere.png"/>" >
@@ -74,11 +84,11 @@
 						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_milkBasket.JPG"/>" >
 					</a>
 				</div>  --%>
-				<div class="item">
+				<%-- <div class="item">
 					<a style="cursor: pointer" href="http://www.sarvottamnoida.com/" target="_blank"> 
 						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_sarvottamInternationalSchool.png"/>" >
 					</a>
-				</div> 
+				</div>  --%>
 		</div>
 		<div class="carousel-inner" align="center" ng-if="advertiseSection=='Restaurants'">
 				<%-- <div class="item active">
@@ -95,8 +105,8 @@
 		</div>
 		<div class="carousel-inner" align="center" ng-if="advertiseSection=='Doctors'">
 				<div class="item active">
-					<a class="button" ng-href="tel:08800587117">
-						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_AdvertiseYourShopHere.png"/>" >
+					<a class="button" ng-href="https://wa.me/917898993241" target="_blank">
+						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_ToothSaverDentalClinic.png"/>" >
 					</a>
 				</div>
 				<div class="item">
@@ -285,7 +295,8 @@
 						|| advertiseSection=='Courier Services' || advertiseSection=='COVID 19 Products'
 						|| advertiseSection=='Tution' || advertiseSection=='Art Classes'
 						|| advertiseSection=='LED Lights' || advertiseSection=='Handloom'
-						|| advertiseSection=='Dance Classes'">
+						|| advertiseSection=='Bartan Bhandar' || advertiseSection=='Power Tools'
+						|| advertiseSection=='Dance Classes' || advertiseSection=='Meat Chicken'">
 				<div class="item active">
 					<a class="button" ng-href="tel:08800587117">
 						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_AdvertiseYourShopHere.png"/>" >
