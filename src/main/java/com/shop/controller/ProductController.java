@@ -1,25 +1,17 @@
 package com.shop.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.logging.Logger;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.shop.model.Business;
 import com.shop.model.Category;
 import com.shop.model.CategoryThumbnail;
@@ -34,7 +26,7 @@ public class ProductController {
 	@Autowired
     CacheNxData cacheNxData;
 	
-	private static final Logger LOGGER = LogManager.getLogger(CacheNxData.class);
+	private static final Logger LOGGER = Logger.getLogger(ProductController.class.getName());
 	
 	@RequestMapping(path = "/getNxDirCategories")
 	public List<Category> getNxDirCategories() throws InvalidFormatException, IOException {

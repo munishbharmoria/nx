@@ -17,8 +17,8 @@ angular.module('shopModule').controller('shopController', [ '$scope', '$http', '
 		$scope.enableSection = "Home";
 		$scope.searchString = "";
 		
-		$scope.prodUrlPrifix = "/nxdial-1";  // for production value should be "/nxdial-1" & for local it should be ""
-		//$scope.prodUrlPrifix = ""; 
+		//$scope.prodUrlPrifix = "/nxdial-1";  // for production value should be "/nxdial-1" & for local it should be ""
+		$scope.prodUrlPrifix = ""; 
 		
 		$scope.openCloseTime =["","12:00 AM","12:30 AM","01:00 AM","01:30 AM","02:00 AM","02:30 AM","03:00 AM","03:30 AM","04:00 AM","04:30 AM","05:00 AM","05:30 AM",
 								"06:00 AM","06:30 AM","07:00 AM","07:30 AM","08:00 AM","08:30 AM","09:00 AM","09:30 AM","10:00 AM","10:30 AM","11:00 AM","11:30 AM",
