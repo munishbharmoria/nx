@@ -8,9 +8,21 @@
 async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 		
 </script>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NEVHYXVL6B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NEVHYXVL6B');
+</script>
+
 	
 	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async
+	<!-- <script async
 		src="https://www.googletagmanager.com/gtag/js?id=UA-140234422-1"></script>
 	<script>
 	  window.dataLayer = window.dataLayer || [];
@@ -18,7 +30,7 @@ async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 	  gtag('js', new Date());
 	
 	  gtag('config', 'UA-140234422-1');
-	</script>
+	</script> -->
 	
 	<title>NxDial.com - Noida Extension's Online Directory</title>
 	

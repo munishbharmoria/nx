@@ -3,7 +3,6 @@ package com.shop.util;
 import java.util.Arrays;
 import java.util.List;
 
-import com.shop.model.Business;
 import com.shop.model.Category;
 import com.shop.model.CategoryThumbnail;
 

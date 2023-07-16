@@ -1,4 +1,4 @@
-package java.com.shop;
+package com.shop;
 
 public class Test1 {
 

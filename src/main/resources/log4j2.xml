@@ -2,7 +2,7 @@
 <Configuration status="WARN" monitorInterval="30">
     <Properties>
         <Property name="LOG_PATTERN">%d{yyyy-MM-dd'T'HH:mm:ss.SSSZ} %p %C %M %m%n</Property>
-        <Property name="APP_LOG_ROOT">/root/nxdial/logs/</Property> 
+        <Property name="APP_LOG_ROOT">/home/ec2-user/logs/</Property> 
       <!--   <Property name="APP_LOG_ROOT">C:\MunishData\mp\nxdial\logs\</Property> -->
     </Properties>
     <Appenders>

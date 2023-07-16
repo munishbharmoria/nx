@@ -32,8 +32,8 @@ public class ProductController {
 	public List<Category> getNxDirCategories() throws InvalidFormatException, IOException {
 		//clear cache start
 		try {
-			ProcessBuilder pb = new ProcessBuilder("/root/nxdial/tools/clearCache.sh");
-			pb.start();
+			//ProcessBuilder pb = new ProcessBuilder("/root/nxdial/tools/clearCache.sh");
+			//pb.start();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

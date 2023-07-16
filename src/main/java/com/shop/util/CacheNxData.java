@@ -51,9 +51,9 @@ public class CacheNxData {
 	
 	public Workbook getWorkbook() throws InvalidFormatException, IOException {
 		Workbook workbook = WorkbookFactory.create(new File(
-				"C:\\munishdata\\mp\\workspace\\nxdial\\nx\\src\\main\\resources\\nxData_local.xlsx"));
+				//"C:\\MunishData\\mp\\workspace\\nx\\src\\main\\resources\\nxData_local.xlsx"));
 				//"C:\\MunishData\\mp\\workspace\\nx\\src\\main\\resources\\nxData_local_all.xlsx"));
-				//"/root/nxdial/data/nxData_prod.xlsx"));
+				"/home/ec2-user/data/nxData_prod.xlsx"));
 		return workbook;
 	}
 	 
