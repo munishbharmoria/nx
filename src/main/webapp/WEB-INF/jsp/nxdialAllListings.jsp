@@ -22,7 +22,7 @@
 							ng-model="searchFilter">
 						</td>
 					</tr>
-					<tr>
+					<!-- <tr>
 						<td style="width: 50%; text-align: left">
 							<div ng-repeat="nxDirDoctorsSpecializationKey in nxDirDoctorsSpecializationKeyList">
 								<a class="underline" style="text-decoration: none;cursor: pointer;" ng-click="filterSearch(dataKey);goToTop();" ng-model="dataKey">
@@ -30,7 +30,7 @@
 								</a>
 							</div>
 						</td>
-					</tr>
+					</tr> -->
 				</table>
 			</tr>
 	</table>

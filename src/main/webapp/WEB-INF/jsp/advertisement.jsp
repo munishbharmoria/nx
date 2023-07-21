@@ -9,7 +9,12 @@
 		<div class="carousel-inner" align="center" ng-if="advertiseSection=='Home' 
 		  || advertiseSection=='aboutUs' || advertiseSection=='contactUs' || advertiseSection=='freeListing' || advertiseSection=='advertise' || 
 		  advertiseSection=='customerCare' || advertiseSection=='privacyPolicy'" >
-				<div class="item active">
+		  		<div class="item active">
+					<a class="button" ng-href="tel:08800587117">
+						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_TenantPoliceVerification.png"/>" >
+					</a>
+				</div>
+				<div class="item">
 					<a class="button" ng-href="https://wa.me/917898993241" target="_blank">
 						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_ToothSaverDentalClinic.png"/>" >
 					</a>
@@ -19,16 +24,11 @@
 						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_GhungrooKathakAcademy.png"/>" >
 					</a>
 				</div>
-				<div class="item">
+				<%-- <div class="item">
 					<a class="button" ng-href="tel:08800587117">
 						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_GSTRegistration.jpg"/>" >
 					</a>
-				</div>
-				<div class="item">
-					<a class="button" ng-href="tel:08800587117">
-						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_TenantPoliceVerification.png"/>" >
-					</a>
-				</div>
+				</div> --%>
 				<%-- <div class="item">
 					<a class="button" ng-href="tel:07807073085">
 						<img class="img-rounded hvr-grow" style='height: {{advertiseImageHeight}}; width: {{advertiseImageWidth}}' src="<c:url value="/img/advertisement/adv_DrSSChandelOrtho.png"/>" >
