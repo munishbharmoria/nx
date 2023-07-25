@@ -2,6 +2,8 @@ package com.shop.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -50,10 +52,19 @@ public class CacheNxData {
 	public List<News> nxNewsList = new ArrayList<News>();
 	
 	public Workbook getWorkbook() throws InvalidFormatException, IOException {
+		
+		/*URL resource = getClass().getClassLoader().getResource("data/nxData_prod.xlsx");
+		File file = null;
+		try {
+			file = new File(resource.toURI());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		Workbook workbook = WorkbookFactory.create(file);*/
+				
 		Workbook workbook = WorkbookFactory.create(new File(
-				//"C:\\MunishData\\mp\\workspace\\nx\\src\\main\\resources\\nxData_local.xlsx"));
-				//"C:\\MunishData\\mp\\workspace\\nx\\src\\main\\resources\\nxData_local_all.xlsx"));
-				"/home/ec2-user/data/nxData_prod.xlsx"));
+				"/home/ec2-user/tools/apache-tomcat-8.0.33/webapps/nxdial-1/WEB-INF/classes/nxData_prod.xlsx"));
+				//"/home/ec2-user/data/nxData_prod.xlsx"));
 		return workbook;
 	}
 	 
